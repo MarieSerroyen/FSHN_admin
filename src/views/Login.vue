@@ -1,9 +1,11 @@
 <script lang="ts" setup>
-
+    import LoginForm from '../components/LoginForm.vue'
 </script>
 
 <template>
-    test
+    <div>
+        <LoginForm />
+    </div>
 </template>
 
 <style scoped>
