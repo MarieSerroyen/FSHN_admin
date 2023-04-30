@@ -39,7 +39,7 @@ import router from '../router';
     <div>
         <form>
             <div>
-                <label for="mail">Email</label>
+                <label for="email">Email</label>
                 <input type="text" id="email" placeholder="Mail" v-model="email" >
             </div>
 
