@@ -14,16 +14,15 @@
     let stock = ref('');
 
 
-
     const select = (e: Event) => {
         const target = e.target as HTMLInputElement;
         
         if (target.checked) {
             sizes.value.push(target.value);
-            console.log (sizes.value);
+            //console.log (sizes.value);
         } else {
             sizes.value = sizes.value.filter(sizes => sizes !== target.value);
-            console.log (sizes.value);
+            //console.log (sizes.value);
         }
     }
 
@@ -58,11 +57,11 @@
             articleNumber: articleNumber.value,
             description: description.value,
             brand: brand.value,
-            colors: colors.value,
+            colors: colors.value.split(','),
             sizes: sizes.value,
             price: price.value,
-            materials: materials.value,
-            category: category.value,
+            materials: materials.value.split(','),
+            category: category.value.split(','),
             headImage: imageUrl.value,
             subImages: imageUrl.value,
             stock: stock.value,
@@ -117,12 +116,6 @@
 
     <div>
         <p>Sizes</p>
-         <!--<ul>
-            <li v-for="size in sizes" :key="size">
-                <input type="checkbox" :id="size" :name="size" class="size" :value="size" @click="select">
-                <label :for="size">{{ size }}</label>
-            </li>
-         </ul>-->
         <div>
             <input type="checkbox" id="S" name="S" class="size" value="S" @change="select">
             <label for="S">S</label>
@@ -138,11 +131,6 @@
             <label for="L">L</label>
         </div>
     </div>
-
-    <!--<div>
-        <label for="sizes">Sizes</label>
-        <input type="text" id="sizes" name="sizes" v-model="sizes">  
-    </div>-->
 
     <div>
         <label for="colors">Colors</label>
