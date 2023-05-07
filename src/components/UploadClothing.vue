@@ -15,7 +15,7 @@
 
 
 
-    /*const select = (e: Event) => {
+    const select = (e: Event) => {
         const target = e.target as HTMLInputElement;
         
         if (target.checked) {
@@ -25,7 +25,7 @@
             sizes.value = sizes.value.filter(sizes => sizes !== target.value);
             console.log (sizes.value);
         }
-    }*/
+    }
 
 
     const uploadImage = (e: Event) => {
@@ -115,15 +115,15 @@
         <input type="text" id="brand" name="brand" v-model="brand">
     </div>
 
-    <!--<div>
+    <div>
         <p>Sizes</p>
-         <ul>
+         <!--<ul>
             <li v-for="size in sizes" :key="size">
                 <input type="checkbox" :id="size" :name="size" class="size" :value="size" @click="select">
                 <label :for="size">{{ size }}</label>
             </li>
          </ul>-->
-        <!--<div>
+        <div>
             <input type="checkbox" id="S" name="S" class="size" value="S" @change="select">
             <label for="S">S</label>
         </div>
@@ -137,12 +137,12 @@
             <input type="checkbox" id="L" name="L" class="size" value="L" @change="select">
             <label for="L">L</label>
         </div>
-    </div>-->
+    </div>
 
-    <div>
+    <!--<div>
         <label for="sizes">Sizes</label>
         <input type="text" id="sizes" name="sizes" v-model="sizes">  
-    </div>
+    </div>-->
 
     <div>
         <label for="colors">Colors</label>
