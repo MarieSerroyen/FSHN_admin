@@ -73,11 +73,11 @@
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
-        padding: 1rem 0.5rem;
+        padding: 1rem;
     }
 
     .menu {
-        padding-left: 1rem;
+        padding-left: 1.5rem;
     }
 
     .menu-item {
@@ -101,7 +101,7 @@
     }
 
     span {
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 400;
         color: black;
         padding: 0.5rem 0.5rem;
