@@ -2,15 +2,16 @@
     import { ref } from 'vue'
 
     let imageUrl = ref('');
+    let subImages = ref([]);
     let name = ref('');
     let articleNumber = ref('');
     let description = ref('');
     let brand = ref('');
-    let colors = ref([]);
-    let sizes =ref([]);
+    let colors:any = ref([]);
+    let sizes:any =ref([]);
     let price = ref('');
-    let materials = ref([]);
-    let category = ref([]);
+    let materials:any = ref([]);
+    let category:any = ref([]);
     let stock = ref('');
 
 
@@ -21,7 +22,7 @@
             sizes.value.push(target.value);
             //console.log (sizes.value);
         } else {
-            sizes.value = sizes.value.filter(sizes => sizes !== target.value);
+            sizes.value = sizes.value.filter((sizes: string) => sizes !== target.value);
             //console.log (sizes.value);
         }
     }
@@ -50,6 +51,49 @@
         });
     }
 
+    /*const uploadSubImages = (e: Event) => {
+        const target = e.target as HTMLInputElement;
+
+        //console.log(target.files);
+
+        const files =[target.files![0]] ;
+        //console.log(file);
+        let formData:any = new FormData();
+
+        //for each file in the list, append it to the formData
+        let urls:any = [];
+        for (const file of files) {
+            const data = file;
+            urls.push(data); 
+        }
+
+        /*files.forEach((file: any) => {
+            formData.append("file", file);
+            console.log(formData);
+        });*/
+
+
+
+        /*formData.append("file", files);
+        console.log(formData);
+        formData.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
+
+        fetch(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_USER_NAME}/image/upload`, {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            console.log(formData);
+            subImages.value = (data.secure_url);
+
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }*/
+
     const uploadClothing = () => {
 
         let data = {
@@ -63,12 +107,12 @@
             materials: materials.value.split(','),
             category: category.value.split(','),
             headImage: imageUrl.value,
-            subImages: imageUrl.value,
+            subImages: subImages.value,
             stock: stock.value,
             store: "COS"
         }
 
-        fetch("https://fshn-backend.onrender.com/api/v1/clothing", {
+        fetch(`${import.meta.env.VITE_API_URL}/clothing`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -161,8 +205,17 @@
         <label for="fileUpload">Upload image</label>
         <input @change="uploadImage" type="file" id="fileUpload" name="fileUpload">
     </div>
+
+    <!--<div>
+        <label for="fileUpload">Upload sub images</label>
+        <input @change="uploadSubImages" type="file" id="filesUpload" name="filesUpload" multiple>
+    </div>-->
+
     <a @click="uploadClothing">submit</a>
 </template>
 
 <style scoped>
+    a {
+        cursor: pointer;
+    }
 </style>
