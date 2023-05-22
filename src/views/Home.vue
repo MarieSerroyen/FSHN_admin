@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import UploadClothing from '../components/UploadClothing.vue'
 import UploadCategory from '../components/UploadCategory.vue'
+import UploadSubCategory from '../components/UploadSubCategory.vue'
 import Nav from '../components/NavComponent.vue'
 
 </script>
@@ -16,6 +17,11 @@ import Nav from '../components/NavComponent.vue'
     <div>
         <h2>Upload category</h2>
         <UploadCategory />
+    </div>
+
+    <div>
+        <h2>Upload subcategory</h2>
+        <UploadSubCategory />
     </div>
 
 </template>
