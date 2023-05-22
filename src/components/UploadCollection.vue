@@ -1,7 +1,7 @@
 <script lang="ts" setup>
     import { ref, onMounted } from 'vue'
 
-    let subcategoryImgUrl = ref('');
+    let collectionImgUrl = ref('');
     let name = ref('');
 
     let store = ref('');
@@ -31,7 +31,7 @@
         });
     });
 
-    const uploadSubcategoryImg = (e: Event) => {
+    const uploadCollectionImg = (e: Event) => {
         const target = e.target as HTMLInputElement;
         const file = target.files![0];
         let formData = new FormData();
@@ -46,7 +46,7 @@
         .then(response => response.json())
         .then(data => {
             //console.log(data);
-            subcategoryImgUrl.value = (data.secure_url);
+            collectionImgUrl.value = (data.secure_url);
 
         })
         .catch(error => {
@@ -54,15 +54,15 @@
         });
     }
 
-    const uploadSubcategory = () => {
+    const uploadCollection = () => {
 
         let data = {
             name: name.value,
-            image: subcategoryImgUrl.value,
+            image: collectionImgUrl.value,
             store: store.value
         }
 
-        fetch(`${import.meta.env.VITE_API_URL}/subCategories`, {
+        fetch(`${import.meta.env.VITE_API_URL}/collections`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -88,16 +88,16 @@
 
 <template>
  <div>
-        <label for="name">Subcategory name</label>
+        <label for="name">Collection name</label>
         <input type="text" id="name" name="name" v-model="name">
     </div>
 
     <div>
-        <label for="fileUpload">Upload subcategory image</label>
-        <input @change="uploadSubcategoryImg" type="file" id="fileUpload" name="fileUpload">
+        <label for="fileUpload">Upload collection image</label>
+        <input @change="uploadCollectionImg" type="file" id="fileUpload" name="fileUpload">
     </div>
 
-    <a @click="uploadSubcategory">submit</a>
+    <a @click="uploadCollection">submit</a>
 </template>
 
 <style scoped>
