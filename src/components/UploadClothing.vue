@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-    import { ref } from 'vue'
+    import { ref, Ref, onMounted } from 'vue'
 
     let imageUrl = ref('');
     let subImages = ref([]);
@@ -7,12 +7,38 @@
     let articleNumber = ref('');
     let description = ref('');
     let brand = ref('');
-    let colors:any = ref([]);
-    let sizes:any =ref([]);
+    let colors:Ref = ref([]);
+    let sizes:Ref =ref([]);
     let price = ref('');
-    let materials:any = ref([]);
-    let category:any = ref([]);
+    let materials:Ref = ref([]);
+    let category:Ref = ref([]);
     let stock = ref('');
+    let store = ref('');
+
+    onMounted(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors" 
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            if (data.status === "success") {
+                store.value = data.data.name;
+                //console.log(store.value);
+            } else {
+                console.log(data);
+                
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    });
 
 
     const select = (e: Event) => {
@@ -106,10 +132,12 @@
             price: price.value,
             materials: materials.value.split(','),
             category: category.value.split(','),
+            subCategories: "sfkdjdslf",
+            collectionStore:"sfdlfksdf",
             headImage: imageUrl.value,
             subImages: subImages.value,
             stock: stock.value,
-            store: "COS"
+            store: store.value
         }
 
         fetch(`${import.meta.env.VITE_API_URL}/clothing`, {
