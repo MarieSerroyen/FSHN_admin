@@ -1,10 +1,13 @@
 <script lang="ts" setup>
-    import { ref, onMounted } from 'vue'
+    import { ref, onMounted, Ref } from 'vue'
 
     let subcategoryImgUrl = ref('');
     let name = ref('');
 
     let store = ref('');
+    const categories:Ref = ref([]);
+    const names:Ref = ref([]);
+
 
     onMounted(() => {
         fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
@@ -19,8 +22,7 @@
         .then(data => {
             //console.log(data);
             if (data.status === "success") {
-                store.value = data.data.name;
-                //console.log(store.value);
+                store.value = data.data.storeId;
             } else {
                 console.log(data);
                 
@@ -29,6 +31,30 @@
         .catch((error) => {
             console.log(error);
         });
+
+        fetch(`${import.meta.env.VITE_API_URL}/categories/store/COS`, {
+            
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors"
+            
+        }
+        )
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                //console.log(data);
+                categories.value = data.data;
+                names.value = data.data.map((category: any) => category.name);
+                //console.log(names.value);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     });
 
     const uploadSubcategoryImg = (e: Event) => {
@@ -59,7 +85,8 @@
         let data = {
             name: name.value,
             image: subcategoryImgUrl.value,
-            store: store.value
+            store: store.value,
+            category: "646b3425e139a0f8e9b50ea5"
         }
 
         fetch(`${import.meta.env.VITE_API_URL}/subCategories`, {
@@ -87,9 +114,16 @@
 </script>
 
 <template>
- <div>
+    <div>
         <label for="name">Subcategory name</label>
         <input type="text" id="name" name="name" v-model="name">
+    </div>
+
+    <div>
+        <label for="name">Head category</label>
+        <select name="headCategory" id="headCategory">
+            <option v-for="(name, key) in names" :key="key" :value="key">{{ name }}</option>
+        </select>
     </div>
 
     <div>

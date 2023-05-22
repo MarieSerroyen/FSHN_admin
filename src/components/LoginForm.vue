@@ -1,13 +1,12 @@
 <script lang="ts" setup>
     import {ref} from 'vue'
-import router from '../router';
-    //import router from '../router'
+    import router from '../router';
 
     const email = ref('');
     const password = ref('');
 
     const login = () => {
-        fetch("https://fshn-backend.onrender.com/api/v1/users/login", {
+        fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
