@@ -1,8 +1,35 @@
 <script lang="ts" setup>
-    import { ref } from 'vue'
+    import { ref, onMounted } from 'vue'
 
     let categoryImgUrl = ref('');
     let name = ref('');
+
+    let store = ref('');
+
+    onMounted(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors" 
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            if (data.status === "success") {
+                store.value = data.data.name;
+                //console.log(store.value);
+            } else {
+                console.log(data);
+                
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    });
 
     const uploadCategoryImg = (e: Event) => {
         const target = e.target as HTMLInputElement;
@@ -32,7 +59,7 @@
         let data = {
             name: name.value,
             image: categoryImgUrl.value,
-            store: "COS"
+            store: store.value
         }
 
         fetch(`${import.meta.env.VITE_API_URL}/categories`, {
