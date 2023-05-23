@@ -1,6 +1,8 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
+import Category from './views/Category.vue'
+import Collection from './views/Collection.vue'
 
 export default createRouter({
     history: createWebHistory(),
@@ -14,6 +16,16 @@ export default createRouter({
             path: '/login', 
             name: 'login',
             component: Login
+        },
+        {
+            path: '/category',
+            name: 'category',
+            component: Category
+        },
+        {
+            path: '/collection',
+            name: 'collection',
+            component: Collection
         }
 
     ]
