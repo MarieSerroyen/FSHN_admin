@@ -12,6 +12,7 @@
     "buffer": "^6.0.3",
     "dotenv": "^16.0.3",
     "vue": "^3.2.47",
+    "vue-multiselect": "^2.1.7",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

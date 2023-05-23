@@ -32,7 +32,7 @@
             console.log(error);
         });
 
-        fetch(`${import.meta.env.VITE_API_URL}/categories/store/COS`, {
+        fetch(`${import.meta.env.VITE_API_URL}/categories/store/646366bd6f26cb68777f8210`, {
             
             method: "GET",
             headers: {
@@ -86,7 +86,7 @@
             name: name.value,
             image: subcategoryImgUrl.value,
             store: store.value,
-            category: "646b3425e139a0f8e9b50ea5"
+            category: "646c52ea66801f48259e7413"
         }
 
         fetch(`${import.meta.env.VITE_API_URL}/subCategories`, {

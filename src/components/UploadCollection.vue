@@ -19,8 +19,8 @@
         .then(data => {
             //console.log(data);
             if (data.status === "success") {
-                store.value = data.data.name;
-                //console.log(store.value);
+                store.value = data.data.storeId;
+                console.log(store.value);
             } else {
                 console.log(data);
                 

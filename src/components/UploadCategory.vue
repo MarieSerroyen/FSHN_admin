@@ -4,7 +4,7 @@
     let categoryImgUrl = ref('');
     let name = ref('');
 
-    let store = ref('');
+    let storeId = ref('');
 
     onMounted(() => {
         fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
@@ -19,7 +19,7 @@
         .then(data => {
             //console.log(data);
             if (data.status === "success") {
-                store.value = data.data.name;
+                storeId.value = data.data.storeId;
                 //console.log(store.value);
             } else {
                 console.log(data);
@@ -59,7 +59,7 @@
         let data = {
             name: name.value,
             image: categoryImgUrl.value,
-            store: store.value
+            store: storeId.value
         }
 
         fetch(`${import.meta.env.VITE_API_URL}/categories`, {
