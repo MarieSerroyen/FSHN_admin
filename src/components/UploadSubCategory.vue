@@ -7,6 +7,7 @@
     let store = ref('');
     const categories:Ref = ref([]);
     const names:Ref = ref([]);
+    const categoryID = ref('');
 
 
     onMounted(() => {
@@ -22,7 +23,9 @@
         .then(data => {
             //console.log(data);
             if (data.status === "success") {
-                store.value = data.data.storeId;
+                const storeID = store.value = data.data.storeId;
+
+                getStore(storeID);
             } else {
                 console.log(data);
                 
@@ -32,7 +35,11 @@
             console.log(error);
         });
 
-        fetch(`${import.meta.env.VITE_API_URL}/categories/store/646366bd6f26cb68777f8210`, {
+        
+    });
+
+    const getStore = (value:Ref) => {
+        fetch(`${import.meta.env.VITE_API_URL}/categories/store/${value}`, {
             
             method: "GET",
             headers: {
@@ -50,12 +57,11 @@
                 //console.log(data);
                 categories.value = data.data;
                 names.value = data.data.map((category: any) => category.name);
-                //console.log(names.value);
             })
             .catch((error) => {
                 console.log(error);
             });
-    });
+    }
 
     const uploadSubcategoryImg = (e: Event) => {
         const target = e.target as HTMLInputElement;
@@ -80,13 +86,46 @@
         });
     }
 
+    const select = (e: Event) => {
+        const target = e.target as HTMLInputElement;
+        const value = target.value;
+        //console.log(value);
+        
+        getCategoryId(value);
+    }
+
+    const getCategoryId = (value:any):void => {
+        fetch(`${import.meta.env.VITE_API_URL}/categories/name/${value}`, {
+            
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors"
+            
+        }
+        )
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                //console.log(data);
+                categoryID.value = data.data._id;
+                //console.log(categoryID.value);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
     const uploadSubcategory = () => {
 
         let data = {
             name: name.value,
             image: subcategoryImgUrl.value,
             store: store.value,
-            category: "646c52ea66801f48259e7413"
+            category: categoryID.value
         }
 
         fetch(`${import.meta.env.VITE_API_URL}/subCategories`, {
@@ -121,8 +160,8 @@
 
     <div>
         <label for="name">Head category</label>
-        <select name="headCategory" id="headCategory">
-            <option v-for="(name, key) in names" :key="key" :value="key">{{ name }}</option>
+        <select name="headCategory" id="headCategory" @change="select">
+            <option v-for="(name, key) in names" :key="key" :value="name">{{ name }}</option>
         </select>
     </div>
 

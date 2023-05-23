@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import UploadClothing from '../components/UploadClothing.vue'
-import UploadCollection from '../components/UploadCollection.vue'
-import Nav from '../components/NavComponent.vue'
+    import UploadClothing from '../components/UploadClothing.vue'
+    import Nav from '../components/NavComponent.vue'
 
 </script>
 
