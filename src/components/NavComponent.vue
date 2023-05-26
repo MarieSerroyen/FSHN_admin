@@ -20,14 +20,6 @@
                 <img src="../assets/order-management.svg" alt="">
                 <span>Order Management</span>
             </a>
-            <a class="menu-links" href="">
-                <img src="../assets/customers.svg" alt="">
-                <span>Customers</span>
-            </a>
-            <a class="menu-links" href="">
-                <img src="../assets/transaction.svg" alt="">
-                <span>Transactions</span>
-            </a>
             </div>
 
             <div class="menu-item">
@@ -39,18 +31,6 @@
                 <a class="menu-links" href="">
                     <img src="../assets/product-list.svg" alt="">
                     <span>Product List</span>
-                </a>
-            </div>
-            
-            <div class="menu-item">
-                <h4 class="menu-title">Admin</h4>
-                <a class="menu-links" href="">
-                    <img src="../assets/manage-admins.svg" alt="">
-                    <span>Manage Admins</span>
-                </a>
-                <a class="menu-links" href="">
-                    <img src="../assets/settings.svg" alt="">
-                    <span>Admin Roles</span>
                 </a>
             </div>
         </div>

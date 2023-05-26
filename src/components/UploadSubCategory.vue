@@ -4,7 +4,7 @@
     let subcategoryImgUrl = ref('');
     let name = ref('');
 
-    let store = ref('');
+    const store = ref('');
     const categories:Ref = ref([]);
     const names:Ref = ref([]);
     const categoryID = ref('');
