@@ -1,12 +1,12 @@
 <script lang="ts" setup>
     import { ref, Ref, onMounted } from 'vue'
-    import { useClothingStore } from "../store/clothing";
+    import { useClothingStore } from "./../../store/clothing";
 
     const clothingStore = useClothingStore();
     const storeId = ref('');
-    const categories:Ref = ref([]);
+    const collections:Ref = ref([]);
     const names:Ref = ref([]);
-    const subcategoryID = ref('');
+    const collectionID = ref('');
     
 
     onMounted(() => {
@@ -37,7 +37,7 @@
     
 
     const getCategory = (value:Ref) => {
-        fetch(`${import.meta.env.VITE_API_URL}/subCategories/store/${value}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/collections/store/${value}`, {
             
             method: "GET",
             headers: {
@@ -53,7 +53,7 @@
             })
             .then((data) => {
                 //console.log(data);
-                categories.value = data.data;
+                collections.value = data.data;
                 names.value = data.data.map((category: any) => category.name);
             })
             .catch((error) => {
@@ -61,16 +61,16 @@
             });
     }
 
-    const selectSubcategory = (e: Event) => {
+    const selectCollection = (e: Event) => {
         const target = e.target as HTMLInputElement;
         const value = target.value;
         //console.log(value);
         
-        getSubcategoryId(value);
+        getCollectionId(value);
     }
 
-    const getSubcategoryId = (value:any):void => {
-        fetch(`${import.meta.env.VITE_API_URL}/subCategories/name/${value}`, {
+    const getCollectionId = (value:any):void => {
+        fetch(`${import.meta.env.VITE_API_URL}/collections/name/${value}`, {
             
             method: "GET",
             headers: {
@@ -86,10 +86,9 @@
             })
             .then((data) => {
                 //console.log(data);
-                subcategoryID.value = data.data._id;
-                //console.log(categoryID.value);
-                clothingStore.setSubcategoryID(subcategoryID.value);
-                //console.log(clothingStore.categoryID);
+                collectionID.value = data.data._id;
+                clothingStore.setCollectionID(collectionID.value);
+
             })
             .catch((error) => {
                 console.log(error);
@@ -102,7 +101,7 @@
 
     <div>
         <label for="name">Head category</label>
-        <select name="headCategory" id="headCategory" @change="selectSubcategory">
+        <select name="collection" id="collection" @click="selectCollection">
             <option v-for="(name, key) in names" :key="key" :value="name">{{ name }}</option>
         </select>
     </div>

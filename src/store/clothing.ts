@@ -6,6 +6,7 @@ export const useClothingStore = defineStore({
     state: () => ({
         categoryID: '',
         subcategoryID: '',
+        collectionID: '',
     }),
     actions: {
         setCategoryID(id: string) {
@@ -13,6 +14,9 @@ export const useClothingStore = defineStore({
         },
         setSubcategoryID(id: string) {
             this.subcategoryID = id
+        },
+        setCollectionID(id: string) {
+            this.collectionID = id
         }
     },
     getters: {
@@ -21,6 +25,9 @@ export const useClothingStore = defineStore({
         },
         getSubcategoryID():any {
             return this.subcategoryID;
+        },
+        getCollectionID():any {
+            return this.collectionID;
         }
     }
 });

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
     import { ref, Ref, onMounted } from 'vue'
-    import { useClothingStore } from "../store/clothing";
+    import { useClothingStore } from "./../../store/clothing";
 
     const clothingStore = useClothingStore();
     const storeId = ref('');
@@ -102,7 +102,7 @@
 
     <div>
         <label for="name">Head category</label>
-        <select name="headCategory" id="headCategory" @change="selectCategory">
+        <select name="headCategory" id="headCategory" @click="selectCategory">
             <option v-for="(name, key) in names" :key="key" :value="name">{{ name }}</option>
         </select>
     </div>

@@ -1,13 +1,14 @@
 <script lang="ts" setup>
-    import CategoryList from "./CategoryList.vue";
-    import SubcategoryList from "./SubcategoryList.vue";
+    import CategoryList from "./parts/CategoryList.vue";
+    import SubcategoryList from "./parts/SubcategoryList.vue";
+    import CollectionList from "./parts/CollectionList.vue";
 
     import { ref, onMounted, watch, Ref } from 'vue'
     import { storeToRefs } from "pinia";
     import { useClothingStore } from "../store/clothing";
 
     const clothingStore = useClothingStore();
-    const { categoryID, subcategoryID } = storeToRefs(clothingStore);
+    const { categoryID, subcategoryID, collectionID } = storeToRefs(clothingStore);
 
     const emit = defineEmits(["getCategoryID"]);
 
@@ -113,9 +114,11 @@
     }
 
     const uploadClothing = () => {
+
         emit("getCategoryID", {
             category: tempCategory.value,
-            subcategory: tempSubcategory.value
+            subcategory: tempSubcategory.value,
+            collection: tempCollection.value
             
         });  
 
@@ -130,7 +133,7 @@
             materials: materials.value.split(','),
             category: tempCategory.value,
             subCategories: tempSubcategory.value,
-            collectionStore:"sfdlfksdf",
+            collectionStore: tempCollection.value,
             headImage: imageUrl.value,
             modelImage: modelImageUrl.value,
             modelImage2: modelImage2Url.value,
@@ -165,6 +168,7 @@
 
     const tempCategory = ref("");
     const tempSubcategory = ref("");
+    const tempCollection = ref("");
 
 
     watch(categoryID, (value) => {
@@ -174,6 +178,11 @@
 
     watch(subcategoryID, (value) => {
         tempSubcategory.value = value;
+        console.log(value);
+    });
+
+    watch(collectionID, (value) => {
+        tempCollection.value = value;
         console.log(value);
     });
 
@@ -239,6 +248,10 @@
 
     <div>
         <SubcategoryList />
+    </div>
+
+    <div>
+        <CollectionList />
     </div>
 
     <div>
