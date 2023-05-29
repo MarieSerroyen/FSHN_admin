@@ -1,13 +1,19 @@
 <script lang="ts" setup>
-    import { ref, onMounted, Ref } from 'vue'
+    import SelectCategory from "./SelectCategory.vue";
+    import { ref, onMounted, watch } from 'vue'
+    import { storeToRefs } from "pinia";
+    import { useClothingStore } from "../store/clothing";
+
+    const clothingStore = useClothingStore();
+    const { categoryID } = storeToRefs(clothingStore);
 
     let subcategoryImgUrl = ref('');
     let name = ref('');
 
     const store = ref('');
-    const categories:Ref = ref([]);
-    const names:Ref = ref([]);
-    const categoryID = ref('');
+
+
+    const emit = defineEmits(["getCategoryID"]);
 
 
     onMounted(() => {
@@ -23,9 +29,9 @@
         .then(data => {
             //console.log(data);
             if (data.status === "success") {
-                const storeID = store.value = data.data.storeId;
-
-                getStore(storeID);
+                //const storeID = store.value = data.data.storeId;
+                store.value = data.data.storeId;
+                //getStore(storeID);
             } else {
                 console.log(data);
                 
@@ -37,31 +43,6 @@
 
         
     });
-
-    const getStore = (value:Ref) => {
-        fetch(`${import.meta.env.VITE_API_URL}/categories/store/${value}`, {
-            
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
-            },
-            mode: "cors"
-            
-        }
-        )
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                //console.log(data);
-                categories.value = data.data;
-                names.value = data.data.map((category: any) => category.name);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
 
     const uploadSubcategoryImg = (e: Event) => {
         const target = e.target as HTMLInputElement;
@@ -86,46 +67,19 @@
         });
     }
 
-    const select = (e: Event) => {
-        const target = e.target as HTMLInputElement;
-        const value = target.value;
-        //console.log(value);
-        
-        getCategoryId(value);
-    }
-
-    const getCategoryId = (value:any):void => {
-        fetch(`${import.meta.env.VITE_API_URL}/categories/name/${value}`, {
-            
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
-            },
-            mode: "cors"
-            
-        }
-        )
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                //console.log(data);
-                categoryID.value = data.data._id;
-                //console.log(categoryID.value);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
 
     const uploadSubcategory = () => {
+
+        emit("getCategoryID", {
+            category: tempCategory.value
+            
+        });        
 
         let data = {
             name: name.value,
             image: subcategoryImgUrl.value,
             store: store.value,
-            category: categoryID.value
+            category: tempCategory.value
         }
 
         fetch(`${import.meta.env.VITE_API_URL}/subCategories`, {
@@ -149,7 +103,15 @@
         .catch(error => {
             console.log(error);
         });
-        }
+    }
+
+    const tempCategory = ref("");
+
+    watch(categoryID, (value) => {
+        tempCategory.value = value;
+        console.log(value);
+    });
+        
 </script>
 
 <template>
@@ -159,10 +121,7 @@
     </div>
 
     <div>
-        <label for="name">Head category</label>
-        <select name="headCategory" id="headCategory" @change="select">
-            <option v-for="(name, key) in names" :key="key" :value="name">{{ name }}</option>
-        </select>
+        <SelectCategory />
     </div>
 
     <div>

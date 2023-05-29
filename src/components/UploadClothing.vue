@@ -2,18 +2,45 @@
     import { ref, Ref, onMounted } from 'vue'
 
     let imageUrl = ref('');
-    let subImages = ref([]);
+    let modelImageUrl = ref('');
+    let modelImage2Url = ref('');
     let name = ref('');
     let articleNumber = ref('');
     let description = ref('');
     let brand = ref('');
     let colors:Ref = ref([]);
-    let sizes:Ref =ref([]);
     let price = ref('');
     let materials:Ref = ref([]);
-    let category:Ref = ref([]);
+    let headCategory = ref('');
+    let subcategories:Ref = ref([]);
     let stock = ref('');
     let store = ref('');
+
+    let sizes:Ref = ref([
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "30",
+        "32",
+        "34",
+        "36",
+        "38",
+        "40",
+        "42",
+        "44",
+        "46",
+        "48",
+        "50",
+        "52",
+        "54",
+        "56",
+        "58",
+        "60",
+        "62",
+    ]);
 
     onMounted(() => {
         fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
@@ -77,49 +104,6 @@
         });
     }
 
-    /*const uploadSubImages = (e: Event) => {
-        const target = e.target as HTMLInputElement;
-
-        //console.log(target.files);
-
-        const files =[target.files![0]] ;
-        //console.log(file);
-        let formData:any = new FormData();
-
-        //for each file in the list, append it to the formData
-        let urls:any = [];
-        for (const file of files) {
-            const data = file;
-            urls.push(data); 
-        }
-
-        /*files.forEach((file: any) => {
-            formData.append("file", file);
-            console.log(formData);
-        });*/
-
-
-
-        /*formData.append("file", files);
-        console.log(formData);
-        formData.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
-
-        fetch(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_USER_NAME}/image/upload`, {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            console.log(formData);
-            subImages.value = (data.secure_url);
-
-        })
-        .catch(error => {
-            console.log(error);
-        });
-    }*/
-
     const uploadClothing = () => {
 
         let data = {
@@ -131,11 +115,12 @@
             sizes: sizes.value,
             price: price.value,
             materials: materials.value.split(','),
-            category: category.value.split(','),
-            subCategories: "sfkdjdslf",
+            category: headCategory.value,
+            subCategories: subcategories.value.split(','),
             collectionStore:"sfdlfksdf",
             headImage: imageUrl.value,
-            subImages: subImages.value,
+            modelImage: modelImageUrl.value,
+            modelImage2: modelImage2Url.value,
             stock: stock.value,
             store: store.value
         }
@@ -220,8 +205,12 @@
     </div>
 
     <div>
-        <label for="category">Categories</label>
-        <input type="text" id="category" name="category" v-model="category">  
+       Category  
+    </div>
+
+    <div>
+        <label for="category">Subcategories</label>
+        <input type="text" id="subcategories" name="subcategories" v-model="subcategories">  
     </div>
 
     <div>
@@ -234,10 +223,17 @@
         <input @change="uploadImage" type="file" id="fileUpload" name="fileUpload">
     </div>
 
-    <!--<div>
-        <label for="fileUpload">Upload sub images</label>
-        <input @change="uploadSubImages" type="file" id="filesUpload" name="filesUpload" multiple>
-    </div>-->
+    <div>
+        <label for="fileUpload">Upload image</label>
+        <input @change="uploadImage" type="file" id="fileUpload" name="fileUpload">
+    </div>
+
+    <div>
+        <label for="fileUpload">Upload image</label>
+        <input @change="uploadImage" type="file" id="fileUpload" name="fileUpload">
+    </div>
+
+
 
     <a @click="uploadClothing">submit</a>
 </template>
