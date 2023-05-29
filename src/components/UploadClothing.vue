@@ -1,21 +1,23 @@
 <script lang="ts" setup>
+    //import parts for clothing upload
     import CategoryList from "./parts/CategoryList.vue";
     import SubcategoryList from "./parts/SubcategoryList.vue";
     import CollectionList from "./parts/CollectionList.vue";
     import SizesList from "./parts/SizesList.vue";
+    import UploadHeadimage from "./parts/UploadHeadimage.vue";
+    import UploadModelimage from "./parts/UploadModelimage.vue";
+    import UploadSecondModelimage from "./parts/UploadSecondModelimage.vue";
 
     import { ref, onMounted, watch, Ref } from 'vue'
     import { storeToRefs } from "pinia";
     import { useClothingStore } from "../store/clothing";
 
+    const storeId = ref('');
     const clothingStore = useClothingStore();
-    const { categoryID, subcategoryID, collectionID, sizes } = storeToRefs(clothingStore);
+    const { categoryID, subcategoryID, collectionID, sizes, headImage, modelImage, modelImage2 } = storeToRefs(clothingStore);
 
     const emit = defineEmits(["getCategoryID"]);
 
-    let imageUrl = ref('');
-    let modelImageUrl = ref('');
-    let modelImage2Url = ref('');
     let name = ref('');
     let articleNumber = ref('');
     let description = ref('');
@@ -24,8 +26,6 @@
     let price = ref('');
     let materials:Ref = ref([]);
     let stock = ref('');
-    let store = ref('');
-
     onMounted(() => {
         fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
             method: "GET",
@@ -39,7 +39,7 @@
         .then(data => {
             //console.log(data);
             if (data.status === "success") {
-                store.value = data.data.name;
+                storeId.value = data.data.storeId;
                 //console.log(store.value);
             } else {
                 console.log(data);
@@ -51,36 +51,16 @@
         });
     });
 
-    const uploadImage = (e: Event) => {
-        const target = e.target as HTMLInputElement;
-        const file = target.files![0];
-        let formData = new FormData();
-
-        formData.append("file", file);
-        formData.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
-
-        fetch(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_USER_NAME}/image/upload`, {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            //console.log(data);
-            imageUrl.value = (data.secure_url);
-
-        })
-        .catch(error => {
-            console.log(error);
-        });
-    }
-
     const uploadClothing = () => {
 
         emit("getCategoryID", {
             category: tempCategory.value,
             subcategory: tempSubcategory.value,
             collection: tempCollection.value,
-            sizes: tempSizes.value
+            sizes: tempSizes.value,
+            headImage: tempHeadImage.value,
+            modelImage: tempModelImage.value,
+            modelImage2: tempModelImage2.value
             
         });  
 
@@ -96,11 +76,11 @@
             category: tempCategory.value,
             subCategories: tempSubcategory.value,
             collectionStore: tempCollection.value,
-            headImage: imageUrl.value,
-            modelImage: modelImageUrl.value,
-            modelImage2: modelImage2Url.value,
+            headImage: tempHeadImage.value,
+            modelImage: tempModelImage.value,
+            modelImage2: tempModelImage2.value,
             stock: stock.value,
-            store: store.value
+            store: storeId.value
         }
 
         console.log(data);
@@ -132,6 +112,9 @@
     const tempSubcategory = ref("");
     const tempCollection = ref("");
     const tempSizes:Ref = ref([]);
+    const tempHeadImage = ref("");
+    const tempModelImage = ref("");
+    const tempModelImage2 = ref("");
 
 
     watch(categoryID, (value) => {
@@ -152,6 +135,21 @@
     watch(sizes, (values) => {
         tempSizes.value = Object.values(values);        
         //console.log(values);
+    });
+
+    watch(headImage, (value) => {
+        tempHeadImage.value = value;
+        console.log(value);
+    });
+
+    watch(modelImage, (value) => {
+        tempModelImage.value = value;
+        console.log(value);
+    });
+
+    watch(modelImage2, (value) => {
+        tempModelImage2.value = value;
+        console.log(value);
     });
 
 </script>
@@ -214,18 +212,15 @@
     </div>
 
     <div>
-        <label for="fileUpload">Upload image</label>
-        <input @change="uploadImage" type="file" id="fileUpload" name="fileUpload">
+        <UploadHeadimage />
     </div>
 
     <div>
-        <label for="fileUpload">Upload image</label>
-        <input @change="uploadImage" type="file" id="fileUpload" name="fileUpload">
+        <UploadModelimage />
     </div>
 
     <div>
-        <label for="fileUpload">Upload image</label>
-        <input @change="uploadImage" type="file" id="fileUpload" name="fileUpload">
+        <UploadSecondModelimage />
     </div>
 
 

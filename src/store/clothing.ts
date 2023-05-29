@@ -8,6 +8,9 @@ export const useClothingStore = defineStore({
         subcategoryID: '',
         collectionID: '',
         sizes: [''],
+        headImage: '',
+        modelImage: '',
+        modelImage2: '',
     }),
     actions: {
         setCategoryID(id: string) {
@@ -21,6 +24,15 @@ export const useClothingStore = defineStore({
         },
         setSizes(sizes: string[]) {
             this.sizes = sizes
+        },
+        setHeadImage(image: string) {
+            this.headImage = image
+        },
+        setModelImage(image: string) {
+            this.modelImage = image
+        },
+        setModelImage2(image: string) {
+            this.modelImage2 = image
         }
     },
     getters: {
@@ -35,6 +47,15 @@ export const useClothingStore = defineStore({
         },
         getSizes():any {
             return this.sizes;
+        },
+        getHeadImage():any {
+            return this.headImage;
+        },
+        getModelImage():any {
+            return this.modelImage;
+        },
+        getModelImage2():any {
+            return this.modelImage2;
         }
     }
 });
