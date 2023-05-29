@@ -2,13 +2,14 @@
     import CategoryList from "./parts/CategoryList.vue";
     import SubcategoryList from "./parts/SubcategoryList.vue";
     import CollectionList from "./parts/CollectionList.vue";
+    import SizesList from "./parts/SizesList.vue";
 
     import { ref, onMounted, watch, Ref } from 'vue'
     import { storeToRefs } from "pinia";
     import { useClothingStore } from "../store/clothing";
 
     const clothingStore = useClothingStore();
-    const { categoryID, subcategoryID, collectionID } = storeToRefs(clothingStore);
+    const { categoryID, subcategoryID, collectionID, sizes } = storeToRefs(clothingStore);
 
     const emit = defineEmits(["getCategoryID"]);
 
@@ -24,32 +25,6 @@
     let materials:Ref = ref([]);
     let stock = ref('');
     let store = ref('');
-
-    let sizes:Ref = ref([
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "XXL",
-        "30",
-        "32",
-        "34",
-        "36",
-        "38",
-        "40",
-        "42",
-        "44",
-        "46",
-        "48",
-        "50",
-        "52",
-        "54",
-        "56",
-        "58",
-        "60",
-        "62",
-    ]);
 
     onMounted(() => {
         fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
@@ -75,20 +50,6 @@
             console.log(error);
         });
     });
-
-
-    const select = (e: Event) => {
-        const target = e.target as HTMLInputElement;
-        
-        if (target.checked) {
-            sizes.value.push(target.value);
-            //console.log (sizes.value);
-        } else {
-            sizes.value = sizes.value.filter((sizes: string) => sizes !== target.value);
-            //console.log (sizes.value);
-        }
-    }
-
 
     const uploadImage = (e: Event) => {
         const target = e.target as HTMLInputElement;
@@ -118,7 +79,8 @@
         emit("getCategoryID", {
             category: tempCategory.value,
             subcategory: tempSubcategory.value,
-            collection: tempCollection.value
+            collection: tempCollection.value,
+            sizes: tempSizes.value
             
         });  
 
@@ -128,7 +90,7 @@
             description: description.value,
             brand: brand.value,
             colors: colors.value.split(','),
-            sizes: sizes.value,
+            sizes: tempSizes.value,
             price: price.value,
             materials: materials.value.split(','),
             category: tempCategory.value,
@@ -169,21 +131,27 @@
     const tempCategory = ref("");
     const tempSubcategory = ref("");
     const tempCollection = ref("");
+    const tempSizes:Ref = ref([]);
 
 
     watch(categoryID, (value) => {
         tempCategory.value = value;
-        console.log(value);
+        //console.log(value);
     });
 
     watch(subcategoryID, (value) => {
         tempSubcategory.value = value;
-        console.log(value);
+        //console.log(value);
     });
 
     watch(collectionID, (value) => {
         tempCollection.value = value;
-        console.log(value);
+        //console.log(value);
+    });
+
+    watch(sizes, (values) => {
+        tempSizes.value = Object.values(values);        
+        //console.log(values);
     });
 
 </script>
@@ -210,21 +178,7 @@
     </div>
 
     <div>
-        <p>Sizes</p>
-        <div>
-            <input type="checkbox" id="S" name="S" class="size" value="S" @change="select">
-            <label for="S">S</label>
-        </div>
-
-        <div>
-            <input type="checkbox" id="M" name="M" class="size" value="M" @change="select">
-            <label for="M">M</label>
-        </div>
-
-        <div>
-            <input type="checkbox" id="L" name="L" class="size" value="L" @change="select">
-            <label for="L">L</label>
-        </div>
+        <SizesList />
     </div>
 
     <div>

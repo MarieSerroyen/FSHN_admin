@@ -7,6 +7,7 @@ export const useClothingStore = defineStore({
         categoryID: '',
         subcategoryID: '',
         collectionID: '',
+        sizes: [''],
     }),
     actions: {
         setCategoryID(id: string) {
@@ -17,6 +18,9 @@ export const useClothingStore = defineStore({
         },
         setCollectionID(id: string) {
             this.collectionID = id
+        },
+        setSizes(sizes: string[]) {
+            this.sizes = sizes
         }
     },
     getters: {
@@ -28,6 +32,9 @@ export const useClothingStore = defineStore({
         },
         getCollectionID():any {
             return this.collectionID;
+        },
+        getSizes():any {
+            return this.sizes;
         }
     }
 });
