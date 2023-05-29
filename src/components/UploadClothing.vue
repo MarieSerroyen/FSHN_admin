@@ -1,5 +1,14 @@
 <script lang="ts" setup>
-    import { ref, Ref, onMounted } from 'vue'
+    import SelectCategory from "./SelectCategory.vue";
+
+    import { ref, onMounted, watch, Ref } from 'vue'
+    import { storeToRefs } from "pinia";
+    import { useClothingStore } from "../store/clothing";
+
+    const clothingStore = useClothingStore();
+    const { categoryID } = storeToRefs(clothingStore);
+
+    const emit = defineEmits(["getCategoryID"]);
 
     let imageUrl = ref('');
     let modelImageUrl = ref('');
@@ -11,7 +20,6 @@
     let colors:Ref = ref([]);
     let price = ref('');
     let materials:Ref = ref([]);
-    let headCategory = ref('');
     let subcategories:Ref = ref([]);
     let stock = ref('');
     let store = ref('');
@@ -105,6 +113,10 @@
     }
 
     const uploadClothing = () => {
+        emit("getCategoryID", {
+            category: tempCategory.value
+            
+        });  
 
         let data = {
             name: name.value,
@@ -115,7 +127,7 @@
             sizes: sizes.value,
             price: price.value,
             materials: materials.value.split(','),
-            category: headCategory.value,
+            category: tempCategory.value,
             subCategories: subcategories.value.split(','),
             collectionStore:"sfdlfksdf",
             headImage: imageUrl.value,
@@ -124,6 +136,8 @@
             stock: stock.value,
             store: store.value
         }
+
+        console.log(data);
 
         fetch(`${import.meta.env.VITE_API_URL}/clothing`, {
             method: "POST",
@@ -147,6 +161,13 @@
             console.log(error);
         });
     }
+
+    const tempCategory = ref("");
+
+    watch(categoryID, (value) => {
+        tempCategory.value = value;
+        console.log(value);
+    });
 
 </script>
 
@@ -205,7 +226,7 @@
     </div>
 
     <div>
-       Category  
+        <SelectCategory /> 
     </div>
 
     <div>
