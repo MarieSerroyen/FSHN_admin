@@ -61,7 +61,7 @@
             });
     }
 
-    const select = (e: Event) => {
+    const selectCategory = (e: Event) => {
         const target = e.target as HTMLInputElement;
         const value = target.value;
         //console.log(value);
@@ -102,7 +102,7 @@
 
     <div>
         <label for="name">Head category</label>
-        <select name="headCategory" id="headCategory" @change="select">
+        <select name="headCategory" id="headCategory" @change="selectCategory">
             <option v-for="(name, key) in names" :key="key" :value="name">{{ name }}</option>
         </select>
     </div>

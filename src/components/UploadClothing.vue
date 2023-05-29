@@ -1,12 +1,13 @@
 <script lang="ts" setup>
-    import SelectCategory from "./SelectCategory.vue";
+    import CategoryList from "./CategoryList.vue";
+    import SubcategoryList from "./SubcategoryList.vue";
 
     import { ref, onMounted, watch, Ref } from 'vue'
     import { storeToRefs } from "pinia";
     import { useClothingStore } from "../store/clothing";
 
     const clothingStore = useClothingStore();
-    const { categoryID } = storeToRefs(clothingStore);
+    const { categoryID, subcategoryID } = storeToRefs(clothingStore);
 
     const emit = defineEmits(["getCategoryID"]);
 
@@ -20,7 +21,6 @@
     let colors:Ref = ref([]);
     let price = ref('');
     let materials:Ref = ref([]);
-    let subcategories:Ref = ref([]);
     let stock = ref('');
     let store = ref('');
 
@@ -114,7 +114,8 @@
 
     const uploadClothing = () => {
         emit("getCategoryID", {
-            category: tempCategory.value
+            category: tempCategory.value,
+            subcategory: tempSubcategory.value
             
         });  
 
@@ -128,7 +129,7 @@
             price: price.value,
             materials: materials.value.split(','),
             category: tempCategory.value,
-            subCategories: subcategories.value.split(','),
+            subCategories: tempSubcategory.value,
             collectionStore:"sfdlfksdf",
             headImage: imageUrl.value,
             modelImage: modelImageUrl.value,
@@ -163,9 +164,16 @@
     }
 
     const tempCategory = ref("");
+    const tempSubcategory = ref("");
+
 
     watch(categoryID, (value) => {
         tempCategory.value = value;
+        console.log(value);
+    });
+
+    watch(subcategoryID, (value) => {
+        tempSubcategory.value = value;
         console.log(value);
     });
 
@@ -226,12 +234,11 @@
     </div>
 
     <div>
-        <SelectCategory /> 
+        <CategoryList /> 
     </div>
 
     <div>
-        <label for="category">Subcategories</label>
-        <input type="text" id="subcategories" name="subcategories" v-model="subcategories">  
+        <SubcategoryList />
     </div>
 
     <div>
