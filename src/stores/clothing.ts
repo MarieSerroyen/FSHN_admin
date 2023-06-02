@@ -36,25 +36,25 @@ export const useClothingStore = defineStore({
         }
     },
     getters: {
-        getCategoryID():any {
+        getCategoryID():string {
             return this.categoryID;
         },
-        getSubcategoryID():any {
+        getSubcategoryID():string {
             return this.subcategoryID;
         },
-        getCollectionID():any {
+        getCollectionID():string {
             return this.collectionID;
         },
-        getSizes():any {
+        getSizes():Array<string>{
             return this.sizes;
         },
-        getHeadImage():any {
+        getHeadImage():string {
             return this.headImage;
         },
-        getModelImage():any {
+        getModelImage():string {
             return this.modelImage;
         },
-        getModelImage2():any {
+        getModelImage2():string {
             return this.modelImage2;
         }
     }

@@ -2,7 +2,7 @@
     import SelectCategory from "./parts/CategoryList.vue";
     import { ref, onMounted, watch } from 'vue'
     import { storeToRefs } from "pinia";
-    import { useClothingStore } from "../store/clothing";
+    import { useClothingStore } from "../stores/clothing";
 
     const clothingStore = useClothingStore();
     const { categoryID } = storeToRefs(clothingStore);

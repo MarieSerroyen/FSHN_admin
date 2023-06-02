@@ -1,6 +1,6 @@
 <script lang="ts" setup>
     import { ref, Ref } from 'vue'
-    import { useClothingStore } from "./../../store/clothing";
+    import { useClothingStore } from "../../stores/clothing";
 
     const clothingStore = useClothingStore();
 

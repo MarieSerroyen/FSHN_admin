@@ -10,7 +10,7 @@
 
     import { ref, onMounted, watch, Ref } from 'vue'
     import { storeToRefs } from "pinia";
-    import { useClothingStore } from "../store/clothing";
+    import { useClothingStore } from "../stores/clothing";
 
     const storeId = ref('');
     const clothingStore = useClothingStore();
@@ -26,6 +26,7 @@
     let price = ref('');
     let materials:Ref = ref([]);
     let stock = ref('');
+    
     onMounted(() => {
         fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
             method: "GET",

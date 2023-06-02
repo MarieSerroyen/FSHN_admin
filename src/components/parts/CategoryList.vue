@@ -1,6 +1,6 @@
 <script lang="ts" setup>
     import { ref, Ref, onMounted } from 'vue'
-    import { useClothingStore } from "./../../store/clothing";
+    import { useClothingStore } from "../../stores/clothing";
 
     const clothingStore = useClothingStore();
     const storeId = ref('');
@@ -69,7 +69,7 @@
         getCategoryId(value);
     }
 
-    const getCategoryId = (value:any):void => {
+    const getCategoryId = (value:string):void => {
         fetch(`${import.meta.env.VITE_API_URL}/categories/name/${value}`, {
             
             method: "GET",

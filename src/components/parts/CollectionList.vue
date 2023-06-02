@@ -1,6 +1,6 @@
 <script lang="ts" setup>
     import { ref, Ref, onMounted } from 'vue'
-    import { useClothingStore } from "./../../store/clothing";
+    import { useClothingStore } from "../../stores/clothing";
 
     const clothingStore = useClothingStore();
     const storeId = ref('');
@@ -55,6 +55,10 @@
                 //console.log(data);
                 collections.value = data.data;
                 names.value = data.data.map((category: any) => category.name);
+                names.value.unshift("Geen");
+
+
+
             })
             .catch((error) => {
                 console.log(error);
@@ -64,7 +68,14 @@
     const selectCollection = (e: Event) => {
         const target = e.target as HTMLInputElement;
         const value = target.value;
-        //console.log(value);
+        console.log(value);
+
+        if (value === "Geen") {
+            collectionID.value = "0";
+            clothingStore.setCollectionID(collectionID.value);
+        } else {
+            getCollectionId(value);
+        }
         
         getCollectionId(value);
     }
@@ -85,7 +96,7 @@
                 return response.json();
             })
             .then((data) => {
-                //console.log(data);
+                console.log(data);
                 collectionID.value = data.data._id;
                 clothingStore.setCollectionID(collectionID.value);
 
@@ -100,7 +111,7 @@
 <template>
 
     <div>
-        <label for="name">Head category</label>
+        <label for="name">Collection</label>
         <select name="collection" id="collection" @click="selectCollection">
             <option v-for="(name, key) in names" :key="key" :value="name">{{ name }}</option>
         </select>
