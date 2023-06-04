@@ -156,81 +156,172 @@
 </script>
 
 <template>
-    <div>
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" v-model="name">
+    <div class="container">
+        <div class="primary_info">
+            <h2 class="subtitle">Product Information</h2>
+            <p class="section_description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore.
+            </p>
+            <div class="input_grid">
+                <div class="text_input">
+                    <label for="name">Name</label>
+                    <input class="inputfield" type="text" id="name" name="name" v-model="name">
+                </div>
+
+                <div class="text_input">
+                    <label for="articleNumber">Article number</label>
+                    <input class="inputfield" type="text" id="articleNumber" name="articleNumber" v-model="articleNumber">
+                </div>
+
+                <div class="text_input">
+                    <label for="brand">Brand</label>
+                    <input class="inputfield" type="text" id="brand" name="brand" v-model="brand">
+                </div>
+            </div>
+            
+            <div class="text_input description">
+                <label for="description">Description</label>
+                <textarea class="textarea_input" type="textarea" id="description" name="description" v-model="description"></textarea>
+            </div>
+            
+        </div> 
+
+        <div class="primary_info">
+            <h2 class="subtitle">Product Variables</h2>
+            <p class="section_description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore.
+            </p>
+            <div class="input_grid_variable">
+                <div class="text_input">
+                    <label for="colors">Colors</label>
+                    <input class="inputfield" type="text" id="colors" name="colors" v-model="colors">  
+                </div>
+
+                <div class="text_input">
+                    <label for="price">Price</label>
+                    <input class="inputfield" type="number" id="price" name="price" v-model="price">  
+                </div>
+
+                <div class="text_input">
+                    <label for="materials">Materials</label>
+                    <input class="inputfield" type="text" id="materials" name="materials" v-model="materials">  
+                </div>
+
+                <div class="text_input">
+                    <label for="stock">Stock</label>
+                    <input class="inputfield" type="number" id="stock" name="stock" v-model="stock">  
+                </div>
+            </div>        
+        </div>      
+
+        <div>
+            <SizesList />
+        </div>
+        
+        <div>
+            <CategoryList /> 
+        </div>
+
+        <div>
+            <SubcategoryList />
+        </div>
+
+        <div>
+            <CollectionList />
+        </div>
+
+
+
+        <div>
+            <UploadHeadimage />
+        </div>
+
+        <div>
+            <UploadModelimage />
+        </div>
+
+        <div>
+            <UploadSecondModelimage />
+        </div>
+
+
+
+        <a @click="uploadClothing">submit</a>
     </div>
-
-    <div>
-        <label for="articleNumber">Article number</label>
-        <input type="text" id="articleNumber" name="articleNumber" v-model="articleNumber">
-    </div>
-
-    <div>
-        <label for="description">Description</label>
-        <input type="textarea" id="description" name="description" v-model="description">
-    </div>
-
-    <div>
-        <label for="brand">Brand</label>
-        <input type="text" id="brand" name="brand" v-model="brand">
-    </div>
-
-    <div>
-        <SizesList />
-    </div>
-
-    <div>
-        <label for="colors">Colors</label>
-        <input type="text" id="colors" name="colors" v-model="colors">  
-    </div>
-
-    <div>
-        <label for="price">Price</label>
-        <input type="number" id="price" name="price" v-model="price">  
-    </div>
-
-    <div>
-        <label for="materials">Materials</label>
-        <input type="text" id="materials" name="materials" v-model="materials">  
-    </div>
-
-    <div>
-        <CategoryList /> 
-    </div>
-
-    <div>
-        <SubcategoryList />
-    </div>
-
-    <div>
-        <CollectionList />
-    </div>
-
-    <div>
-        <label for="stock">Stock</label>
-        <input type="number" id="stock" name="stock" v-model="stock">  
-    </div>
-
-    <div>
-        <UploadHeadimage />
-    </div>
-
-    <div>
-        <UploadModelimage />
-    </div>
-
-    <div>
-        <UploadSecondModelimage />
-    </div>
-
-
-
-    <a @click="uploadClothing">submit</a>
+    
 </template>
 
 <style scoped>
     a {
         cursor: pointer;
     }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .subtitle {
+        font-size: 18px;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .section_description {
+        font-size: 16px;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .input_grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4rem;
+    }
+
+    .input_grid_variable {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4rem;
+    }
+
+    .text_input {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    .inputfield {
+        height: 30px;
+        width: 100%;
+    }
+
+    .description {
+        margin-top: 1rem;
+    }
+
+    .textarea_input {
+        width: 100%;
+        resize: none;
+        height: 100px;
+    }
+
+    
 </style>
