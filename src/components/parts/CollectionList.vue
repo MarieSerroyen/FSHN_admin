@@ -110,9 +110,9 @@
 
 <template>
 
-    <div>
+    <div class="select">
         <label for="name">Collection</label>
-        <select name="collection" id="collection" @click="selectCollection">
+        <select class="dropdown" name="collection" id="collection" @click="selectCollection">
             <option v-for="(name, key) in names" :key="key" :value="name">{{ name }}</option>
         </select>
     </div>
@@ -120,5 +120,20 @@
 </template>
 
 <style scoped>
+    .select {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
 
+    .dropdown {
+        height: 30px;
+        width: 100%;
+        margin-right: 2rem;
+    }
 </style>

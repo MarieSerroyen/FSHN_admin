@@ -157,8 +157,8 @@
 
 <template>
     <div class="container">
-        <div class="primary_info">
-            <h2 class="subtitle">Product Information</h2>
+        <div class="info">
+            <h2 class="subtitle">Product information</h2>
             <p class="section_description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
                 incididunt ut labore.
@@ -187,8 +187,8 @@
             
         </div> 
 
-        <div class="primary_info">
-            <h2 class="subtitle">Product Variables</h2>
+        <div class="info">
+            <h2 class="subtitle">Product variables</h2>
             <p class="section_description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
                 incididunt ut labore.
@@ -219,18 +219,28 @@
         <div>
             <SizesList />
         </div>
-        
-        <div>
-            <CategoryList /> 
-        </div>
 
-        <div>
-            <SubcategoryList />
-        </div>
+        <div class="info">
+            <h2 class="subtitle">Product categories</h2>
+            <p class="section_description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore.
+            </p>
+            <div class="input_grid">
+                <div>
+                    <CategoryList /> 
+                </div>
 
-        <div>
-            <CollectionList />
+                <div>
+                    <SubcategoryList />
+                </div>
+
+                <div>
+                    <CollectionList />
+                </div>
+            </div>
         </div>
+            
 
 
 
@@ -274,6 +284,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
+        text-transform: capitalize;
     }
 
     .section_description {

@@ -39,6 +39,7 @@
     .title {
         font-size: 24px;
         color: black;
+        text-transform: capitalize;
     }
 
     .avatar_img {
