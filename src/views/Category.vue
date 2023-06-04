@@ -78,4 +78,13 @@
         width: 100%;
         gap: 2rem;
     }
+
+    .section_description {
+        font-size: 16px;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
 </style>

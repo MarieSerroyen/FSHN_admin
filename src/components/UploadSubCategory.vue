@@ -115,25 +115,90 @@
 </script>
 
 <template>
-    <div>
-        <label for="name">Subcategory name</label>
-        <input type="text" id="name" name="name" v-model="name">
+    <div class="grid">
+        <div class="input">
+            <label for="name">Subcategory name</label>
+            <input class="inputfield" type="text" id="name" name="name" v-model="name">
+        </div>
+
+        <div>
+            <SelectCategory />
+        </div>
+
+        <div class="upload">
+            <label for="fileUpload">Upload subcategory image</label>
+            <input @change="uploadSubcategoryImg" type="file" id="fileUpload" name="fileUpload">
+        </div>
     </div>
 
-    <div>
-        <SelectCategory />
-    </div>
 
-    <div>
-        <label for="fileUpload">Upload subcategory image</label>
-        <input @change="uploadSubcategoryImg" type="file" id="fileUpload" name="fileUpload">
-    </div>
+    <div class="submit_section"> 
+        <a class="button" @click="uploadSubcategory">submit</a>
+    </div> 
 
-    <a @click="uploadSubcategory">submit</a>
 </template>
 
 <style scoped>
     a {
         cursor: pointer;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4rem;
+    }
+
+    .input {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    .inputfield {
+        height: 30px;
+        width: 100%;
+    }
+
+    label {
+        font-size: 16px;
+        color: black;
+        font-weight: 700;
+    }
+
+    .upload {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    .submit_section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .button {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 1rem;
     }
 </style>

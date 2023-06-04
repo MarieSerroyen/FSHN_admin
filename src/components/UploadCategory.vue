@@ -150,16 +150,6 @@
         margin-top: 1rem;
     }
 
-    .button {
-        background-color: #000000;
-        color: #ffffff;
-        padding: 0.5rem 1rem;
-        font-size: 16px;
-        font-weight: 700;
-        text-transform: uppercase;
-        margin-top: 1rem;
-    }
-
     .submit_section {
         display: flex;
         flex-direction: column;
@@ -168,5 +158,15 @@
         width: 100%;
         gap: 1rem;
         margin-bottom: 1rem;
+    }
+
+    .button {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 1rem;
     }
 </style>
