@@ -24,7 +24,7 @@
             if (data.status === "success") {
                 const storeID = storeId.value = data.data.storeId;
 
-                getCategory(storeID);
+                getCollection(storeID);
             } else {
                 console.log(data);
                 
@@ -36,7 +36,7 @@
     });
     
 
-    const getCategory = (value:Ref) => {
+    const getCollection = (value:Ref) => {
         fetch(`${import.meta.env.VITE_API_URL}/collections/store/${value}`, {
             
             method: "GET",

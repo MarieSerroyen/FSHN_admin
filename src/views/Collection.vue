@@ -1,6 +1,7 @@
 <script lang="ts" setup>
     import UploadCollection from '../components/UploadCollection.vue'
     import Nav from '../components/NavComponent.vue'
+    import CollectionList from '../components/CollectionList.vue'
 
 </script>
 
@@ -8,7 +9,7 @@
     <Nav />
     <div class="content">
         <div class="header">
-            <h1 class="title">Add collections</h1>
+            <h1 class="title">Collections</h1>
         </div>
 
         <div>
@@ -18,6 +19,15 @@
                 incididunt ut labore.
             </p>
             <UploadCollection />
+        </div>
+
+        <div>
+            <h2 class="subtitle">Collection list</h2>
+            <p class="section_description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore.
+            </p>
+            <CollectionList />
         </div>
     </div>
 </template>
