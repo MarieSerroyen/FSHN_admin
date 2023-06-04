@@ -6,14 +6,53 @@
 
 <template>
     <Nav />
-    <p>Upload your collections</p>
+    <div class="content">
+        <div class="header">
+            <h1 class="title">Add collections</h1>
+        </div>
 
-    <div>
-        <h2>Upload collection</h2>
-        <UploadCollection />
+        <div>
+            <h2 class="subtitle">Upload collection</h2>
+            <p class="section_description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore.
+            </p>
+            <UploadCollection />
+        </div>
     </div>
-
 </template>
 
 <style scoped>
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 2rem;
+    }
+    .title {
+        font-size: 24px;
+        color: black;
+        text-transform: capitalize;
+    }
+
+    .subtitle {
+        font-size: 18px;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        text-transform: capitalize;
+    }
+
 </style>

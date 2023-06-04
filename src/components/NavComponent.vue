@@ -30,11 +30,11 @@
                 </router-link>
                 <router-link class="menu-links" exact to="/category">
                     <img src="../assets/add-products.svg" alt="">
-                    <span>Add Category</span>
+                    <span>Categories</span>
                 </router-link>
                 <router-link class="menu-links" exact to="/collection">
                     <img src="../assets/add-products.svg" alt="">
-                    <span>Add Collection</span>
+                    <span>Collections</span>
                 </router-link>
                 <router-link class="menu-links" exact to="/">
                     <img src="../assets/product-list.svg" alt="">
