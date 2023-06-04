@@ -1,18 +1,19 @@
 <script lang="ts" setup>
-    import UploadClothing from '../components/UploadClothing.vue'
     import Nav from '../components/NavComponent.vue'
 
 </script>
 
 <template>
-    <Nav />
-    <p>home</p>
-    <div>
-        <h2>Upload clothing item</h2>
-        <UploadClothing />
+    <Nav/>
+    <div class="header">
+        <h1 class="title">Dashboard</h1>
     </div>
+
 
 </template>
 
 <style scoped>
+    .title {
+        font-size: 24px;
+    }
 </style>

@@ -12,26 +12,26 @@
         <div class="menu">
             <div class="menu-item">
             <h4 class="menu-title">Main menu</h4>
-            <a class="menu-links" href="">
+            <router-link class="menu-links" exact to="/">
                 <img src="../assets/dashboard.svg" alt="">
                 <span>Dashboard</span>
-            </a>
-            <a class="menu-links" href="">
+            </router-link>
+            <router-link class="menu-links" exact to="/">
                 <img src="../assets/order-management.svg" alt="">
                 <span>Order Management</span>
-            </a>
+            </router-link>
             </div>
 
             <div class="menu-item">
                 <h4 class="menu-title">Products</h4>
-                <a class="menu-links" href="">
+                <router-link class="menu-links" exact to="/product">
                     <img src="../assets/add-products.svg" alt="">
                     <span>Add Products</span>
-                </a>
-                <a class="menu-links" href="">
+                </router-link>
+                <router-link class="menu-links" exact to="/">
                     <img src="../assets/product-list.svg" alt="">
                     <span>Product List</span>
-                </a>
+                </router-link>
             </div>
         </div>
 

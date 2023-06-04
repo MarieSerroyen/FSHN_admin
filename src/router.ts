@@ -3,6 +3,7 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Category from './views/Category.vue'
 import Collection from './views/Collection.vue'
+import Product from './views/Product.vue'
 
 export default createRouter({
     history: createWebHistory(),
@@ -26,6 +27,11 @@ export default createRouter({
             path: '/collection',
             name: 'collection',
             component: Collection
+        },
+        {
+            path: '/product',
+            name: 'product',
+            component: Product
         }
 
     ]
