@@ -28,6 +28,14 @@
                     <img src="../assets/add-products.svg" alt="">
                     <span>Add Products</span>
                 </router-link>
+                <router-link class="menu-links" exact to="/category">
+                    <img src="../assets/add-products.svg" alt="">
+                    <span>Add Category</span>
+                </router-link>
+                <router-link class="menu-links" exact to="/collection">
+                    <img src="../assets/add-products.svg" alt="">
+                    <span>Add Collection</span>
+                </router-link>
                 <router-link class="menu-links" exact to="/">
                     <img src="../assets/product-list.svg" alt="">
                     <span>Product List</span>
