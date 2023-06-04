@@ -9,7 +9,6 @@
     <div class="content">
         <div class="header">
             <h1 class="title">Add product</h1>
-            <img class="avatar_img" src="../assets/Avatar.png" alt="">
         </div>
         <div>
             <UploadClothing />
@@ -40,9 +39,5 @@
         font-size: 24px;
         color: black;
         text-transform: capitalize;
-    }
-
-    .avatar_img {
-        width: 7%;
     }
 </style>

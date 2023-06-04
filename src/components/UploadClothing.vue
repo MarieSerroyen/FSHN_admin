@@ -241,24 +241,27 @@
             </div>
         </div>
             
+        <div class="info">
+            <h2 class="subtitle">Product images</h2>
+            <p class="section_description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore.
+            </p>
 
+            <div>
+                <UploadHeadimage />
+            </div>
 
+            <div>
+                <UploadModelimage />
+            </div>
 
-        <div>
-            <UploadHeadimage />
+            <div>
+                <UploadSecondModelimage />
+            </div>
         </div>
 
-        <div>
-            <UploadModelimage />
-        </div>
-
-        <div>
-            <UploadSecondModelimage />
-        </div>
-
-
-
-        <a @click="uploadClothing">submit</a>
+        <a class="button" @click="uploadClothing">Submit</a>
     </div>
     
 </template>
@@ -338,6 +341,16 @@
         width: 100%;
         resize: none;
         height: 100px;
+    }
+
+    .button {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 1rem;
     }
 
     

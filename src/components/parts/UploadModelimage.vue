@@ -35,7 +35,7 @@
 <template>
 
     <div class="upload">
-        <label for="fileUpload">Upload second image</label>
+        <label for="fileUpload">Upload first model image</label>
         <input @change="uploadImage" type="file" id="fileUpload" name="fileUpload">
     </div>
 
