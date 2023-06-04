@@ -33,7 +33,7 @@
                     <span>Categories</span>
                 </router-link>
                 <router-link class="menu-links" exact to="/collection">
-                    <img src="../assets/add-products.svg" alt="">
+                    <img src="../assets/product-list.svg" alt="">
                     <span>Collections</span>
                 </router-link>
                 <router-link class="menu-links" exact to="/">

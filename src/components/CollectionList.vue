@@ -65,7 +65,7 @@
 
         <div v-for="collection in collections" :key="collection._id" class="items">
             <p class="name">{{collection.name}}</p>
-            <p class="date">{{collection.date}}</p>
+            <p class="date">{{collection.date.substring(0,10)}}</p>
         </div>
 
     </div>
@@ -81,13 +81,11 @@
     }
 
     .titles {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         border-bottom: solid 1px #CCCCCC;
-    }
+        width: 100%;
+      }
 
     .title {
         font-size: 16px;
@@ -103,12 +101,10 @@
     }
 
     .items {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         border-bottom: solid 1px #CCCCCC;
+        width: 100%;
     }
 
     .date {
