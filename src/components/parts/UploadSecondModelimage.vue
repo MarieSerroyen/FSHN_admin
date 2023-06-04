@@ -34,7 +34,7 @@
 
 <template>
 
-    <div>
+    <div class="upload">
         <label for="fileUpload">Upload third image</label>
         <input @change="uploadImage" type="file" id="fileUpload" name="fileUpload">
     </div>
@@ -42,5 +42,21 @@
 </template>
 
 <style scoped>
+
+    label {
+        font-size: 16px;
+        color: black;
+        font-weight: 700;
+    }
+
+    .upload {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }   
 
 </style>

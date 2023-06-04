@@ -120,6 +120,12 @@
 </template>
 
 <style scoped>
+
+    label {
+        font-size: 16px;
+        color: black;
+        font-weight: 700;
+    }
     .select {
         display: flex;
         flex-direction: column;

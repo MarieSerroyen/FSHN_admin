@@ -47,9 +47,9 @@
 </script>
 
 <template>
-    <div>
+    <div class="sizes_section">
         <p>Sizes</p>
-        <div v-for="(size, key) in sizes" :key="key" >
+        <div class="sizes" v-for="(size, key) in sizes" :key="key" >
             <input type="checkbox" :id="size" :name="size" :value="size" class="size" @change="selectSize">
             <label :for="size">{{ size }}</label>
         </div>
@@ -59,5 +59,20 @@
 </template>
 
 <style scoped>
+
+    p {
+        font-size: 16px;
+        color: black;
+        font-weight: 700;
+    }
+
+    .sizes_section {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;    
+    }
+    
 
 </style>
