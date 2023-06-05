@@ -1,4 +1,58 @@
 <script lang="ts" setup>
+    import { ref, Ref, onMounted } from 'vue'
+
+    const storeId = ref('');
+    const products:Ref = ref([]);
+
+    onMounted(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors" 
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            if (data.status === "success") {
+                const storeID = storeId.value = data.data.storeId;
+
+                getProduct(storeID);
+            } else {
+                console.log(data);
+                
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    });
+
+    const getProduct = (value:Ref) => {
+        fetch(`${import.meta.env.VITE_API_URL}/clothing/store/${value}`, {
+            
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors"
+            
+        }
+        )
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                //console.log(data);
+                products.value = data.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
 </script>
 
@@ -11,11 +65,11 @@
             <h3 class="title">Price</h3>
         </div>
 
-        <div class="items">
-            <p class="item name">Name</p>
-            <p class="item">Date</p>
-            <p class="item">Category</p>
-            <p class="item">Price</p>
+        <div v-for="product in products" :key="product._id" class="items">
+            <p class="item name">{{product.name}}</p>
+            <p class="item">{{product.date.substring(0,10)}}</p>
+            <p class="item">{{product.category}}</p>
+            <p class="item">&euro;{{product.price}}</p>
             <img src="../assets/dropdown-arrow.svg" alt="">
         </div>
     </div>
@@ -34,11 +88,11 @@
         grid-template-columns: repeat(5, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
-        gap: 1rem;
+        gap: 4rem;
       }
 
     .title {
-        font-size: 16px;
+        font-size: 15px;
         color: #5C5F66;
         font-weight: 500;
         text-transform: uppercase;
@@ -48,6 +102,7 @@
         font-size: 15px;
         color: #000000;
         font-weight: 600;
+        text-transform: lowercase;
     }
 
     .items {
