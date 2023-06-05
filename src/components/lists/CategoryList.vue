@@ -1,4 +1,58 @@
 <script lang="ts" setup>
+    import { ref, Ref, onMounted } from 'vue'
+
+    const storeId = ref('');
+    const categories:Ref = ref([]);
+
+    onMounted(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors" 
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            if (data.status === "success") {
+                const storeID = storeId.value = data.data.storeId;
+
+                getCategory(storeID);
+            } else {
+                console.log(data);
+                
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    });
+
+    const getCategory = (value:Ref) => {
+        fetch(`${import.meta.env.VITE_API_URL}/categories/store/${value}`, {
+            
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors"
+            
+        }
+        )
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                //console.log(data);
+                categories.value = data.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
 </script>
 
@@ -18,9 +72,9 @@
                 <h3 class="title">Added</h3>
             </div>
 
-            <div class="items">
-                <p class="item name">Name</p>
-                <p class="item">Date</p>
+            <div v-for="category in categories" :key="category._id" class="items">
+                <p class="item name">{{category.name}}</p>
+                <p class="item">{{category.date.substring(0,10)}}</p>
                 <p class="item">Update</p>
                 <p class="item red">Delete</p>
                 <img src="../../assets/dropdown-arrow.svg" alt="">
