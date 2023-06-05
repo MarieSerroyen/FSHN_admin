@@ -54,12 +54,16 @@
             });
     }
 
+    const dropdown = () => {
+        console.log("dropdown");
+    }
+
 </script>
 
 <template>
     <div class="list-section">
         <div class="description">
-            <h2 class="subtitle">Categroy list</h2>
+            <h2 class="subtitle">Category list</h2>
             <p class="section_description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
                 incididunt ut labore.
@@ -77,7 +81,9 @@
                 <p class="item">{{category.date.substring(0,10)}}</p>
                 <p class="item">Update</p>
                 <p class="item red">Delete</p>
-                <img src="../../assets/dropdown-arrow.svg" alt="">
+                <a>
+                    <img @click="dropdown" src="../../assets/dropdown-arrow.svg" alt="">
+                </a>
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@
                 <img src="../assets/dashboard.svg" alt="">
                 <span>Dashboard</span>
             </router-link>
-            <router-link class="menu-links" exact to="/">
+            <router-link class="menu-links" exact to="/order">
                 <img src="../assets/order-management.svg" alt="">
                 <span>Order Management</span>
             </router-link>
