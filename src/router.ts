@@ -4,6 +4,7 @@ import Login from './views/Login.vue'
 import Category from './views/Category.vue'
 import Collection from './views/Collection.vue'
 import Product from './views/Product.vue'
+import ProductList from './views/ProductList.vue'
 
 export default createRouter({
     history: createWebHistory(),
@@ -32,6 +33,11 @@ export default createRouter({
             path: '/product',
             name: 'product',
             component: Product
+        },
+        {
+            path: '/productlist',
+            name: 'productlist',
+            component: ProductList
         }
 
     ]

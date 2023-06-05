@@ -36,7 +36,7 @@
                     <img src="../assets/product-list.svg" alt="">
                     <span>Collections</span>
                 </router-link>
-                <router-link class="menu-links" exact to="/">
+                <router-link class="menu-links" exact to="/productlist">
                     <img src="../assets/product-list.svg" alt="">
                     <span>Product List</span>
                 </router-link>
