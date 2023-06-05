@@ -117,4 +117,8 @@
         font-weight: 400;
     }
 
+    .list {
+        margin-top: 2rem;
+    }
+
 </style>

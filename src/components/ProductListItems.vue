@@ -73,6 +73,28 @@
             <img src="../assets/dropdown-arrow.svg" alt="">
         </div>
     </div>
+
+    <div class="pages">
+            <div class="dropdown-showing">
+                <p>Showing</p>
+                <select class="dropdown" name="subcategory" id="subcategory">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+                <p>of 50</p>
+            </div>
+
+            <div class="page-numbers">
+                <img class="number-box page-icon" src="../assets/left-arrow.svg">
+                <p class="number-box active">1</p>
+                <p class="number-box">2</p>
+                <p class="number-box">3</p>
+                <p class="number-box">4</p>
+                <p class="number-box">5</p>
+                <img class="number-box page-icon" src="../assets/right-arrow.svg">
+            </div>
+        </div>
 </template>
 
 <style scoped>
@@ -117,6 +139,67 @@
         font-size: 15px;
         color: #000000;
         font-weight: 400;
+    }
+
+    
+    .pages {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .dropdown-showing {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .dropdown {
+        width: 4.5rem;
+        height: 2rem;
+        border: solid 1px #CCCCCC;
+        border-radius: 4px;
+        padding: 0 1rem;
+        background-color: #FFFFFF;
+        color: #000000;
+        font-size: 15px;
+        font-weight: 400;
+    }
+
+    .page-numbers {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .number-box {
+        width: 2rem;
+        height: 2rem;
+        border: solid 1px #F1F2F6;
+        border-radius: 4px;
+        background-color: #F1F2F6;
+        color: #000000;
+        font-size: 15px;
+        font-weight: 400;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .active {
+        background-color: #0F60FF;
+        color: #FFFFFF;
+    }
+
+    .page-icon {
+        width: 0.5rem;
     }
 
 </style>
