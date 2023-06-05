@@ -2,6 +2,7 @@
     import UploadCategory from '../components/UploadCategory.vue'
     import UploadSubCategory from '../components/UploadSubCategory.vue'
     import Nav from '../components/NavComponent.vue'
+    import CategoryList from '../components/lists/CategoryList.vue'
 
 </script>
 
@@ -32,6 +33,9 @@
             </div>
         </div>
 
+        <div class="list">
+            <CategoryList />
+        </div>
         
     </div>
 
@@ -86,5 +90,9 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
+    }
+
+    .list {
+        margin-top: 2rem;
     }
 </style>

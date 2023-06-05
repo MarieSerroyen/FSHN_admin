@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-    import SelectCategory from "./parts/CategoryList.vue";
+    import SelectCategory from "./parts/CategoryDropdown.vue";
     import { ref, onMounted, watch } from 'vue'
     import { storeToRefs } from "pinia";
     import { useClothingStore } from "../stores/clothing";

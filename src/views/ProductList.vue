@@ -1,6 +1,6 @@
 <script lang="ts" setup>
     import Nav from '../components/NavComponent.vue'
-    import ProductList from '../components/ProductListItems.vue'
+    import ProductList from '../components/lists/ProductListItems.vue'
 
 </script>
 

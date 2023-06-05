@@ -1,8 +1,8 @@
 <script lang="ts" setup>
     //import parts for clothing upload
-    import CategoryList from "./parts/CategoryList.vue";
-    import SubcategoryList from "./parts/SubcategoryList.vue";
-    import CollectionList from "./parts/CollectionList.vue";
+    import CategoryList from "./parts/CategoryDropdown.vue";
+    import SubcategoryList from "./parts/SubcategoryDropdown.vue";
+    import CollectionList from "./parts/CollectionDropdown.vue";
     import SizesList from "./parts/SizesList.vue";
     import UploadHeadimage from "./parts/UploadHeadimage.vue";
     import UploadModelimage from "./parts/UploadModelimage.vue";

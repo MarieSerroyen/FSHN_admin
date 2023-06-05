@@ -64,8 +64,10 @@
         </div>
 
         <div v-for="collection in collections" :key="collection._id" class="items">
-            <p class="name">{{collection.name}}</p>
-            <p class="date">{{collection.date.substring(0,10)}}</p>
+            <p class="item name">{{collection.name}}</p>
+            <p class="item">{{collection.date.substring(0,10)}}</p>
+            <p class="item">Update</p>
+            <p class="item red">Delete</p>
         </div>
 
     </div>
@@ -82,7 +84,7 @@
 
     .titles {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(4, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
       }
@@ -102,14 +104,18 @@
 
     .items {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(4, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
     }
 
-    .date {
+    .item {
         font-size: 15px;
         color: #000000;
         font-weight: 400;
+    }
+
+    .red {
+        color: #E45757;
     }
 </style>

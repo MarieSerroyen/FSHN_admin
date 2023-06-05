@@ -1,7 +1,7 @@
 <script lang="ts" setup>
     import UploadCollection from '../components/UploadCollection.vue'
     import Nav from '../components/NavComponent.vue'
-    import CollectionList from '../components/CollectionList.vue'
+    import CollectionList from '../components/lists/CollectionList.vue'
 
 </script>
 
