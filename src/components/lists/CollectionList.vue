@@ -66,7 +66,7 @@
         <div v-for="collection in collections" :key="collection._id" class="items">
             <p class="item name">{{collection.name}}</p>
             <p class="item">{{collection.date.substring(0,10)}}</p>
-            <p class="item blue">Update</p>
+            <p class="item blue">Edit</p>
             <p class="item red">Delete</p>
             <a>
                 <img src="../../assets/dropdown-arrow.svg" alt="">

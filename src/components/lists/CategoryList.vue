@@ -79,7 +79,7 @@
             <div v-for="category in categories" :key="category._id" class="items">
                 <p class="item name">{{category.name}}</p>
                 <p class="item">{{category.date.substring(0,10)}}</p>
-                <p class="item blue">Update</p>
+                <p class="item blue">Edit</p>
                 <p class="item red">Delete</p>
                 <a>
                     <img @click="dropdown" src="../../assets/dropdown-arrow.svg" alt="">

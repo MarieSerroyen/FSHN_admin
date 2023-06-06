@@ -18,6 +18,12 @@
         <div class="header">
             <h1 class="title">Add product</h1>
         </div>
+        <div class="description">
+            <p class="description-text">
+                Before uploading a product we first advise you to upload your clothing categories. We ask this because your clothing items 
+                will need to be linked to your categories. Categories can be uploaded here. 
+            </p>
+        </div>
         <div>
             <UploadClothing />
         </div>
@@ -32,7 +38,8 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
-        width: 100%;
+        width: 80%;
+        margin-left: 150px;
     }
 
     .header {
@@ -47,5 +54,10 @@
         font-size: 24px;
         color: black;
         text-transform: capitalize;
+    }
+
+    .description {
+        text-align: left;
+        width: 80%;
     }
 </style>
