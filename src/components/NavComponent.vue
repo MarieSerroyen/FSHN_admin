@@ -85,7 +85,7 @@
 
                 <div v-if="role === 'admin'" class="menu-item">
                     <h4 class="menu-title">Admin menu</h4>
-                    <router-link class="menu-links" exact to="/">
+                    <router-link class="menu-links" exact to="/store">
                         <img src="../assets/add-products.svg" alt="">
                         <span>Add Stores</span>
                     </router-link>

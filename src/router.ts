@@ -6,6 +6,7 @@ import Collection from './views/Collection.vue'
 import Product from './views/Product.vue'
 import ProductList from './views/ProductList.vue'
 import Order from './views/Order.vue'
+import Store from './views/Store.vue'
 
 export default createRouter({
     history: createWebHistory(),
@@ -44,6 +45,11 @@ export default createRouter({
             path: '/order',
             name: 'order',
             component: Order
+        },
+        {
+            path: '/store',
+            name: 'store',
+            component: Store
         }
 
     ]
