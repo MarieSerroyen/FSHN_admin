@@ -1,6 +1,7 @@
 <script lang="ts" setup>
     import Nav from '../components/NavComponent.vue'
     import Admin from '../components/AdminHome.vue'
+    import Store from '../components/StoreHome.vue'
 
     import { ref, onMounted } from 'vue'
     import router from '../router'
@@ -48,6 +49,10 @@
 
     <div class="admin-section" v-if="role === 'admin'">
         <Admin/>
+    </div>
+
+    <div class="admin-section" v-else-if="role === 'store'">
+        <Store/>
     </div>
 
 
