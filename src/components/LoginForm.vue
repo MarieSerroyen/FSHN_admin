@@ -5,6 +5,8 @@
     const email = ref('');
     const password = ref('');
 
+    const errorMessage = ref('');
+
     const login = () => {
         fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
             method: "POST",
@@ -24,7 +26,9 @@
                 localStorage.setItem("jwtToken", data.token);
                 router.push("/")
             } else {
-                console.log("error");
+                console.log("error");    
+                errorMessage.value = data.message;        
+
             }
         })
         .catch(error => {
@@ -36,7 +40,7 @@
 
 <template>
     <div>
-        <form>
+        <form >
             <div class="form-input">
                 <label for="email">Email</label>
                 <input class="inputfield" type="text" id="email" placeholder="Mail" v-model="email" >
@@ -45,6 +49,10 @@
             <div class="form-input">
                 <label for="password">Password</label>
                 <input class="inputfield" type="password" id="password" placeholder="Password" v-model="password" >
+            </div>
+
+            <div class="form-error">
+                <p class="error-message">{{ errorMessage }}</p>
             </div>
 
             <div class="button-section">
@@ -92,5 +100,15 @@
         font-size: 16px;
         font-weight: 700;
         text-transform: uppercase;
+    }
+
+    .form-error {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 30px;
+        margin-top: 1rem;
+        color: #E45757;
     }
 </style>
