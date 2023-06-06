@@ -37,24 +37,60 @@
 <template>
     <div>
         <form>
-            <div>
+            <div class="form-input">
                 <label for="email">Email</label>
-                <input type="text" id="email" placeholder="Mail" v-model="email" >
+                <input class="inputfield" type="text" id="email" placeholder="Mail" v-model="email" >
             </div>
 
-            <div>
+            <div class="form-input">
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Password" v-model="password" >
+                <input class="inputfield" type="password" id="password" placeholder="Password" v-model="password" >
             </div>
 
-            <div>
-                <button type="submit" @click.prevent="login">Login</button>
+            <div class="button-section">
+                <a class="button" type="submit" @click.prevent="login">Login</a>
             </div>
-
 
         </form>
     </div>
 </template>
 
 <style scoped>
+
+    label {
+        font-size: 16px;
+        color: black;
+        font-weight: 700;
+    }
+    
+    .inputfield {
+        height: 30px;
+        width: 100%;
+    }
+
+    .form-input {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    .button-section {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 2rem;
+    }
+    .button {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
 </style>
