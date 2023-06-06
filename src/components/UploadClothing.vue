@@ -41,7 +41,7 @@
             //console.log(data);
             if (data.status === "success") {
                 storeId.value = data.data.storeId;
-                //console.log(store.value);
+                //console.log(storeId.value);
             } else {
                 console.log(data);
                 

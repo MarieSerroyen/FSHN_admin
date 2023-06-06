@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-    import { ref, onMounted } from 'vue'
+    import { ref, onBeforeMount } from 'vue'
 
     const role = ref('');
 
-    onMounted(() => {
+    onBeforeMount(() => {
         fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
             method: "GET",
             headers: {

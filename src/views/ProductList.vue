@@ -43,7 +43,7 @@
         <hr class="line">
 
         <div class="search">
-            <input class="search-input" type="text" placeholder="Search by order id">
+            <input class="search-input" type="text" placeholder="Search by product id">
         </div>
 
         <div class="list">

@@ -96,12 +96,6 @@
         text-transform: uppercase;
     }
 
-    .name {
-        font-size: 15px;
-        color: #000000;
-        font-weight: 600;
-    }
-
     .items {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -113,6 +107,10 @@
         font-size: 15px;
         color: #000000;
         font-weight: 400;
+    }
+
+    .name {
+        font-weight: 600;
     }
 
     .red {

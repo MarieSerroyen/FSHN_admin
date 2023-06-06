@@ -1,5 +1,6 @@
 <script lang="ts" setup>
     import Nav from '../components/NavComponent.vue'
+    import Admin from '../components/AdminHome.vue'
 
     import { ref, onMounted } from 'vue'
 
@@ -18,7 +19,7 @@
         .then(data => {
             //console.log(data);
             if (data.status === "success") {
-                //console.log(data);
+                console.log(data);
                 role.value = data.data.role;
 
                 if (role.value === "admin") {
@@ -44,10 +45,8 @@
         <h1 class="title">Dashboard</h1>
     </div>
 
-    <div>
-        <h2>Role: {{role}}</h2>
-        <p v-if="role  === 'admin'">test admin</p>
-        <p v-else-if="role === 'store'">test Store</p>
+    <div class="admin-section" v-if="role === 'admin'">
+        <Admin/>
     </div>
 
 
