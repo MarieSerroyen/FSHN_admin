@@ -5,6 +5,37 @@
     const email = ref('');
     const phone = ref('');
 
+    const addStore = () => {
+
+        let data = {
+            name: name.value,
+            email: email.value,
+            phone: phone.value
+        }
+
+        fetch(`${import.meta.env.VITE_API_URL}/stores`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors",
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            if (data.status === "success") {
+                console.log("success");
+            } else {
+                console.log("error");
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+        }
+
 </script>
 
 <template>
@@ -33,7 +64,7 @@
         </div>
 
         <div class="button-section">
-            <a class="button">Submit</a>
+            <a @click="addStore" class="button">Submit</a>
         </div>
     </div>
 
