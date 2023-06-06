@@ -3,6 +3,13 @@
     import Admin from '../components/AdminHome.vue'
 
     import { ref, onMounted } from 'vue'
+    import router from '../router'
+
+    const jwtToken = localStorage.getItem("jwtToken");
+
+    if (!jwtToken) {
+        router.push("/login");
+    }
 
     const role = ref('');
 
@@ -19,14 +26,8 @@
         .then(data => {
             //console.log(data);
             if (data.status === "success") {
-                console.log(data);
+                //console.log(data);
                 role.value = data.data.role;
-
-                if (role.value === "admin") {
-                    console.log("admin");
-                } else if (role.value === "store") {
-                    console.log("store");
-                } 
             } else {
                 console.log(data);
                 

@@ -4,6 +4,14 @@
     import Nav from '../components/NavComponent.vue'
     import CategoryList from '../components/lists/CategoryList.vue'
 
+    import router from '../router'
+
+    const jwtToken = localStorage.getItem("jwtToken");
+
+    if (!jwtToken) {
+        router.push("/login");
+    }
+
 </script>
 
 <template>

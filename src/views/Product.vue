@@ -2,6 +2,14 @@
     import UploadClothing from '../components/UploadClothing.vue'
     import Nav from '../components/NavComponent.vue'
 
+    import router from '../router'
+
+    const jwtToken = localStorage.getItem("jwtToken");
+
+    if (!jwtToken) {
+        router.push("/login");
+    }
+
 </script>
 
 <template>

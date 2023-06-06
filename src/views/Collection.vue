@@ -3,6 +3,14 @@
     import Nav from '../components/NavComponent.vue'
     import CollectionList from '../components/lists/CollectionList.vue'
 
+    import router from '../router'
+
+    const jwtToken = localStorage.getItem("jwtToken");
+
+    if (!jwtToken) {
+        router.push("/login");
+    }
+
 </script>
 
 <template>

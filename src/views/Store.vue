@@ -2,6 +2,14 @@
     import Nav from '../components/NavComponent.vue'
     import AddStore from '../components/AddStore.vue'
 
+    import router from '../router'
+
+    const jwtToken = localStorage.getItem("jwtToken");
+
+    if (!jwtToken) {
+        router.push("/login");
+    }
+
 </script>
 
 <template>
