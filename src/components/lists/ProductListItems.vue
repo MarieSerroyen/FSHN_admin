@@ -75,26 +75,26 @@
     </div>
 
     <div class="pages">
-            <div class="dropdown-showing">
-                <p>Showing</p>
-                <select class="dropdown" name="subcategory" id="subcategory">
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                </select>
-                <p>of 50</p>
-            </div>
-
-            <div class="page-numbers">
-                <img class="number-box page-icon" src="../../assets/left-arrow.svg">
-                <p class="number-box active">1</p>
-                <p class="number-box">2</p>
-                <p class="number-box">3</p>
-                <p class="number-box">4</p>
-                <p class="number-box">5</p>
-                <img class="number-box page-icon" src="../../assets/right-arrow.svg">
-            </div>
+        <div class="dropdown-showing">
+            <p>Showing</p>
+            <select class="dropdown" name="subcategory" id="subcategory">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+            </select>
+            <p>of 50</p>
         </div>
+
+        <div class="page-numbers">
+            <img class="number-box page-icon" src="../../assets/left-arrow.svg">
+            <p class="number-box active">1</p>
+            <p class="number-box">2</p>
+            <p class="number-box">3</p>
+            <p class="number-box">4</p>
+            <p class="number-box">5</p>
+            <img class="number-box page-icon" src="../../assets/right-arrow.svg">
+        </div>
+    </div>
 </template>
 
 <style scoped>

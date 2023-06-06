@@ -1,5 +1,6 @@
 <script lang="ts" setup>
     import Nav from '../components/NavComponent.vue'
+    import OrderList from '../components/lists/OrderList.vue'
 
     import router from '../router'
 
@@ -67,7 +68,9 @@
             </div>
         </div>
 
-
+        <div class="list">
+            <OrderList/>
+        </div>
     </div>
 
 </template>
@@ -150,6 +153,10 @@
         font-size: 15px;
         color: #5C5F66;
         font-weight: 400;
+    }
+
+    .list {
+        margin-top: 1rem;
     }
 
 </style>
