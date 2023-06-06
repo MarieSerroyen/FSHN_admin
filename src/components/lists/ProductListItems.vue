@@ -86,13 +86,13 @@
             </div>
 
             <div class="page-numbers">
-                <img class="number-box page-icon" src="../assets/left-arrow.svg">
+                <img class="number-box page-icon" src="../../assets/left-arrow.svg">
                 <p class="number-box active">1</p>
                 <p class="number-box">2</p>
                 <p class="number-box">3</p>
                 <p class="number-box">4</p>
                 <p class="number-box">5</p>
-                <img class="number-box page-icon" src="../assets/right-arrow.svg">
+                <img class="number-box page-icon" src="../../assets/right-arrow.svg">
             </div>
         </div>
 </template>

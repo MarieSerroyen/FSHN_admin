@@ -1,4 +1,44 @@
 <script lang="ts" setup>
+    import { ref, onMounted } from 'vue'
+
+    const role = ref('');
+
+    onMounted(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors" 
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            if (data.status === "success") {
+                //console.log(data);
+                role.value = data.data.role;
+
+                if (role.value === "admin") {
+                    console.log("admin");
+                } else if (role.value === "store") {
+                    console.log("store");
+                } 
+            } else {
+                console.log(data);
+                
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    });
+
+    const logout = () => {
+        localStorage.removeItem("jwtToken");
+        localStorage.removeItem("storeID");
+        window.location.href = "/login";
+    }
 
 
 </script>
@@ -10,37 +50,61 @@
         </div>
 
         <div class="menu">
-            <div class="menu-item">
-            <h4 class="menu-title">Main menu</h4>
-            <router-link class="menu-links" exact to="/">
-                <img src="../assets/dashboard.svg" alt="">
-                <span>Dashboard</span>
-            </router-link>
-            <router-link class="menu-links" exact to="/order">
-                <img src="../assets/order-management.svg" alt="">
-                <span>Order Management</span>
-            </router-link>
+            <div class="menu-section"> 
+                <div class="menu-item">
+                    <h4 class="menu-title">Main menu</h4>
+                    <router-link class="menu-links" exact to="/">
+                        <img src="../assets/dashboard.svg" alt="">
+                        <span>Dashboard</span>
+                    </router-link>
+                    <router-link class="menu-links" exact to="/order">
+                        <img src="../assets/order-management.svg" alt="">
+                        <span>Order Management</span>
+                    </router-link>
+                </div>
+
+                <div class="menu-item">
+                    <h4 class="menu-title">Products</h4>
+                    <router-link class="menu-links" exact to="/product">
+                        <img src="../assets/add-products.svg" alt="">
+                        <span>Add Products</span>
+                    </router-link>
+                    <router-link class="menu-links" exact to="/category">
+                        <img src="../assets/add-products.svg" alt="">
+                        <span>Categories</span>
+                    </router-link>
+                    <router-link class="menu-links" exact to="/collection">
+                        <img src="../assets/product-list.svg" alt="">
+                        <span>Collections</span>
+                    </router-link>
+                    <router-link class="menu-links" exact to="/productlist">
+                        <img src="../assets/product-list.svg" alt="">
+                        <span>Product List</span>
+                    </router-link>
+                </div>
+
+                <div v-if="role === 'admin'" class="menu-item">
+                    <h4 class="menu-title">Admin menu</h4>
+                    <router-link class="menu-links" exact to="/">
+                        <img src="../assets/add-products.svg" alt="">
+                        <span>Add Stores</span>
+                    </router-link>
+                    <router-link class="menu-links" exact to="/order">
+                        <img src="../assets/order-management.svg" alt="">
+                        <span>Order Management</span>
+                    </router-link>
+                </div>
+            </div>          
+
+            <div class="menu-section">
+                <div class="menu-item logout">
+                    <a @click="logout" class="menu-links">
+                        <img src="../assets/dashboard.svg" alt="">
+                        <span>Logout</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="menu-item">
-                <h4 class="menu-title">Products</h4>
-                <router-link class="menu-links" exact to="/product">
-                    <img src="../assets/add-products.svg" alt="">
-                    <span>Add Products</span>
-                </router-link>
-                <router-link class="menu-links" exact to="/category">
-                    <img src="../assets/add-products.svg" alt="">
-                    <span>Categories</span>
-                </router-link>
-                <router-link class="menu-links" exact to="/collection">
-                    <img src="../assets/product-list.svg" alt="">
-                    <span>Collections</span>
-                </router-link>
-                <router-link class="menu-links" exact to="/productlist">
-                    <img src="../assets/product-list.svg" alt="">
-                    <span>Product List</span>
-                </router-link>
-            </div>
         </div>
 
         
@@ -49,6 +113,9 @@
 </template>
 
 <style scoped>
+    a {
+        cursor: pointer;
+    }
     .navigation {
         position: fixed;
         top: 0;
@@ -93,5 +160,14 @@
         font-weight: 400;
         color: black;
         padding: 0.5rem 0.5rem;
+    }
+
+    .menu-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1rem 0;
     }
 </style>
