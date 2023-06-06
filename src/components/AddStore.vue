@@ -5,6 +5,8 @@
     const email = ref('');
     const phone = ref('');
 
+    const test = ref('');
+
     const addStore = () => {
 
         let data = {
@@ -27,6 +29,8 @@
             //console.log(data);
             if (data.status === "success") {
                 console.log("success");
+                test.value = data.data._id;
+                console.log(test.value);
             } else {
                 console.log("error");
             }
@@ -34,7 +38,9 @@
         .catch(error => {
             console.log(error);
         });
-        }
+    }
+
+
 
 </script>
 
@@ -65,6 +71,18 @@
 
         <div class="button-section">
             <a @click="addStore" class="button">Submit</a>
+        </div>
+
+        <div class="generate-section">
+            <h2 class="subtitle">Generate user information</h2>
+            <p class="section_description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore.
+            </p>
+            <div class="button-section"> 
+                <a class="button">Generate user</a>
+            </div>
+
         </div>
     </div>
 
@@ -123,6 +141,11 @@
         font-weight: 700;
         text-transform: uppercase;
         margin-top: 1rem;
+        cursor: pointer;
+    }
+
+    .generate-section {
+        margin-top: 4rem;
     }
 
 </style>

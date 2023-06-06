@@ -351,6 +351,7 @@
         font-weight: 700;
         text-transform: uppercase;
         margin-top: 1rem;
+        cursor: pointer;
     }
 
     

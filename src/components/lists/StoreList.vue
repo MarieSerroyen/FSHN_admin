@@ -81,7 +81,6 @@
         color: #000000;
         font-weight: 400;
     }
-
     
     .name {
         font-weight: 600;

@@ -66,8 +66,11 @@
         <div v-for="collection in collections" :key="collection._id" class="items">
             <p class="item name">{{collection.name}}</p>
             <p class="item">{{collection.date.substring(0,10)}}</p>
-            <p class="item">Update</p>
+            <p class="item blue">Update</p>
             <p class="item red">Delete</p>
+            <a>
+                <img src="../../assets/dropdown-arrow.svg" alt="">
+            </a>
         </div>
 
     </div>
@@ -84,7 +87,7 @@
 
     .titles {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
       }
@@ -98,9 +101,10 @@
 
     .items {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
+        align-items: center;
     }
 
     .item {
@@ -113,7 +117,13 @@
         font-weight: 600;
     }
 
+    .blue {
+        color: #0F60FF;
+        cursor: pointer;
+    }
+
     .red {
         color: #E45757;
+        cursor: pointer;
     }
 </style>

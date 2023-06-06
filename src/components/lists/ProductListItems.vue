@@ -70,7 +70,7 @@
             <p class="item">{{product.date.substring(0,10)}}</p>
             <p class="item">{{product.category}}</p>
             <p class="item">&euro;{{product.price}}</p>
-            <img src="../assets/dropdown-arrow.svg" alt="">
+            <img src="../../assets/dropdown-arrow.svg" alt="">
         </div>
     </div>
 
