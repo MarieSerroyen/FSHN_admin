@@ -21,7 +21,7 @@
         <div class="description">
             <p class="description-text">
                 Before uploading a product we first advise you to upload your clothing categories. We ask this because your clothing items 
-                will need to be linked to your categories. Categories can be uploaded here. 
+                will need to be linked to your categories. Categories can be uploaded <router-link exact to="/category">here</router-link>. 
             </p>
         </div>
         <div>

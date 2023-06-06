@@ -18,12 +18,6 @@
             if (data.status === "success") {
                 //console.log(data);
                 role.value = data.data.role;
-
-                if (role.value === "admin") {
-                    console.log("admin");
-                } else if (role.value === "store") {
-                    console.log("store");
-                } 
             } else {
                 console.log(data);
                 
@@ -101,6 +95,10 @@
 
         <div class="menu-section">
             <div class="menu-item logout">
+                <a class="menu-links">
+                    <img src="../assets/settings.svg" alt="">
+                    <span>Settings</span>
+                </a>
                 <a @click="logout" class="menu-links">
                     <img src="../assets/dashboard.svg" alt="">
                     <span>Logout</span>

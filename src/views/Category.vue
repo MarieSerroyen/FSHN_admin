@@ -3,6 +3,7 @@
     import UploadSubCategory from '../components/UploadSubCategory.vue'
     import Nav from '../components/NavComponent.vue'
     import CategoryList from '../components/lists/CategoryList.vue'
+    import SubcategoryList from '../components/lists/SubcategoryList.vue'
 
     import router from '../router'
 
@@ -29,6 +30,10 @@
                     incididunt ut labore.
                 </p>
                 <UploadCategory />
+
+                <div class="list">
+                    <CategoryList />
+                </div>
             </div>
 
             <div>
@@ -38,11 +43,11 @@
                     incididunt ut labore.
                 </p>
                 <UploadSubCategory />
-            </div>
-        </div>
 
-        <div class="list">
-            <CategoryList />
+                <div class="list">
+                    <SubcategoryList />
+                </div>
+            </div>
         </div>
         
     </div>
@@ -101,6 +106,6 @@
     }
 
     .list {
-        margin-top: 2rem;
+        margin-top: 1rem;
     }
 </style>

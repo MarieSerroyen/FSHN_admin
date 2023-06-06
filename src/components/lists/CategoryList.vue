@@ -54,20 +54,12 @@
             });
     }
 
-    const dropdown = () => {
-        console.log("dropdown");
-    }
-
 </script>
 
 <template>
     <div class="list-section">
         <div class="description">
             <h2 class="subtitle">Category list</h2>
-            <p class="section_description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore.
-            </p>
         </div>
 
         <div class="section">
@@ -81,9 +73,6 @@
                 <p class="item">{{category.date.substring(0,10)}}</p>
                 <p class="item blue">Edit</p>
                 <p class="item red">Delete</p>
-                <a>
-                    <img @click="dropdown" src="../../assets/dropdown-arrow.svg" alt="">
-                </a>
             </div>
         </div>
     </div>
@@ -118,7 +107,7 @@
 
     .titles {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
     }
@@ -138,7 +127,7 @@
 
     .items {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
         align-items: center;
