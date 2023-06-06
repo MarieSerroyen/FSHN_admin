@@ -141,5 +141,6 @@
         height: 30px;
         width: 100%;
         margin-right: 2rem;
+        border-radius: 5px;
     }
 </style>

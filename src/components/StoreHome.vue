@@ -3,37 +3,44 @@
 </script>
 
 <template>
-    <div class="graphs">
-        <div class="graph">
-            <h2 class="subtitle">Total orders</h2>
-            <p class="days">Last 7 days</p>
+    <div class="dashboard">
+        <div class="graphs">
+            <div class="graph">
+                <h2 class="subtitle">Total orders</h2>
+                <p class="days">Last 7 days</p>
 
-            <div class="graph-section">
-                <h3 class="number">25.7K</h3>
-                <img src="../assets/graph.png" alt="">
+                <div class="graph-section">
+                    <h3 class="number">25.7K</h3>
+                    <img src="../assets/graph.png" alt="">
+                </div>
+
+                <div class="margin">
+                    <img src="../assets/green-arrow.svg" alt="">
+                    <p class="percentage green">6%</p>
+                    <p>vs last 7 days</p>
+                </div>
             </div>
 
-            <div class="margin">
-                <img src="../assets/green-arrow.svg" alt="">
-                <p class="percentage green">6%</p>
-                <p>vs last 7 days</p>
+            <div class="graph">
+                <h2 class="subtitle">Total profit</h2>
+                <p class="days">Last 7 days</p>
+                <div class="graph-section">
+                    <h3 class="number">50K</h3>
+                    <img src="../assets/graph.png" alt="">
+                </div>
+                <div class="margin">
+                    <img src="../assets/green-arrow.svg" alt="">
+                    <p class="percentage green">12%</p>
+                    <p>vs last 7 days</p>
+                </div>
             </div>
         </div>
 
-        <div class="graph">
-            <h2 class="subtitle">Total profit</h2>
-            <p class="days">Last 7 days</p>
-            <div class="graph-section">
-                <h3 class="number">50K</h3>
-                <img src="../assets/graph.png" alt="">
-            </div>
-            <div class="margin">
-                <img src="../assets/green-arrow.svg" alt="">
-                <p class="percentage green">12%</p>
-                <p>vs last 7 days</p>
-            </div>
+        <div>
+            
         </div>
     </div>
+    
 </template>
 
 <style scoped>

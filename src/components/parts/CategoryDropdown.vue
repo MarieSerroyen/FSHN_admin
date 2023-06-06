@@ -130,6 +130,7 @@
     .dropdown {
         height: 30px;
         width: 100%;
+        border-radius: 5px;
     }
 
 </style>
