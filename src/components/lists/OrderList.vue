@@ -88,6 +88,7 @@
         font-size: 15px;
         color: #000000;
         font-weight: 400;
+        text-align: left;
     }
     
     .first {
