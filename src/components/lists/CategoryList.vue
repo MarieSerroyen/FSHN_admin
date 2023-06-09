@@ -122,13 +122,6 @@
         font-weight: 500;
         text-transform: uppercase;
     }
-
-    .name {
-        font-size: 15px;
-        color: #000000;
-        font-weight: 600;
-    }
-
     .items {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
@@ -143,6 +136,13 @@
         font-weight: 400;
         text-align: left;
     }
+
+    .name {
+        font-size: 15px;
+        color: #000000;
+        font-weight: 600;
+    }
+
 
     .blue {
         color: #0F60FF;

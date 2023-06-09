@@ -66,7 +66,7 @@
         </div>
 
         <div v-for="product in products" :key="product._id" class="items">
-            <p class="item name">{{product.name}}</p>
+            <p class="item name">{{product._id}}</p>
             <p class="item">{{product.date.substring(0,10)}}</p>
             <p class="item">{{product.category}}</p>
             <p class="item">&euro;{{product.price}}</p>
@@ -121,13 +121,6 @@
         text-transform: uppercase;
     }
 
-    .name {
-        font-size: 15px;
-        color: #000000;
-        font-weight: 600;
-        text-transform: lowercase;
-    }
-
     .items {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -142,6 +135,13 @@
         color: #000000;
         font-weight: 400;
         text-align: left;
+    }
+
+    .name {
+        font-size: 15px;
+        color: #000000;
+        font-weight: 600;
+        text-transform: lowercase;
     }
 
     

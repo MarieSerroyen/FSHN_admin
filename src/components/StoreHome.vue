@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+    import BestProductsList from "../components/lists/BestProductsList.vue";
 
 </script>
 
@@ -36,8 +37,26 @@
             </div>
         </div>
 
-        <div>
-            
+        <div class="selling-section">
+            <div class="best-products-section">
+                <div class="title-heading">
+                    <h2 class="subtitle">Best selling products</h2>
+                    <img class="dots" src="../assets/dots.svg" alt="">
+                </div>
+
+                <BestProductsList />
+                
+            </div>
+
+            <div class="best-products-section">
+                <div class="title-heading">
+                    <h2 class="subtitle">Top selling category</h2>
+                    <img class="dots" src="../assets/dots.svg" alt="">
+                </div>
+
+                <img src="../assets/category-graph.png" alt="">
+            </div>
+
         </div>
     </div>
     
@@ -104,5 +123,13 @@
 
     .green {
         color: #1EB564;
+    }
+
+    .title-heading {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
     }
 </style>
