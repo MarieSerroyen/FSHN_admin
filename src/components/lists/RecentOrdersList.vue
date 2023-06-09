@@ -1,5 +1,58 @@
 <script lang="ts" setup>
+    import { ref, Ref, onMounted } from 'vue'
 
+    const storeId = ref('');
+    const orders:Ref = ref([]);
+
+    onMounted(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors" 
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            if (data.status === "success") {
+                const storeID = storeId.value = data.data.storeId;
+
+                getOrders(storeID);
+            } else {
+                console.log(data);
+                
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    });
+
+    const getOrders = (value:Ref) => {
+        fetch(`${import.meta.env.VITE_API_URL}/orders/store/${value}`, {
+            
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors"
+            
+        }
+        )
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                //console.log(data);
+                orders.value = data.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 </script>
 
 <template>
@@ -10,10 +63,10 @@
             <h3 class="title">Price</h3>
         </div>
 
-        <div class="items">
-            <p class="item name">Item name</p>
+        <div v-for="order in orders" :key="order._id" class="items">
+            <p class="item name">{{order._id}}</p>
             <p class="item">506</p>
-            <p class="item">&euro;85,00</p>
+            <p class="item">&euro;{{order.amount}}</p>
         </div>
     </div>
 </template>

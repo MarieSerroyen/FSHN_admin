@@ -46,7 +46,7 @@
 
 <style scoped>
 
-.section {
+    .section {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
