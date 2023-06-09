@@ -42,23 +42,39 @@
 </script>
 
 <template>
-    <Nav/>
-    <div class="header">
-        <h1 class="title">Dashboard</h1>
+    <div class="page">
+        <Nav/>
+        <div class="content">
+            <div class="header">
+                <h1 class="title">Dashboard</h1>
+            </div>
+
+            <div class="admin-section" v-if="role === 'admin'">
+                <Admin/>
+            </div>
+
+            <div class="store-section" v-else-if="role === 'store'">
+                <Store/>
+            </div>
+        </div>
+
     </div>
-
-    <div class="admin-section" v-if="role === 'admin'">
-        <Admin/>
-    </div>
-
-    <div class="store-section" v-else-if="role === 'store'">
-        <Store/>
-    </div>
-
-
 </template>
 
 <style scoped>
+    .page {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .content {
+        flex: 1 1 0;
+        padding: 2rem;
+
+        @media (max-width: 768px) {
+            padding: 6rem;
+        }
+    }
     .header {
         display: flex;
         flex-direction: row;

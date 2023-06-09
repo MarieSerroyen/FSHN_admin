@@ -16,51 +16,58 @@
 </script>
 
 <template>
-    <Nav />
-    <div class="content">
-        <div class="header">
-            <h1 class="title">Add categories</h1>
-        </div>
-
-        <div class="uploads">
-            <div>
-                <h2 class="subtitle">Upload category</h2>
-                <p class="section_description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                    incididunt ut labore.
-                </p>
-                <UploadCategory />
-
-                <div class="list">
-                    <CategoryList />
-                </div>
+    <div class="page">
+        <Nav />
+        <div class="content">
+            <div class="header">
+                <h1 class="title">Add categories</h1>
             </div>
 
-            <div>
-                <h2 class="subtitle">Upload subcategory</h2>
-                <p class="section_description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                    incididunt ut labore.
-                </p>
-                <UploadSubCategory />
+            <div class="uploads">
+                <div>
+                    <h2 class="subtitle">Upload category</h2>
+                    <p class="section_description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore.
+                    </p>
+                    <UploadCategory />
 
-                <div class="list">
-                    <SubcategoryList />
+                    <div class="list">
+                        <CategoryList />
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="subtitle">Upload subcategory</h2>
+                    <p class="section_description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore.
+                    </p>
+                    <UploadSubCategory />
+
+                    <div class="list">
+                        <SubcategoryList />
+                    </div>
                 </div>
             </div>
+            
         </div>
-        
     </div>
-
 </template>
 
 <style scoped>
-    .content {
+    .page {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        width: 100%;
+        flex-direction: row;
+    }
+
+    .content {
+        flex: 1 1 0;
+        padding: 2rem;
+
+        @media (max-width: 768px) {
+            padding: 6rem;
+        }
     }
 
     .header {

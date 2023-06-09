@@ -116,7 +116,7 @@
         cursor: pointer;
     }
     .navigation {
-        position: fixed;
+        /*position: fixed;
         top: 0;
         left: 0;
         bottom: 0;
@@ -125,7 +125,15 @@
         align-items: flex-start;
         justify-content: space-between;
         width: 220px;
+        background-color: white;*/
+        display: flex;
+        flex-direction: column;
+        width: 220px;
+        overflow: hidden;
+        min-height: 100vh;
+        margin: 0;
         background-color: white;
+
     }
 
     .logo {

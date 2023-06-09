@@ -13,21 +13,39 @@
 </script>
 
 <template>
-    <Nav/>
+    <div class="page">
+        <Nav/>
+        <div class="content">
+            <div class="header">
+                <h1 class="title">Add Stores</h1>
+            </div>
 
-    <div class="header">
-        <h1 class="title">Add Stores</h1>
-    </div>
-
-    <div class="uploads">
-        <div>
-            <AddStore/>
+            <div class="uploads">
+                <div>
+                    <AddStore/>
+                </div>
+            </div>
         </div>
-
     </div>
+
+
+
 </template>
 
 <style scoped>
+    .page {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .content {
+        flex: 1 1 0;
+        padding: 2rem;
+
+        @media (max-width: 768px) {
+            padding: 6rem;
+        }
+    }
     .header {
         display: flex;
         flex-direction: row;

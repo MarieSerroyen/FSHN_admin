@@ -13,61 +13,70 @@
 </script>
 
 <template>
-    <Nav />
+    <div class="page">
+        <Nav />
 
-    <div class="content">
-        <div class="header">
-            <h1 class="title">Product list</h1>
-        </div>
-
-        <div class="tabs">
-            <div class="tab-item">
-                <h4 class="tab-title active">All products</h4>
-            </div>
-            <div class="tab-item">
-                <h4 class="tab-title">Tab</h4>
-            </div>
-            <div class="tab-item">
-                <h4 class="tab-title">Tab</h4>
-            </div>
-            <div class="tab-item">
-                <h4 class="tab-title">Tab</h4>
-            </div>
-            <div class="tab-item">
-                <h4 class="tab-title">Tab</h4>
-            </div>
-            <div class="tab-item">
-                <h4 class="tab-title">Tab</h4>
-            </div>
-            <div class="tab-item">
-                <h4 class="tab-title">Tab</h4>
-            </div>
-            <div class="tab-item">
-                <h4 class="tab-title">Tab</h4>
+        <div class="content">
+            <div class="header">
+                <h1 class="title">Product list</h1>
             </div>
 
-        </div>
+            <div class="tabs">
+                <div class="tab-item">
+                    <h4 class="tab-title active">All products</h4>
+                </div>
+                <div class="tab-item">
+                    <h4 class="tab-title">Tab</h4>
+                </div>
+                <div class="tab-item">
+                    <h4 class="tab-title">Tab</h4>
+                </div>
+                <div class="tab-item">
+                    <h4 class="tab-title">Tab</h4>
+                </div>
+                <div class="tab-item">
+                    <h4 class="tab-title">Tab</h4>
+                </div>
+                <div class="tab-item">
+                    <h4 class="tab-title">Tab</h4>
+                </div>
+                <div class="tab-item">
+                    <h4 class="tab-title">Tab</h4>
+                </div>
+                <div class="tab-item">
+                    <h4 class="tab-title">Tab</h4>
+                </div>
 
-        <hr class="line">
+            </div>
 
-        <div class="search">
-            <input class="search-input" type="text" placeholder="Search by product id">
-        </div>
+            <hr class="line">
 
-        <div class="list">
-            <ProductList />
+            <div class="search">
+                <input class="search-input" type="text" placeholder="Search by product id">
+            </div>
+
+            <div class="list">
+                <ProductList />
+            </div>
         </div>
     </div>
+    
 
 </template>
 
 <style scoped>
-    .content {
+    .page {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        width: 100%;
+        flex-direction: row;
+    }
+
+    .content {
+        flex: 1 1 0;
+        padding: 2rem;
+
+        @media (max-width: 768px) {
+            padding: 6rem;
+        }
     }
 
     .header {

@@ -5,104 +5,105 @@
 </script>
 
 <template>
-    <div class="dashboard">
-        <div class="graphs">
-            <div class="graph">
-                <h2 class="subtitle">Total orders</h2>
-                <p class="days">Last 7 days</p>
+    <main id="Home-page">
+        <div class="dashboard">
+            <div class="graphs">
+                <div class="graph">
+                    <h2 class="subtitle">Total orders</h2>
+                    <p class="days">Last 7 days</p>
 
-                <div class="graph-section">
-                    <h3 class="number">25.7K</h3>
-                    <img src="../assets/graph.png" alt="">
-                </div>
-
-                <div class="margin">
-                    <img src="../assets/green-arrow.svg" alt="">
-                    <p class="percentage green">6%</p>
-                    <p>vs last 7 days</p>
-                </div>
-            </div>
-
-            <div class="graph">
-                <h2 class="subtitle">Total profit</h2>
-                <p class="days">Last 7 days</p>
-                <div class="graph-section">
-                    <h3 class="number">50K</h3>
-                    <img src="../assets/graph.png" alt="">
-                </div>
-                <div class="margin">
-                    <img src="../assets/green-arrow.svg" alt="">
-                    <p class="percentage green">12%</p>
-                    <p>vs last 7 days</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="selling-section">
-            <div class="best-products-section">
-                <div class="title-heading">
-                    <h2 class="subtitle">Best selling products</h2>
-                    <img class="dots" src="../assets/dots.svg" alt="">
-                </div>
-
-                <BestProductsList />
-                
-            </div>
-
-            <div class="best-category-section">
-                <div class="title-heading">
-                    <h2 class="subtitle">Top selling category</h2>
-                    <img class="dots" src="../assets/dots.svg" alt="">
-                </div>
-
-                <img class="graph-img" src="../assets/category-graph.png" alt="">
-            </div>
-
-        </div>
-
-        <div class="bottom-section">
-            <div class="popular-products">
-                <div class="title-heading">
-                    <h2 class="subtitle">Popular products</h2>
-                    <img class="dots" src="../assets/dots.svg" alt="">
-                </div>
-
-                <div class="products">
-                    <div class="product">
-                        <div class="product-info">
-                            <p class="product-name">Item name</p>
-                            <p class="product-number">Item: #FXZ-3456</p>
-                        </div>
-
-                        <div class="product-price">
-                            <p class="product-price">&euro;85,00</p>
-                        </div>
+                    <div class="graph-section">
+                        <h3 class="number">25.7K</h3>
+                        <img src="../assets/graph.png" alt="">
                     </div>
 
-                    <div class="product">
-                        <div class="product-info">
-                            <p class="product-name">Item name</p>
-                            <p class="product-number">Item: #FXZ-3456</p>
-                        </div>
+                    <div class="margin">
+                        <img src="../assets/green-arrow.svg" alt="">
+                        <p class="percentage green">6%</p>
+                        <p>vs last 7 days</p>
+                    </div>
+                </div>
 
-                        <div class="product-price">
-                            <p class="product-price">&euro;85,00</p>
-                        </div>
+                <div class="graph">
+                    <h2 class="subtitle">Total profit</h2>
+                    <p class="days">Last 7 days</p>
+                    <div class="graph-section">
+                        <h3 class="number">50K</h3>
+                        <img src="../assets/graph.png" alt="">
+                    </div>
+                    <div class="margin">
+                        <img src="../assets/green-arrow.svg" alt="">
+                        <p class="percentage green">12%</p>
+                        <p>vs last 7 days</p>
                     </div>
                 </div>
             </div>
 
-            <div class="recent-orders">
-                <div class="title-heading">
-                    <h2 class="subtitle">Recent orders</h2>
-                    <img class="dots" src="../assets/dots.svg" alt="">
+            <div class="selling-section">
+                <div class="best-products-section">
+                    <div class="title-heading">
+                        <h2 class="subtitle">Best selling products</h2>
+                        <img class="dots" src="../assets/dots.svg" alt="">
+                    </div>
+
+                    <BestProductsList />
+                    
                 </div>
 
-                <RecentOrdersList />
+                <div class="best-category-section">
+                    <div class="title-heading">
+                        <h2 class="subtitle">Top selling category</h2>
+                        <img class="dots" src="../assets/dots.svg" alt="">
+                    </div>
+
+                    <img class="graph-img" src="../assets/category-graph.png" alt="">
+                </div>
+
+            </div>
+
+            <div class="bottom-section">
+                <div class="popular-products">
+                    <div class="title-heading">
+                        <h2 class="subtitle">Popular products</h2>
+                        <img class="dots" src="../assets/dots.svg" alt="">
+                    </div>
+
+                    <div class="products">
+                        <div class="product">
+                            <div class="product-info">
+                                <p class="product-name">Item name</p>
+                                <p class="product-number">Item: #FXZ-3456</p>
+                            </div>
+
+                            <div class="product-price">
+                                <p class="product-price">&euro;85,00</p>
+                            </div>
+                        </div>
+
+                        <div class="product">
+                            <div class="product-info">
+                                <p class="product-name">Item name</p>
+                                <p class="product-number">Item: #FXZ-3456</p>
+                            </div>
+
+                            <div class="product-price">
+                                <p class="product-price">&euro;85,00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-orders">
+                    <div class="title-heading">
+                        <h2 class="subtitle">Recent orders</h2>
+                        <img class="dots" src="../assets/dots.svg" alt="">
+                    </div>
+
+                    <RecentOrdersList />
+                </div>
             </div>
         </div>
-    </div>
-    
+    </main>    
 </template>
 
 <style scoped>

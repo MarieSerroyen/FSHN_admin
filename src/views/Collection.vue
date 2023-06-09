@@ -14,33 +14,48 @@
 </script>
 
 <template>
-    <Nav />
-    <div class="content">
-        <div class="header">
-            <h1 class="title">Collections</h1>
-        </div>
+    <div class="page">
+        <Nav />
+        <div class="content">
+            <div class="header">
+                <h1 class="title">Collections</h1>
+            </div>
 
-        <div>
-            <h2 class="subtitle">Upload collection</h2>
-            <p class="section_description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore.
-            </p>
-            <UploadCollection />
-        </div>
+            <div>
+                <h2 class="subtitle">Upload collection</h2>
+                <p class="section_description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                    incididunt ut labore.
+                </p>
+                <UploadCollection />
+            </div>
 
-        <div>
-            <h2 class="subtitle">Collection list</h2>
-            <p class="section_description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore.
-            </p>
-            <CollectionList />
+            <div>
+                <h2 class="subtitle">Collection list</h2>
+                <p class="section_description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                    incididunt ut labore.
+                </p>
+                <CollectionList />
+            </div>
         </div>
-    </div>
+    </div>    
 </template>
 
 <style scoped>
+    .page {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .content {
+        flex: 1 1 0;
+        padding: 2rem;
+
+        @media (max-width: 768px) {
+            padding: 6rem;
+        }
+    }
     .content {
         display: flex;
         flex-direction: column;

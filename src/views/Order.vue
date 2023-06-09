@@ -13,75 +13,82 @@
 </script>
 
 <template>
-    <Nav/>
-    <div class="content">
-        <div class="header">
-            <h1 class="title">Order management</h1>
-        </div>
-
-        <div class="tabs">
-            <div class="tab-item">
-                <h4 class="tab-title active">All orders</h4>
-            </div>
-            <div class="tab-item">
-                <h4 class="tab-title">Pending</h4>
-            </div>
-            <div class="tab-item">
-                <h4 class="tab-title">Confirmed</h4>
-            </div>
-            <div class="tab-item">
-                <h4 class="tab-title">Processing</h4>
-            </div>
-            <div class="tab-item">
-                <h4 class="tab-title">Picked</h4>
-            </div>
-            <div class="tab-item">
-                <h4 class="tab-title">Shipped</h4>
-            </div>
-            <div class="tab-item">
-                <h4 class="tab-title">Deliverd</h4>
-            </div>
-            <div class="tab-item">
-                <h4 class="tab-title">Cancelled</h4>
+    <div class="page">
+        <Nav/>
+        <div class="content">
+            <div class="header">
+                <h1 class="title">Order management</h1>
             </div>
 
-        </div>
+            <div class="tabs">
+                <div class="tab-item">
+                    <h4 class="tab-title active">All orders</h4>
+                </div>
+                <div class="tab-item">
+                    <h4 class="tab-title">Pending</h4>
+                </div>
+                <div class="tab-item">
+                    <h4 class="tab-title">Confirmed</h4>
+                </div>
+                <div class="tab-item">
+                    <h4 class="tab-title">Processing</h4>
+                </div>
+                <div class="tab-item">
+                    <h4 class="tab-title">Picked</h4>
+                </div>
+                <div class="tab-item">
+                    <h4 class="tab-title">Shipped</h4>
+                </div>
+                <div class="tab-item">
+                    <h4 class="tab-title">Deliverd</h4>
+                </div>
+                <div class="tab-item">
+                    <h4 class="tab-title">Cancelled</h4>
+                </div>
 
-        <hr class="line">
-
-        <div class="filter-section">
-            <div class="search">
-                <input class="search-input" type="text" placeholder="Search by order id">
             </div>
 
-            <div class="filter">
-                <select class="filter-select">
-                    <option class="option" value="date">Filter by date</option>
-                    <option value="Option">Option</option>
-                    <option value="Option">Option</option>
-                    <option value="Option">Option</option>
-                    <option value="Option">Option</option>
-                    <option value="Option">Option</option>
-                    <option value="Option">Option</option>
-                    <option value="Option">Option</option>
-                </select>
-            </div>
-        </div>
+            <hr class="line">
 
-        <div class="list">
-            <OrderList/>
+            <div class="filter-section">
+                <div class="search">
+                    <input class="search-input" type="text" placeholder="Search by order id">
+                </div>
+
+                <div class="filter">
+                    <select class="filter-select">
+                        <option class="option" value="date">Filter by date</option>
+                        <option value="Option">Option</option>
+                        <option value="Option">Option</option>
+                        <option value="Option">Option</option>
+                        <option value="Option">Option</option>
+                        <option value="Option">Option</option>
+                        <option value="Option">Option</option>
+                        <option value="Option">Option</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="list">
+                <OrderList/>
+            </div>
         </div>
     </div>
-
 </template>
 
 <style scoped>
- .content {
+    .page {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        width: 100%;
+        flex-direction: row;
+    }
+
+    .content {
+        flex: 1 1 0;
+        padding: 2rem;
+
+        @media (max-width: 768px) {
+            padding: 6rem;
+        }
     }
 
     .header {
