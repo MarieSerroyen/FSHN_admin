@@ -120,6 +120,15 @@
         border: solid 1px #CCCCCC;
     }
 
+    .search {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        gap: 2rem;
+    }
+
     .search-input {
         background-image: url('../assets/search.svg');
         background-repeat: no-repeat;
@@ -128,7 +137,7 @@
         padding-left: 40px;
         border: solid 1px #CCCCCC;
         border-radius: 5px;
-        width: 100%;
+        width: 20%;
         height: 40px;
         font-size: 15px;
         color: #5C5F66;
