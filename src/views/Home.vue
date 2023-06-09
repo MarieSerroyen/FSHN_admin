@@ -51,7 +51,7 @@
         <Admin/>
     </div>
 
-    <div class="admin-section" v-else-if="role === 'store'">
+    <div class="store-section" v-else-if="role === 'store'">
         <Store/>
     </div>
 
