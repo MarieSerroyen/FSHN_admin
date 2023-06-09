@@ -21,6 +21,7 @@
         <div class="content">
             <div class="header">
                 <h1 class="title">Add categories</h1>
+                <img src="../assets/Avatar.png" alt="Profile picture">
             </div>
 
             <div class="uploads">

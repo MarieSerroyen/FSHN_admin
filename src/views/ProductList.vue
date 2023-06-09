@@ -19,6 +19,7 @@
         <div class="content">
             <div class="header">
                 <h1 class="title">Product list</h1>
+                <img src="../assets/Avatar.png" alt="Profile picture">
             </div>
 
             <div class="tabs">

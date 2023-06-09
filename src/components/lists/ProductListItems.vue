@@ -112,6 +112,7 @@
         width: 100%;
         justify-content: space-between;
         text-align: left;
+        gap: 2rem;
     }
 
     .title {
@@ -128,6 +129,7 @@
         width: 100%;
         justify-content: space-between;
         align-items: center;
+        gap: 2rem;
     }
 
     .item {
