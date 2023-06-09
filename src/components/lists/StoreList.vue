@@ -59,7 +59,8 @@
         grid-template-columns: repeat(4, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
-      }
+        text-align: left;
+    }
 
     .title {
         font-size: 16px;

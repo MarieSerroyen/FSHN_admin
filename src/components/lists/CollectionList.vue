@@ -90,7 +90,10 @@
         grid-template-columns: repeat(5, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
-      }
+        text-align: left;
+        justify-content: flex-start;
+        gap: 2rem;
+    }
 
     .title {
         font-size: 16px;

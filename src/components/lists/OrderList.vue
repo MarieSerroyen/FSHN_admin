@@ -66,7 +66,8 @@
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
         gap: 2rem;
-      }
+        text-align: left;
+    }
 
     .title {
         font-size: 16px;

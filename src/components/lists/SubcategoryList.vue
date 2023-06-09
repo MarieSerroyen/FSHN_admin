@@ -57,6 +57,8 @@
         grid-template-columns: repeat(6, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
+        text-align: left;
+        gap: 2rem;
     }
 
     .title {

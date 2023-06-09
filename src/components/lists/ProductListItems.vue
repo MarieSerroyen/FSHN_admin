@@ -110,8 +110,9 @@
         grid-template-columns: repeat(5, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
-        gap: 4rem;
-      }
+        justify-content: space-between;
+        text-align: left;
+    }
 
     .title {
         font-size: 15px;
@@ -132,6 +133,7 @@
         grid-template-columns: repeat(5, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
+        justify-content: space-between;
         align-items: center;
     }
 

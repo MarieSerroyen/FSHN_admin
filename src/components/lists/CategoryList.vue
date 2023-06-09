@@ -110,6 +110,10 @@
         grid-template-columns: repeat(6, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
+        justify-content: space-between;
+        text-align: left;
+        gap: 2rem;
+        
     }
 
     .title {
@@ -130,7 +134,7 @@
         grid-template-columns: repeat(6, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
-        align-items: center;
+        justify-content: space-between;
     }
 
     .item {
