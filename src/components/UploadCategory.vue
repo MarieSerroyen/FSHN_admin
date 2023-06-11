@@ -78,14 +78,14 @@
         .then(data => {
             console.log(data);
             if (data.status === "success") {
-                console.log("success");
+                //console.log("success");
                 successMessage.value = data.message;
 
                 const form = document.querySelector('.form-validation');
                 form?.classList.toggle('hidden');
 
             } else {
-                console.log("error");
+                //console.log("error");
                 errorMessage.value = data.message;
 
                 const form = document.querySelector('.form-validation');
