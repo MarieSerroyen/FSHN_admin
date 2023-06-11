@@ -1,9 +1,62 @@
 <script lang="ts" setup>
-    import { ref } from 'vue';
+    import { ref, Ref, onMounted } from 'vue';
 
-    let name = ref('');
-    let email = ref('');
-    let phone = ref('');
+    const storeId = ref('');
+
+    const name = ref('');
+    const email = ref('');
+    const phone = ref('');
+
+    onMounted(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors" 
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            if (data.status === "success") {
+                const storeID = storeId.value = data.data.storeId;
+
+                getStore(storeID);
+            } else {
+                console.log(data);
+                
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    });
+
+    const getStore = (value:Ref) => {
+        fetch(`${import.meta.env.VITE_API_URL}/stores/${value}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors"            
+        }
+        )
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            //console.log(data);
+            name.value = data.data.name;
+            email.value = data.data.email;
+            phone.value = data.data.phone;
+            
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
 </script>
 
 <template>

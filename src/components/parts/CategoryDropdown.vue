@@ -38,7 +38,6 @@
 
     const getCategory = (value:Ref) => {
         fetch(`${import.meta.env.VITE_API_URL}/categories/store/${value}`, {
-            
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -48,17 +47,17 @@
             
         }
         )
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                //console.log(data);
-                categories.value = data.data;
-                names.value = data.data.map((category: any) => category.name);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            //console.log(data);
+            categories.value = data.data;
+            names.value = data.data.map((category: any) => category.name);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
 
     const selectCategory = (e: Event) => {
