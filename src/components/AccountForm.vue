@@ -7,6 +7,9 @@
     const email = ref('');
     const phone = ref('');
 
+    const errorMessage = ref('');
+    const successMessage = ref('');
+
     onMounted(() => {
         fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
             method: "GET",
@@ -76,9 +79,18 @@
         .then(data => {
             //console.log(data);
             if (data.status === "success") {
-                console.log("success");
+                successMessage.value = data.message;
+
+                const form = document.querySelector('.form-validation');
+                form?.classList.toggle('hidden');
+
             } else {
-                console.log("error");
+                //console.log("error");
+
+                errorMessage.value = data.message;
+
+                const form = document.querySelector('.form-validation');
+                form?.classList.toggle('hidden');
             }
         })
         .catch((error) => {
@@ -105,6 +117,10 @@
                 <label for="phone">Phone</label>
                 <input class="inputfield" type="text" id="phone" name="phone" v-model="phone">
             </div>
+        </div>
+        <div class="form-validation hidden">
+            <p class="error-message">{{ errorMessage }}</p>
+            <p class="success-message">{{ successMessage }}</p>
         </div>
 
         <div>
@@ -161,6 +177,27 @@
         text-transform: uppercase;
         margin-top: 1rem;
         cursor: pointer;
+    }
+
+    .form-validation {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+    }
+
+    .error-message {
+        color: #E45757;
+        font-weight: 700;
+    }
+
+    .success-message {
+        color: #1EB564;
+        font-weight: 700;
+    }
+
+    .hidden {
+        display: none;
     }
 
 </style>
