@@ -76,22 +76,18 @@
             <h3 class="title">Created</h3>
             <h3 class="title">Total</h3>
             <h3 class="title">Profit</h3>
-            <!--<h3 class="title">Status</h3>-->
+            <h3 class="title">Status</h3>
         </div>
         <div v-for="order in orders" :key="order._id" class="items">
             <p class="item first">#{{order.orderNumber}}</p>
             <p class="item">{{order.date.substring(0,10)}}</p>
             <p class="item">&euro;{{order.amount}}</p>
             <p class="item">&euro;85,00</p>
-            <!--<select class="status-select">
+            <select class="status-select">
                 <option class="option" value="pending">Pending</option>
                 <option class="option" value="confirmed">Confirmed</option>
                 <option class="option" value="processing">Processing</option>
-                <option class="option" value="picked">Picked</option>
-                <option class="option" value="shipped">Shipped</option>
-                <option class="option" value="delivered">Delivered</option>
-                <option class="option" value="cancelled">Cancelled</option>
-            </select>-->
+            </select>
             <a @click="dropdown(order._id)" class="item">
                 <img src="../../assets/dropdown-arrow.svg" alt="">
             </a>
@@ -132,7 +128,7 @@
 
     .titles {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
         gap: 2rem;
@@ -148,7 +144,7 @@
 
     .items {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
         align-items: center;
