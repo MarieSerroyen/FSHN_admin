@@ -48,9 +48,14 @@
             .then((data) => {
                 //console.log(data);
                 orders.value = data.data;
+                
+                //reverse the order of the orders
+                orders.value = orders.value.reverse();
 
                 //show the latest 5 orders
                 orders.value = orders.value.slice(0, 5);
+
+
             })
             .catch((error) => {
                 console.log(error);

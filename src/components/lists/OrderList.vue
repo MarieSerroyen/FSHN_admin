@@ -51,8 +51,12 @@
                 //console.log(data);
                 orders.value = data.data;
 
+                //reverse the order of the orders
+                orders.value = orders.value.reverse();
+
                 //show the latest 10 orders
                 orders.value = orders.value.slice(0, 10);
+
             })
             .catch((error) => {
                 console.log(error);
