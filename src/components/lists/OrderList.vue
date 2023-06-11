@@ -6,6 +6,8 @@
     const storeId = ref('');
     const orders:Ref = ref([]);
 
+    let numberOfOrders = ref(0);
+
     onMounted(() => {
         fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
             method: "GET",
@@ -51,12 +53,13 @@
                 //console.log(data);
                 orders.value = data.data;
 
+                numberOfOrders = orders.value.length;
+
                 //reverse the order of the orders
                 orders.value = orders.value.reverse();
 
                 //show the latest 10 orders
                 orders.value = orders.value.slice(0, 10);
-
             })
             .catch((error) => {
                 console.log(error);
@@ -141,7 +144,7 @@
                     <option value="20">20</option>
                     <option value="50">50</option>
                 </select>
-                <p>of 50</p>
+                <p>of {{ numberOfOrders }}</p>
             </div>
 
             <div class="page-numbers">
