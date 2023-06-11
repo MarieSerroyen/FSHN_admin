@@ -95,7 +95,6 @@
             <a @click="removeItem(collection._id)">
                 <p class="item red">Delete</p>
             </a>
-
             <a>
                 <img src="../../assets/dropdown-arrow.svg" alt="">
             </a>

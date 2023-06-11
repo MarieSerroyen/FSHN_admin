@@ -78,11 +78,17 @@
         .then(data => {
             console.log(data);
             if (data.status === "success") {
-                console.log("success");
+                //console.log("success");
                 successMessage.value = data.message;
+
+                const form = document.querySelector('.form-validation');
+                form?.classList.toggle('hidden');
             } else {
-                console.log("error");
-                errorMessage.value = data.message;     
+                //console.log("error");
+                errorMessage.value = data.message;                
+                
+                const form = document.querySelector('.form-validation');
+                form?.classList.toggle('hidden');
             }
         })
         .catch(error => {
@@ -104,7 +110,7 @@
         </div>
     </div>
 
-    <div class="form-validation">
+    <div class="form-validation hidden">
         <p class="error-message">{{ errorMessage }}</p>
         <p class="success-message">{{ successMessage }}</p>
     </div>
@@ -198,5 +204,9 @@
     .success-message {
         color: #1EB564;
         font-weight: 700;
+    }
+
+    .hidden {
+        display: none;
     }
 </style>
