@@ -50,6 +50,9 @@
             .then((data) => {
                 //console.log(data);
                 orders.value = data.data;
+
+                //show the latest 10 orders
+                orders.value = orders.value.slice(0, 10);
             })
             .catch((error) => {
                 console.log(error);
