@@ -48,6 +48,9 @@
             .then((data) => {
                 //console.log(data);
                 orders.value = data.data;
+
+                //show the latest 5 orders
+                orders.value = orders.value.slice(0, 5);
             })
             .catch((error) => {
                 console.log(error);
@@ -64,7 +67,7 @@
         </div>
 
         <div v-for="order in orders" :key="order._id" class="items">
-            <p class="item name">{{order._id}}</p>
+            <p class="item name">#{{order.orderNumber}}</p>
             <p class="item">506</p>
             <p class="item">&euro;{{order.amount}}</p>
         </div>
