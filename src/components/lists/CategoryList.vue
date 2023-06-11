@@ -1,5 +1,6 @@
 <script lang="ts" setup>
     import { ref, Ref, onMounted } from 'vue'
+    import router from '../../router';
 
     const storeId = ref('');
     const categories:Ref = ref([]);
@@ -54,6 +55,30 @@
             });
     }
 
+    const removeItem = (id: string) => {
+        fetch(`${import.meta.env.VITE_API_URL}/categories/${id}`, {
+            
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors"            
+        }
+        )
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+                router.go(0);
+                /*Fixen zodat er geen reload is.  */
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
     const dropdown = (name: string) => {
         console.log('dropdown ' + name);
        
@@ -63,6 +88,8 @@
         subcategories?.classList.toggle('hidden');
 
     }
+
+    
 
 </script>
 
@@ -82,7 +109,9 @@
                 <p class="item name">{{category.name}}</p>
                 <p class="item">{{category.date.substring(0,10)}}</p>
                 <p class="item blue">Edit</p>
-                <p class="item red">Delete</p>
+                <a @click="removeItem(category._id)">
+                    <p class="item red">Delete</p>
+                </a>
                 <a @click="dropdown(category.name)" class="item">
                     <img src="../../assets/dropdown-arrow.svg" alt="">
                 </a>
