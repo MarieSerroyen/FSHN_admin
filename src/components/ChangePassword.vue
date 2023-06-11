@@ -1,9 +1,66 @@
 <script lang="ts" setup>
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
+
+    const userID = ref('');
 
     const old_password = ref('');
     const new_password = ref('');
     const confirm_password = ref('');
+
+    onMounted(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors" 
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            if (data.status === "success") {
+                userID.value = data.data._id;
+            } else {
+                console.log(data);
+                
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    });
+
+    const changePassword = (id: string) => {
+
+        let data = {
+            old_password: old_password.value,
+            new_password: new_password.value,
+            confirm_password: confirm_password.value
+        }
+
+        fetch(`${import.meta.env.VITE_API_URL}/users/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors",
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.status === "success") {
+                console.log("success");
+            } else {
+                console.log("error");
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
 
 </script>
 
@@ -12,22 +69,22 @@
         <div class="input_grid">
             <div class="text_input">
                 <label for="old_password">Old password</label>
-                <input class="inputfield" type="text" id="old_password" name="old_password" v-model="old_password">
+                <input class="inputfield" type="password" id="old_password" name="old_password" v-model="old_password">
             </div>
 
             <div class="text_input email">
                 <label for="new_password">New password</label>
-                <input class="inputfield" type="text" id="new_password" name="new_password" v-model="new_password">
+                <input class="inputfield" type="password" id="new_password" name="new_password" v-model="new_password">
             </div>
 
             <div class="text_input">
                 <label for="confirm_password">Confirm new password</label>
-                <input class="inputfield" type="text" id="confirm_password" name="confirm_password" v-model="confirm_password">
+                <input class="inputfield" type="password" id="confirm_password" name="confirm_password" v-model="confirm_password">
             </div>
         </div>
 
         <div>
-            <a class="button">Submit</a>
+            <a @click="changePassword(userID)" class="button">Submit</a>
         </div>
     </div>
 </template>
