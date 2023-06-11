@@ -21,9 +21,9 @@
                 <img src="../assets/Avatar.png" alt="Profile picture">
             </div>
             <div class="section">
-                <h2 class="subtitle">Account settings</h2>
+                <h2 class="subtitle">Store settings</h2>
                 <p class="section_description">
-                    Change your account information here. 
+                    Change your store information here. 
                 </p>
                 <AccountForm/>
             </div>

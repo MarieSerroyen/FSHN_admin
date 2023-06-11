@@ -50,12 +50,41 @@
             //console.log(data);
             name.value = data.data.name;
             email.value = data.data.email;
-            phone.value = data.data.phone;
-            
+            phone.value = data.data.phone;            
         })
         .catch((error) => {
             console.log(error);
         });
+    }
+
+    const updateInfo = (id: string) => {
+        let data = {
+            name: name.value,
+            email: email.value,
+            phone: phone.value
+        }
+        fetch(`${import.meta.env.VITE_API_URL}/stores/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors",            
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            if (data.status === "success") {
+                console.log("success");
+            } else {
+                console.log("error");
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
     }
 </script>
 
@@ -78,7 +107,9 @@
             </div>
         </div>
 
-        <a class="button">Submit</a>
+        <div>
+            <a @click="updateInfo(storeId)" class="button">Submit</a>
+        </div>
     </div>
 
 </template>
