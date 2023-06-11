@@ -54,6 +54,16 @@
             });
     }
 
+    const dropdown = (name: string) => {
+        console.log('dropdown ' + name);
+       
+        //show list of subcategories
+        
+        const subcategories = document.querySelector('.subcategories');
+        subcategories?.classList.toggle('hidden');
+
+    }
+
 </script>
 
 <template>
@@ -73,7 +83,19 @@
                 <p class="item">{{category.date.substring(0,10)}}</p>
                 <p class="item blue">Edit</p>
                 <p class="item red">Delete</p>
+                <a @click="dropdown(category.name)" class="item">
+                    <img src="../../assets/dropdown-arrow.svg" alt="">
+                </a>
             </div>
+
+            <div class="subcategories hidden">
+                <div class="subcategorylist">
+                    <h3 class="title">Category name</h3>
+                    <h3 class="title">Added</h3>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
@@ -128,6 +150,8 @@
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
         justify-content: space-between;
+        text-align: left;
+        align-items: center;
     }
 
     .item {
@@ -151,6 +175,29 @@
     .red {
         color: #E45757;
         cursor: pointer;
+    }
+
+    .subcategories {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .subcategorylist {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        border-bottom: solid 1px #CCCCCC;
+        width: 100%;
+        justify-content: space-between;
+        text-align: left;
+        align-items: center;
+    }
+
+    .hidden {
+        display: none;
     }
 
 </style>

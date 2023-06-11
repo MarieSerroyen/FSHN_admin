@@ -4,6 +4,8 @@
     const storeId = ref('');
     const subcategories:Ref = ref([]);
 
+    //const names:Ref = ref([]);
+
     onMounted(() => {
         fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
             method: "GET",
@@ -46,8 +48,11 @@
                 return response.json();
             })
             .then((data) => {
-                //console.log(data);
+                //console.log(data.data[0].category);
                 subcategories.value = data.data;
+
+                /*names.value = data.data.map((category: any) => category.category);
+                console.log(names.value);*/
             })
             .catch((error) => {
                 console.log(error);

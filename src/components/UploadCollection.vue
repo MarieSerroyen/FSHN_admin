@@ -6,6 +6,9 @@
 
     let store = ref('');
 
+    const errorMessage = ref('');
+    const successMessage = ref('');
+
     onMounted(() => {
         fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
             method: "GET",
@@ -76,8 +79,10 @@
             console.log(data);
             if (data.status === "success") {
                 console.log("success");
+                successMessage.value = data.message;
             } else {
                 console.log("error");
+                errorMessage.value = data.message;     
             }
         })
         .catch(error => {
@@ -97,6 +102,11 @@
             <label for="fileUpload">Upload collection image</label>
             <input @change="uploadCollectionImg" type="file" id="fileUpload" name="fileUpload">
         </div>
+    </div>
+
+    <div class="form-validation">
+        <p class="error-message">{{ errorMessage }}</p>
+        <p class="success-message">{{ successMessage }}</p>
     </div>
 
 
@@ -169,5 +179,24 @@
         text-transform: uppercase;
         margin-top: 1rem;
         cursor: pointer;
+    }
+
+    .form-validation {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 30px;
+        margin-top: 1rem;
+    }
+
+    .error-message {
+        color: #E45757;
+        font-weight: 700;
+    }
+
+    .success-message {
+        color: #1EB564;
+        font-weight: 700;
     }
 </style>
