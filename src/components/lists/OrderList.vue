@@ -82,8 +82,18 @@
             <p class="item first">#{{order.orderNumber}}</p>
             <p class="item">{{order.date.substring(0,10)}}</p>
             <p class="item">&euro;{{order.amount}}</p>
-            <p class="item">&euro;85,00</p>
-            <select class="status-select">
+            <p class="item">&euro;{{order.amount}}</p>
+            <select v-model="order.status" v-if="order.status === 'pending'" class="status-select yellow">
+                <option class="option" value="pending">Pending</option>
+                <option class="option" value="confirmed">Confirmed</option>
+                <option class="option" value="processing">Processing</option>
+            </select>
+            <select v-model="order.status" v-else-if="order.status === 'confirmed'" class="status-select green">
+                <option class="option" value="pending">Pending</option>
+                <option class="option" value="confirmed">Confirmed</option>
+                <option class="option" value="processing">Processing</option>
+            </select>
+            <select v-model="order.status" v-else-if="order.status === 'processing'" class="status-select blue">
                 <option class="option" value="pending">Pending</option>
                 <option class="option" value="confirmed">Confirmed</option>
                 <option class="option" value="processing">Processing</option>
@@ -168,6 +178,23 @@
         width: 100%;
         margin-right: 2rem;
         border-radius: 5px;
+        font-weight: 600;
+        border-color: transparent;
+    }
+
+    .yellow {
+        color: #FBC67A;
+        background-color: rgba(255, 198, 0, 0.16);
+    }
+
+    .green {
+        color: #1EB564;
+        background-color: rgba(40, 199, 111, 0.16);
+    }
+
+    .blue {
+        color: #0FB7FF;
+        background-color: rgba(15, 183, 255, 0.16);
     }
 
     /*PAGES*/
@@ -231,4 +258,5 @@
     .page-icon {
         width: 0.5rem;
     }
+
 </style>
