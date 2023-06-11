@@ -1,6 +1,7 @@
 <script lang="ts" setup>
     import Nav from '../components/NavComponent.vue'
     import AccountForm from '../components/AccountForm.vue'
+    import ChangePassword from '../components/ChangePassword.vue'
 
     import router from '../router'
 
@@ -33,6 +34,7 @@
                 <p class="section_description">
                     Change your password here.
                 </p>
+                <ChangePassword/>
             </div>
         </div>
     </div>
