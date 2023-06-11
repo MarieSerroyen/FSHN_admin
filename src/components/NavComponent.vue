@@ -95,10 +95,10 @@
 
         <div class="menu-section">
             <div class="menu-item logout">
-                <a class="menu-links">
+                <router-link class="menu-links" exact to="/settings">
                     <img src="../assets/settings.svg" alt="">
                     <span>Settings</span>
-                </a>
+                </router-link>
                 <a @click="logout" class="menu-links">
                     <img src="../assets/dashboard.svg" alt="">
                     <span>Logout</span>
