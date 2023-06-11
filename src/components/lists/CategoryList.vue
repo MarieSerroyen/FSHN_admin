@@ -143,7 +143,6 @@
         font-weight: 600;
     }
 
-
     .blue {
         color: #0F60FF;
         cursor: pointer;

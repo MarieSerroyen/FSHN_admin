@@ -1,4 +1,58 @@
 <script lang="ts" setup>
+    import { ref, Ref, onMounted } from 'vue'
+
+    const storeId = ref('');
+    const subcategories:Ref = ref([]);
+
+    onMounted(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors" 
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            if (data.status === "success") {
+                const storeID = storeId.value = data.data.storeId;
+
+                getCategory(storeID);
+            } else {
+                console.log(data);
+                
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    });
+
+    const getCategory = (value:Ref) => {
+        fetch(`${import.meta.env.VITE_API_URL}/subCategories/store/${value}`, {
+            
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors"
+            
+        }
+        )
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                //console.log(data);
+                subcategories.value = data.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
 </script>
 
@@ -15,10 +69,10 @@
                 <h3 class="title">Added</h3>
             </div>
 
-            <div class="items">
-                <p class="item name">name</p>
-                <p class="item">category</p>
-                <p class="item">date</p>
+            <div v-for="subcategory in subcategories" :key="subcategory._id" class="items">
+                <p class="item name">{{subcategory.name}}</p>
+                <p class="item">{{subcategory.category}}</p>
+                <p class="item">{{subcategory.date.substring(0,10)}}</p>
                 <p class="item blue">Edit</p>
                 <p class="item red">Delete</p>
             </div>

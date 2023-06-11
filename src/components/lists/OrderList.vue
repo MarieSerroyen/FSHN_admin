@@ -1,5 +1,7 @@
 <script lang="ts" setup>
+    //import Items from '../lists/OrderItemsList.vue'
     import { ref, Ref, onMounted } from 'vue'
+
 
     const storeId = ref('');
     const orders:Ref = ref([]);
@@ -54,6 +56,10 @@
             });
     }
 
+    const dropdown = (_id: string) => {
+        console.log('dropdown ' + _id);
+    }
+
 </script>
 
 <template>
@@ -66,7 +72,7 @@
             <!--<h3 class="title">Status</h3>-->
         </div>
         <div v-for="order in orders" :key="order._id" class="items">
-            <p class="item first">{{order._id}}</p>
+            <p class="item first">#{{order.orderNumber}}</p>
             <p class="item">{{order.date.substring(0,10)}}</p>
             <p class="item">&euro;{{order.amount}}</p>
             <p class="item">&euro;85,00</p>
@@ -79,8 +85,11 @@
                 <option class="option" value="delivered">Delivered</option>
                 <option class="option" value="cancelled">Cancelled</option>
             </select>-->
-            <img src="../../assets/dropdown-arrow.svg" alt="">
+            <a @click="dropdown(order._id)" class="item">
+                <img src="../../assets/dropdown-arrow.svg" alt="">
+            </a>
         </div>
+
 
         <div class="pages">
             <div class="dropdown-showing">
