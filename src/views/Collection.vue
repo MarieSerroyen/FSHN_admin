@@ -25,18 +25,13 @@
             <div>
                 <h2 class="subtitle">Upload collection</h2>
                 <p class="section_description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                    incididunt ut labore.
+                    Upload your collections here. 
                 </p>
                 <UploadCollection />
             </div>
 
             <div>
                 <h2 class="subtitle">Collection list</h2>
-                <p class="section_description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                    incididunt ut labore.
-                </p>
                 <CollectionList />
             </div>
         </div>

@@ -28,8 +28,7 @@
                 <div>
                     <h2 class="subtitle">Upload category</h2>
                     <p class="section_description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore.
+                        Upload your head categories here. Most used head categories are: Women, Men and Unisex.
                     </p>
                     <UploadCategory />
 
@@ -41,8 +40,7 @@
                 <div>
                     <h2 class="subtitle">Upload subcategory</h2>
                     <p class="section_description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore.
+                        Upload your subcategories here. These subcategories can be linked to their head category by selecting the right category in the dropdown menu. 
                     </p>
                     <UploadSubCategory />
 
@@ -111,6 +109,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
+        text-align: left;
     }
 
     .list {

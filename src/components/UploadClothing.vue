@@ -160,8 +160,7 @@
         <div class="info">
             <h2 class="subtitle">Product information</h2>
             <p class="section_description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore.
+                Fill in your basic product information here. 
             </p>
             <div class="input_grid">
                 <div class="text_input">
@@ -190,8 +189,7 @@
         <div class="info">
             <h2 class="subtitle">Product variables</h2>
             <p class="section_description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore.
+                Fill in your basic product information here. 
             </p>
             <div class="input_grid_variable">
                 <div class="text_input">
@@ -223,8 +221,7 @@
         <div class="info">
             <h2 class="subtitle">Product categories</h2>
             <p class="section_description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore.
+                Link the product to its corresponding categories. 
             </p>
             <div class="input_grid">
                 <div>
@@ -244,8 +241,7 @@
         <div class="info">
             <h2 class="subtitle">Product images</h2>
             <p class="section_description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore.
+                Upload your product images here. The product image will be used as the try on image for your customers. The other two images will show the clothing on your models and will be used on the item detail screen. 
             </p>
 
             <div>
@@ -303,6 +299,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
+        text-align: left;
     }
 
     .input_grid {
