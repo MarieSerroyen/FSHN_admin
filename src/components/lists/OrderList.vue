@@ -67,6 +67,35 @@
         console.log('dropdown ' + _id);
     }
 
+    const changeStatus = (id: string) => {
+        //get the status
+        const status = orders.value.find((order: any) => order._id === id).status;
+
+        fetch(`${import.meta.env.VITE_API_URL}/orders/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors",            
+            body: JSON.stringify({
+                status: status
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            if (data.status === "success") {
+                console.log(data);
+
+            } else {
+                console.log(data);
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });        
+    }
 </script>
 
 <template>
@@ -83,17 +112,17 @@
             <p class="item">{{order.date.substring(0,10)}}</p>
             <p class="item">&euro;{{order.amount}}</p>
             <p class="item">&euro;{{order.amount}}</p>
-            <select v-model="order.status" v-if="order.status === 'pending'" class="status-select yellow">
+            <select @change="changeStatus(order._id)" v-model="order.status" v-if="order.status === 'pending'" class="status-select yellow">
                 <option class="option" value="pending">Pending</option>
                 <option class="option" value="confirmed">Confirmed</option>
                 <option class="option" value="processing">Processing</option>
             </select>
-            <select v-model="order.status" v-else-if="order.status === 'confirmed'" class="status-select green">
+            <select @change="changeStatus(order._id)" v-model="order.status" v-else-if="order.status === 'confirmed'" class="status-select green">
                 <option class="option" value="pending">Pending</option>
                 <option class="option" value="confirmed">Confirmed</option>
                 <option class="option" value="processing">Processing</option>
             </select>
-            <select v-model="order.status" v-else-if="order.status === 'processing'" class="status-select blue">
+            <select @change="changeStatus(order._id)" v-model="order.status" v-else-if="order.status === 'processing'" class="status-select blue">
                 <option class="option" value="pending">Pending</option>
                 <option class="option" value="confirmed">Confirmed</option>
                 <option class="option" value="processing">Processing</option>
