@@ -85,8 +85,6 @@
                 form?.classList.toggle('hidden');
 
             } else {
-                //console.log("error");
-
                 errorMessage.value = data.message;
 
                 const form = document.querySelector('.form-validation');
@@ -118,6 +116,7 @@
                 <input class="inputfield" type="text" id="phone" name="phone" v-model="phone">
             </div>
         </div>
+
         <div class="form-validation hidden">
             <p class="error-message">{{ errorMessage }}</p>
             <p class="success-message">{{ successMessage }}</p>
