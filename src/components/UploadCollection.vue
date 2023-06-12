@@ -1,5 +1,6 @@
 <script lang="ts" setup>
     import { ref, onMounted } from 'vue'
+    import router from '../router';
 
     let collectionImgUrl = ref('');
     let name = ref('');
@@ -84,6 +85,9 @@
             //console.log(data);
             collectionImgUrl.value = (data.secure_url);
 
+            const imageSection = document.querySelector('.image-section');
+            imageSection?.classList.remove('hidden');
+
         })
         .catch(error => {
             console.log(error);
@@ -127,6 +131,51 @@
         .catch(error => {
             console.log(error);
         });
+    }
+
+    const updateCollection = (id: string) => {
+
+        if (collectionImgUrl.value === '') {
+            collectionImgUrl.value = image.value;
+        }
+
+        let data = {
+            name: collectionName.value,
+            image: collectionImgUrl.value
+        }
+        fetch(`${import.meta.env.VITE_API_URL}/collections/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors",            
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            if (data.status === "success") {
+                successMessage.value = data.message;
+
+                const form = document.querySelector('.form-validation');
+                form?.classList.toggle('hidden');
+
+                setTimeout(() => {
+                    router.push('/collection');
+                }, 2000);
+
+            } else {
+                errorMessage.value = data.message;
+
+                const form = document.querySelector('.form-validation');
+                form?.classList.toggle('hidden');
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
         }
 </script>
 
@@ -134,14 +183,18 @@
     <div class="grid">
         <div class="input">
             <label for="name">Collection name</label>
-            <input  v-if="collectionID === undefined" class="inputfield" type="text" id="name" name="name" v-model="name">
-            <input  v-else-if="collectionID !== undefined" class="inputfield" type="text" id="name" name="name" v-model="collectionName">
+            <input v-if="collectionID === undefined" class="inputfield" type="text" id="name" name="name" v-model="name">
+            <input v-else-if="collectionID !== undefined" class="inputfield" type="text" id="name" name="name" v-model="collectionName">
         </div>
 
         <div class="upload">
             <label for="fileUpload">Upload collection image</label>
             <input @change="uploadCollectionImg" type="file" id="fileUpload" name="fileUpload">
         </div>
+    </div>
+
+    <div class="image-section hidden">
+        <img class="category-image" :src="collectionImgUrl">
     </div>
 
     <div v-if="collectionID !== undefined" class="showImage">
@@ -156,7 +209,7 @@
 
     <div class="submit_section">
         <a v-if="collectionID === undefined" class="button" @click="uploadCollection">Submit</a>
-        <a v-else-if="collectionID !== undefined" class="button">Update</a>
+        <a v-else-if="collectionID !== undefined" class="button" @click="updateCollection(collectionID)">Update</a>
     </div>
 
 </template>
