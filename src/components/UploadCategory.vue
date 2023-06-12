@@ -9,29 +9,65 @@
     const errorMessage = ref('');
     const successMessage = ref('');
 
+    const categoryID = window.location.pathname.split("/")[2];
+    //console.log(categoryID);
+
+    const categoryName = ref('');
+    const image = ref('');
+
+
     onMounted(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
-            },
-            mode: "cors" 
-        })
-        .then(response => response.json())
-        .then(data => {
-            //console.log(data);
-            if (data.status === "success") {
-                storeId.value = data.data.storeId;
-                //console.log(store.value);
-            } else {
+        if (categoryID === undefined) {
+            fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+                },
+                mode: "cors" 
+            })
+            .then(response => response.json())
+            .then(data => {
+                //console.log(data);
+                if (data.status === "success") {
+                    storeId.value = data.data.storeId;
+                    //console.log(store.value);
+                } else {
+                    console.log(data);
+                    
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+        } else {
+            fetch(`${import.meta.env.VITE_API_URL}/categories/${categoryID}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+                },
+                mode: "cors" 
+            })
+            .then(response => response.json())
+            .then(data => {
                 console.log(data);
-                
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+                if (data.status === "success") {
+                    categoryName.value = data.data.name;
+                    //console.log(categoryName.value);
+                    image.value = data.data.image;
+                    
+                } else {
+                    console.log(data);
+                    
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
+        
     });
 
     const uploadCategoryImg = (e: Event) => {
@@ -56,6 +92,7 @@
             console.log(error);
         });
     }
+
 
     const uploadCategory = () => {
 
@@ -102,12 +139,17 @@
     <div class="grid">
         <div class="input">
             <label for="name">Category name</label>
-            <input class="inputfield" type="text" id="name" name="name" v-model="name">
+            <input v-if="categoryID === undefined" class="inputfield" type="text" id="name" name="name" v-model="name">
+            <input v-else-if="categoryID !== undefined" class="inputfield" type="text" id="name" name="name" v-model="categoryName">
         </div>
 
         <div class="upload">
             <label for="fileUpload">Upload category image</label>
-            <input @change="uploadCategoryImg" type="file" id="fileUpload" name="fileUpload">
+            <input  @change="uploadCategoryImg" type="file" id="fileUpload" name="fileUpload">
+        </div>
+
+        <div v-if="categoryID !== undefined" class="showImage">
+            <img class="category-image" :src="image" alt="Clothing item image">
         </div>
     </div>
 
@@ -117,7 +159,8 @@
     </div>
 
     <div class="submit_section">
-        <a class="button" @click="uploadCategory">Submit</a>
+        <a v-if="categoryID === undefined" class="button" @click="uploadCategory">Submit</a>
+        <a v-else-if="categoryID !== undefined" class="button">Update</a>
     </div>
 
 
@@ -209,6 +252,11 @@
 
     .hidden {
         display: none;
+    }
+
+    .category-image {
+        width: 100%;
+        height: 100%;
     }
 
 

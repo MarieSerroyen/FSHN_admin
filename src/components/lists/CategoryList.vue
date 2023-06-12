@@ -89,6 +89,10 @@
 
     }
 
+    const editCategory = (id: string) => {
+        router.push({ name: "editcategory", params: { id: id } });
+    }
+
 </script>
 
 <template>
@@ -106,7 +110,9 @@
             <div v-for="category in categories" :key="category._id" class="items">
                 <p class="item name">{{category.name}}</p>
                 <p class="item">{{category.date.substring(0,10)}}</p>
-                <p class="item blue">Edit</p>
+                <a @click="editCategory(category._id)">
+                    <p class="item blue">Edit</p>
+                </a>
                 <a @click="removeItem(category._id)">
                     <p class="item red">Delete</p>
                 </a>
