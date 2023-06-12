@@ -43,9 +43,7 @@
                     <h2 class="subtitle">Best selling products</h2>
                     <img class="dots" src="../assets/dots.svg" alt="">
                 </div>
-
-                <BestProductsList />
-                
+                <BestProductsList />                
             </div>
 
             <div class="best-category-section">
@@ -141,10 +139,15 @@
 
     .best-products-section {
         grid-column: span 2;
+        background-color: #ffffff;
     }
 
     .graph-img {
         width: 100%;
+    }
+
+    .best-category-section {
+        background-color: #ffffff;
     }
 
 </style>
