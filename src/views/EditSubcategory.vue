@@ -1,6 +1,8 @@
 <script lang="ts" setup>
     import Nav from '../components/NavComponent.vue'
-    import UploadCategory from '../components/UploadCategory.vue'
+    import UploadSubCategory from '../components/UploadSubCategory.vue'
+    
+
 </script>
 
 <template>
@@ -8,12 +10,12 @@
         <Nav/>
         <div class="content">
             <div class="header">
-                <h1 class="title">Edit category</h1>
+                <h1 class="title">Edit subcategory</h1>
                 <img src="../assets/Avatar.png" alt="Profile picture">
             </div>
 
             <div>
-                <UploadCategory/>
+                <UploadSubCategory/>
             </div>
         </div>
 

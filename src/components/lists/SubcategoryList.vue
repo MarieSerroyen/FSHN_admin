@@ -83,6 +83,10 @@
             });
     }
 
+    const editSubcategory = (id: string) => {
+        router.push({ name: "editsubcategory", params: { id: id } });
+    }
+
 </script>
 
 <template> 
@@ -102,7 +106,9 @@
                 <p class="item name">{{subcategory.name}}</p>
                 <p class="item">{{subcategory.category}}</p>
                 <p class="item">{{subcategory.date.substring(0,10)}}</p>
-                <p class="item blue">Edit</p>
+                <a @click="editSubcategory(subcategory._id)">
+                    <p class="item blue">Edit</p>
+                </a>
                 <a @click="removeItem(subcategory._id)">
                     <p class="item red">Delete</p>
                 </a>

@@ -18,31 +18,64 @@
     const errorMessage = ref('');
     const successMessage = ref('');
 
+    const subcategoryID = window.location.pathname.split("/")[2];
+    //console.log(subcategoryID);
+
+    const subcategoryName = ref('');
+    const image = ref('');
+
 
     onMounted(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
-            },
-            mode: "cors" 
-        })
-        .then(response => response.json())
-        .then(data => {
-            //console.log(data);
-            if (data.status === "success") {
-                //const storeID = store.value = data.data.storeId;
-                store.value = data.data.storeId;
-                //getStore(storeID);
-            } else {
-                console.log(data);
-                
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        if (subcategoryID === undefined) {
+            fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+                },
+                mode: "cors" 
+            })
+            .then(response => response.json())
+            .then(data => {
+                //console.log(data);
+                if (data.status === "success") {
+                    //const storeID = store.value = data.data.storeId;
+                    store.value = data.data.storeId;
+                    //getStore(storeID);
+                } else {
+                    console.log(data);
+                    
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        } else {
+            fetch(`${import.meta.env.VITE_API_URL}/subCategories/${subcategoryID}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+                },
+                mode: "cors" 
+            })
+            .then(response => response.json())
+            .then(data => {
+                //console.log(data);
+                if (data.status === "success") {
+                    subcategoryName.value = data.data.name;
+                    //console.log(categoryName.value);
+                    image.value = data.data.image;
+                    
+                } else {
+                    console.log(data);
+                    
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
 
         
     });
@@ -130,7 +163,8 @@
     <div class="grid">
         <div class="input">
             <label for="name">Subcategory name</label>
-            <input class="inputfield" type="text" id="name" name="name" v-model="name">
+            <input v-if="subcategoryID === undefined" class="inputfield" type="text" id="name" name="name" v-model="name">
+            <input v-else-if="subcategoryID !== undefined" class="inputfield" type="text" id="name" name="name" v-model="subcategoryName">
         </div>
 
         <div>
@@ -141,6 +175,10 @@
             <label for="fileUpload">Upload subcategory image</label>
             <input @change="uploadSubcategoryImg" type="file" id="fileUpload" name="fileUpload">
         </div>
+
+        <div v-if="subcategoryID !== undefined" class="showImage">
+            <img class="subcategory-image" :src="image" alt="Clothing item image">
+        </div>
     </div>
 
     <div class="form-validation-sub hidden">
@@ -149,7 +187,8 @@
     </div>
 
     <div class="submit_section"> 
-        <a class="button" @click="uploadSubcategory">submit</a>
+        <a v-if="subcategoryID === undefined" class="button" @click="uploadSubcategory">Submit</a>
+        <a v-else-if="subcategoryID !== undefined" class="button" >Update</a>
     </div> 
 
 </template>
@@ -240,6 +279,17 @@
 
     .hidden {
         display: none;
+    }
+
+    .showImage {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .subcategory-image {
+        width: 100%;
+        height: 100%;
     }
 
 </style>
