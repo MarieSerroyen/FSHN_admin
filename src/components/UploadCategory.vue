@@ -87,6 +87,9 @@
             //console.log(data);
             categoryImgUrl.value = (data.secure_url);
 
+            const categoryImage = document.querySelector('.image-section');
+            categoryImage?.classList.remove('hidden');
+
         })
         .catch(error => {
             console.log(error);
@@ -187,6 +190,10 @@
         <div class="upload">
             <label for="fileUpload">Upload category image</label>
             <input @change="uploadCategoryImg" type="file" id="fileUpload" name="fileUpload">
+        </div>
+
+        <div class="image-section hidden">
+            <img class="category-image" :src="categoryImgUrl">
         </div>
 
         <div v-if="categoryID !== undefined" class="showImage">
@@ -295,8 +302,14 @@
         display: none;
     }
 
+    .showImage {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
     .category-image {
-        width: 100%;
+        width: 50%;
         height: 100%;
     }
 
