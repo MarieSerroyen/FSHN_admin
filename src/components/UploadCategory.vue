@@ -1,5 +1,6 @@
 <script lang="ts" setup>
     import { ref, onMounted } from 'vue'
+import router from '../router';
 
     let categoryImgUrl = ref('');
     let name = ref('');
@@ -52,7 +53,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                //console.log(data);
                 if (data.status === "success") {
                     categoryName.value = data.data.name;
                     //console.log(categoryName.value);
@@ -164,6 +165,10 @@
 
                 const form = document.querySelector('.form-validation');
                 form?.classList.toggle('hidden');
+
+                setTimeout(() => {
+                    router.push('/category');
+                }, 2000);
 
             } else {
                 errorMessage.value = data.message;
