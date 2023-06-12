@@ -133,6 +133,47 @@
             console.log(error);
         });
     }
+
+    const updateCategory = (id: string) => {
+
+        if (categoryImgUrl.value === '') {
+            categoryImgUrl.value = image.value;
+        }
+
+        let data = {
+            name: categoryName.value,
+            image: categoryImgUrl.value
+        }
+        fetch(`${import.meta.env.VITE_API_URL}/categories/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors",            
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            if (data.status === "success") {
+                successMessage.value = data.message;
+
+                const form = document.querySelector('.form-validation');
+                form?.classList.toggle('hidden');
+
+            } else {
+                errorMessage.value = data.message;
+
+                const form = document.querySelector('.form-validation');
+                form?.classList.toggle('hidden');
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+    }
 </script>
 
 <template>
@@ -145,7 +186,7 @@
 
         <div class="upload">
             <label for="fileUpload">Upload category image</label>
-            <input  @change="uploadCategoryImg" type="file" id="fileUpload" name="fileUpload">
+            <input @change="uploadCategoryImg" type="file" id="fileUpload" name="fileUpload">
         </div>
 
         <div v-if="categoryID !== undefined" class="showImage">
@@ -160,7 +201,7 @@
 
     <div class="submit_section">
         <a v-if="categoryID === undefined" class="button" @click="uploadCategory">Submit</a>
-        <a v-else-if="categoryID !== undefined" class="button">Update</a>
+        <a v-else-if="categoryID !== undefined" class="button" @click="updateCategory(categoryID)">Update</a>
     </div>
 
 
