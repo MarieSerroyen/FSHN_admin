@@ -9,29 +9,62 @@
     const errorMessage = ref('');
     const successMessage = ref('');
 
+    const collectionID = window.location.pathname.split("/")[2];
+    
+    const collectionName = ref('');
+    const image = ref('');
+
     onMounted(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
-            },
-            mode: "cors" 
-        })
-        .then(response => response.json())
-        .then(data => {
-            //console.log(data);
-            if (data.status === "success") {
-                store.value = data.data.storeId;
-                console.log(store.value);
-            } else {
-                console.log(data);
-                
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        if(collectionID === undefined) {
+            fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+                },
+                mode: "cors" 
+            })
+            .then(response => response.json())
+            .then(data => {
+                //console.log(data);
+                if (data.status === "success") {
+                    store.value = data.data.storeId;
+                    //console.log(store.value);
+                } else {
+                    console.log(data);
+                    
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        } else {
+            fetch(`${import.meta.env.VITE_API_URL}/collections/${collectionID}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+                },
+                mode: "cors" 
+            })
+            .then(response => response.json())
+            .then(data => {
+                //console.log(data);
+                if (data.status === "success") {
+                    collectionName.value = data.data.name;
+                    //console.log(categoryName.value);
+                    image.value = data.data.image;
+                    
+                } else {
+                    console.log(data);
+                    
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
+        
     });
 
     const uploadCollectionImg = (e: Event) => {
@@ -101,13 +134,18 @@
     <div class="grid">
         <div class="input">
             <label for="name">Collection name</label>
-            <input class="inputfield" type="text" id="name" name="name" v-model="name">
+            <input  v-if="collectionID === undefined" class="inputfield" type="text" id="name" name="name" v-model="name">
+            <input  v-else-if="collectionID !== undefined" class="inputfield" type="text" id="name" name="name" v-model="collectionName">
         </div>
 
         <div class="upload">
             <label for="fileUpload">Upload collection image</label>
             <input @change="uploadCollectionImg" type="file" id="fileUpload" name="fileUpload">
         </div>
+    </div>
+
+    <div v-if="collectionID !== undefined" class="showImage">
+        <img class="category-image" :src="image" alt="Clothing item image">
     </div>
 
     <div class="form-validation hidden">
@@ -117,7 +155,8 @@
 
 
     <div class="submit_section">
-        <a class="button" @click="uploadCollection">Submit</a>
+        <a v-if="collectionID === undefined" class="button" @click="uploadCollection">Submit</a>
+        <a v-else-if="collectionID !== undefined" class="button">Update</a>
     </div>
 
 </template>
@@ -208,5 +247,16 @@
 
     .hidden {
         display: none;
+    }
+
+    .showImage {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .category-image {
+        width: 50%;
+        height: 100%;
     }
 </style>

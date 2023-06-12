@@ -10,6 +10,7 @@ import Store from './views/Store.vue'
 import Settings from './views/Settings.vue'
 import EditCategory from './views/EditCategory.vue'
 import EditSubcategory from './views/EditSubcategory.vue'
+import EditCollection from './views/EditCollection.vue'
 
 export default createRouter({
     history: createWebHistory(),
@@ -68,6 +69,11 @@ export default createRouter({
             path: '/editsubcategory/:id',
             name: 'editsubcategory',
             component: EditSubcategory
+        },
+        {
+            path: '/editcollection/:id',
+            name: 'editcollection',
+            component: EditCollection
         }
 
     ]
