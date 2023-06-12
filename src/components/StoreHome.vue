@@ -1,6 +1,5 @@
 <script lang="ts" setup>
     import BestProductsList from "../components/lists/BestProductsList.vue";
-    import RecentOrdersList from "../components/lists/RecentOrdersList.vue";
 
 </script>
 
@@ -58,48 +57,6 @@
                 <img class="graph-img" src="../assets/category-graph.png" alt="">
             </div>
 
-        </div>
-
-        <div class="bottom-section">
-            <div class="popular-products">
-                <div class="title-heading">
-                    <h2 class="subtitle">Popular products</h2>
-                    <img class="dots" src="../assets/dots.svg" alt="">
-                </div>
-
-                <div class="products">
-                    <div class="product">
-                        <div class="product-info">
-                            <p class="product-name">Item name</p>
-                            <p class="product-number">Item: #FXZ-3456</p>
-                        </div>
-
-                        <div class="product-price">
-                            <p class="product-price">&euro;85,00</p>
-                        </div>
-                    </div>
-
-                    <div class="product">
-                        <div class="product-info">
-                            <p class="product-name">Item name</p>
-                            <p class="product-number">Item: #FXZ-3456</p>
-                        </div>
-
-                        <div class="product-price">
-                            <p class="product-price">&euro;85,00</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="recent-orders">
-                <div class="title-heading">
-                    <h2 class="subtitle">Recent orders</h2>
-                    <img class="dots" src="../assets/dots.svg" alt="">
-                </div>
-
-                <RecentOrdersList />
-            </div>
         </div>
     </div>  
 </template>
@@ -190,47 +147,4 @@
         width: 100%;
     }
 
-    .bottom-section {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-        margin-top: 29px;
-    }
-
-    .products {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        width: 100%;
-        gap: 1rem;
-    }
-
-    .product {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        gap: 1rem;
-        text-align: left;
-    }
-
-    .product-name {
-        font-weight: 700;
-        font-size: 15px;
-    }
-
-    .product-number {
-        font-size: 13px;
-        color: #5C5F66;
-    }
-
-    .product-price {
-        font-size: 15px;
-    }
-
-    .recent-orders{
-        grid-column: span 2;
-    }
 </style>
