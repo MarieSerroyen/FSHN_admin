@@ -67,15 +67,20 @@
 
     const selectSize = (e: Event) => {
         const target = e.target as HTMLInputElement;
+        //add already selected sizes to the list
+        /*if (productSizes.value.length > 0) {
+            selectedSizes.value = [...selectedSizes.value, ...productSizes.value];
+            console.log(selectedSizes.value);
+        }*/
         
         if (target.checked) {
             selectedSizes.value.push(target.value);
-            //console.log (selectedSizes.value);
+            console.log (selectedSizes.value);
             clothingStore.setSizes({...selectedSizes.value});
             //return selectedSizes.value;
         } else {
             selectedSizes.value = selectedSizes.value.filter((sizes: string) => sizes !== target.value);
-            //console.log (selectedSizes.value);
+            console.log (selectedSizes.value);
         }        
     }
 </script>
@@ -88,7 +93,8 @@
                 <div class="options">
                     <div class="option" v-for="(size, key) in sizes" :key="key">
                         <div class="checkbox">
-                            <input type="checkbox" :id="size" :name="size" :value="size" class="size" @change="selectSize">
+                            <input v-if="productID === undefined" type="checkbox" :id="size" :name="size" :value="size" class="size" @change="selectSize">
+                            <input v-if="productID !== undefined" type="checkbox" :id="size" :name="size" :value="size" class="size" @change="selectSize" :checked="productSizes.includes(size)">
                         </div>
                         <div class="text">
                             {{ size }}
