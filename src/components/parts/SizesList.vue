@@ -61,9 +61,9 @@
 <style scoped>
 
     p {
-        font-size: 16px;
-        color: black;
-        font-weight: 700;
+        font-size: 14px;
+        color: #6B7280;
+        font-weight: 600;
     }
 
     .sizes_section {

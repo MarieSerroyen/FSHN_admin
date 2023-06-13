@@ -38,7 +38,7 @@
 <template>
 
     <div class="upload">
-        <label for="fileUpload">Upload product image</label>
+        <label for="fileUpload">Upload product image<span class="required">*</span></label>
         <input @change="uploadImage" type="file" id="fileUpload" name="fileUpload">
     </div>
 
@@ -51,9 +51,9 @@
 <style scoped>
 
     label {
-        font-size: 16px;
-        color: black;
-        font-weight: 700;
+        font-size: 14px;
+        color: #6B7280;
+        font-weight: 600;
     }
 
     .upload {
@@ -74,6 +74,10 @@
     .product-image {
         width: 50%;
         height: 100%;
+    }
+
+    .required {
+        color: #F43F5E;
     }
 
 </style>

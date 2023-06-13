@@ -101,7 +101,7 @@
 <template>
 
     <div class="select">
-        <label for="name">Subcategory</label>
+        <label for="name">Subcategory<span class="required">*</span></label>
         <select class="dropdown" name="subcategory" id="subcategory" @click="selectSubcategory">
             <option v-for="(name, key) in names" :key="key" :value="name">{{ name }}</option>
         </select>
@@ -112,9 +112,9 @@
 <style scoped>
 
     label {
-        font-size: 16px;
-        color: black;
-        font-weight: 700;
+        font-size: 14px;
+        color: #6B7280;
+        font-weight: 600;
     }
     .select {
         display: flex;
@@ -132,5 +132,9 @@
         width: 100%;
         margin-right: 2rem;
         border-radius: 5px;
+    }
+
+    .required {
+        color: #F43F5E;
     }
 </style>

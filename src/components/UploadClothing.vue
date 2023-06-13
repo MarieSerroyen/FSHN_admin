@@ -276,7 +276,7 @@
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            //console.log(data);
             if (data.status === "success") {
                 successMessage.value = data.message;
 
@@ -305,19 +305,19 @@
 <template>
     <div class="container">
         <div class="info">
-            <h2 class="subtitle">Product information</h2>
+            <h2 class="subtitle">General information<span class="required">*</span></h2>
             <p class="section_description">
-                Fill in your basic product information here. 
+                To start selling, all you need is a name and a price.
             </p>
             <div class="input_grid">
                 <div class="text_input">
-                    <label for="name">Name</label>
+                    <label for="name">Title<span class="required">*</span></label>
                     <input v-if="productID === undefined" class="inputfield" type="text" id="name" name="name" v-model="name">
                     <input v-else-if="productID !== undefined" class="inputfield" type="text" id="name" name="name" v-model="productName">
                 </div>
 
                 <div class="text_input">
-                    <label for="articleNumber">Article number</label>
+                    <label for="articleNumber">Article number<span class="required">*</span></label>
                     <input v-if="productID === undefined" class="inputfield" type="text" id="articleNumber" name="articleNumber" v-model="articleNumber">
                     <input v-else-if="productID !== undefined" class="inputfield" type="text" id="articleNumber" name="articleNumber" v-model="productArticleNumber">
                 </div>
@@ -330,7 +330,7 @@
             </div>
             
             <div class="text_input description">
-                <label for="description">Description</label>
+                <label for="description">Description<span class="required">*</span></label>
                 <textarea v-if="productID === undefined" class="textarea_input" type="textarea" id="description" name="description" v-model="description"></textarea>
                 <textarea v-else-if="productID !== undefined" class="textarea_input" type="textarea" id="description" name="description" v-model="productDescription"></textarea>
             </div>
@@ -374,7 +374,7 @@
         </div>
 
         <div class="info">
-            <h2 class="subtitle">Product categories</h2>
+            <h2 class="subtitle">Product categories<span class="required">*</span></h2>
             <p class="section_description">
                 Link the product to its corresponding categories. 
             </p>
@@ -394,7 +394,7 @@
         </div>
             
         <div class="info">
-            <h2 class="subtitle">Product images</h2>
+            <h2 class="subtitle">Media</h2>
             <p class="section_description">
                 Upload your product images here. The product image will be used as the try on image for your customers. The other two images will show the clothing on your models and will be used on the item detail screen. 
             </p>
@@ -445,9 +445,9 @@
     }
 
     label {
-        font-size: 16px;
-        color: black;
-        font-weight: 700;
+        font-size: 14px;
+        color: #6B7280;
+        font-weight: 600;
     }
 
     .container {
@@ -463,10 +463,13 @@
         font-size: 18px;
         color: black;
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        flex-direction: row;
         align-items: flex-start;
         text-transform: capitalize;
+    }
+
+    .required {
+        color: #F43F5E;
     }
 
     .section_description {
@@ -503,8 +506,11 @@
     }
 
     .inputfield {
-        height: 30px;
+        height: 40px;
         width: 100%;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        background: #F9FAFB;
     }
 
     .description {
@@ -514,7 +520,10 @@
     .textarea_input {
         width: 100%;
         resize: none;
-        height: 100px;
+        height: 88px;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        background: #F9FAFB;
     }
 
     .image-upload-section{
