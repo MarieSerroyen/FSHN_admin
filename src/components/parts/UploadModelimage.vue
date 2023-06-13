@@ -24,6 +24,9 @@
             modelImageUrl.value = (data.secure_url);
 
             clothingStore.setModelImage(modelImageUrl.value);
+
+            const imageSection = document.querySelector('.image-section-model ');
+            imageSection?.classList.remove('hidden');
             
         })
         .catch(error => {
@@ -37,6 +40,10 @@
     <div class="upload">
         <label for="fileUpload">Upload first model image</label>
         <input @change="uploadImage" type="file" id="fileUpload" name="fileUpload">
+    </div>
+
+    <div class="image-section-model hidden">
+        <img class="product-image" :src="modelImageUrl">
     </div>
 
 </template>
@@ -57,6 +64,15 @@
         width: 100%;
         gap: 1rem;
         margin-bottom: 1rem;
+    }
+    
+    .hidden {
+        display: none;
+    }
+
+    .product-image {
+        width: 50%;
+        height: 100%;
     }
 
 </style>
