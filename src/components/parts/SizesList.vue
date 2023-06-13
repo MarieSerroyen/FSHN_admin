@@ -33,7 +33,7 @@
         "62",
     ]);
 
-    const productSizes = ref([]);
+    const productSizes:Ref = ref([]);
 
     if (productID !== undefined) {
         onMounted (() => {
@@ -50,10 +50,7 @@
                 //console.log(data);
                 if (data.status === "success") {
                     productSizes.value = data.data.sizes;
-                    console.log(productSizes.value);
-                    /*sizes.value = sizes.value.filter((size: string) => !productSizes.value.includes(size));
-                    console.log(sizes.value);*/
-                    
+                                        
                 } else {
                     console.log(data);
                     
@@ -92,7 +89,7 @@
         
         if (target.checked) {
             selectedSizes.value.push(target.value);
-            console.log (selectedSizes.value);
+            //console.log (selectedSizes.value);
             clothingStore.setSizes({...selectedSizes.value});
             //return selectedSizes.value;
         } else {
