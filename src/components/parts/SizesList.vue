@@ -39,37 +39,37 @@
             selectedSizes.value.push(target.value);
             //console.log (selectedSizes.value);
             clothingStore.setSizes({...selectedSizes.value});
+            //return selectedSizes.value;
         } else {
             selectedSizes.value = selectedSizes.value.filter((sizes: string) => sizes !== target.value);
             //console.log (selectedSizes.value);
-        }
-    }
-
-    const handleClick = (_e: Event) => {        
-        const select = document.querySelector('.options');
-        select?.classList.toggle('hidden');
+        }        
     }
 </script>
 
 <template>
-    <div class="sizes_section">
-        <p>Sizes</p>
-        <div class="multiselect" @click="handleClick">
-            <div class="options hidden">
-                <div class="option" v-for="(size, key) in sizes" :key="key">
-                    <div class="checkbox">
-                        <input type="checkbox" :id="size" :name="size" :value="size" class="size" @change="selectSize">
-                    </div>
-                    <div class="text">
-                        {{ size }}
+    <div class="select-section">
+        <div class="sizes_section">
+            <p>Sizes</p>
+            <div class="multiselect">
+                <div class="options">
+                    <div class="option" v-for="(size, key) in sizes" :key="key">
+                        <div class="checkbox">
+                            <input type="checkbox" :id="size" :name="size" :value="size" class="size" @change="selectSize">
+                        </div>
+                        <div class="text">
+                            {{ size }}
+                        </div>
                     </div>
                 </div>
             </div>
+                
         </div>
-        <!--<div class="sizes" v-for="(size, key) in sizes" :key="key" >
-            <input type="checkbox" :id="size" :name="size" :value="size" class="size" @change="selectSize">
-            <label :for="size">{{ size }}</label>
-        </div>-->
+
+        <div class="selected-sizes">
+            <p>Selected sizes:</p>
+            <input class="inputfield"  type="text" v-model="selectedSizes" readonly> {{ selectedSizes }}
+        </div>
 
     </div>
 
@@ -91,13 +91,13 @@
         width: 100%;    
     }
 
+    .select-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+
     .multiselect{
-        background: #FFFFFF;
-        padding: 6px, 12px;
-        border: 1px solid #E5E7EB;
-        display: inline-block; 
-        border-radius: 7.41186px;
-        box-sizing: border-box;
         min-height: 33px;
         min-width: 222px;
         position: relative;
@@ -110,7 +110,7 @@
     }
 
     .options {
-        position: absolute;
+        position: sticky;
         top: 34px;
         right: 0;
         left: 0;
@@ -119,6 +119,7 @@
         flex-direction: column;
         min-height: 55px;
         max-height: 188px;
+        width: 100%;
         overflow-y: auto;
     }
 
@@ -138,8 +139,25 @@
         
     }
 
-    .hidden {
-        display: none;
+    .selected-sizes {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .selectedSizesList {
+        list-style-type: none;
+        padding: 0;
+        text-align: left;
+    }
+
+    .inputfield {
+        height: 40px;
+        width: 100%;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        background: #F9FAFB;
     }
     
 
