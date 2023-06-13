@@ -3,6 +3,7 @@
     import { ref, onMounted, watch } from 'vue'
     import { storeToRefs } from "pinia";
     import { useClothingStore } from "../stores/clothing";
+    import router from '../router';
 
     const clothingStore = useClothingStore();
     const { categoryID } = storeToRefs(clothingStore);
@@ -97,6 +98,9 @@
             //console.log(data);
             subcategoryImgUrl.value = (data.secure_url);
 
+            const imageSection = document.querySelector('.image-section-subcategory');
+            imageSection?.classList.remove('hidden');
+
         })
         .catch(error => {
             console.log(error);
@@ -156,6 +160,51 @@
         tempCategory.value = value;
         console.log(value);
     });
+
+    const updateSubcategory = (id: string) => {
+
+        if (subcategoryImgUrl.value === '') {
+            subcategoryImgUrl.value = image.value;
+        }
+
+        let data = {
+            name: subcategoryName.value,
+            image: subcategoryImgUrl.value
+        }
+        fetch(`${import.meta.env.VITE_API_URL}/subCategories/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors",            
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.status === "success") {
+                successMessage.value = data.message;
+
+                const form = document.querySelector('.form-validation-sub');
+                form?.classList.toggle('hidden');
+
+                setTimeout(() => {
+                    router.push('/category');
+                }, 2000);
+
+            } else {
+                errorMessage.value = data.message;
+
+                const form = document.querySelector('.form-validation-sub');
+                form?.classList.toggle('hidden');
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+    }
         
 </script>
 
@@ -176,6 +225,10 @@
             <input @change="uploadSubcategoryImg" type="file" id="fileUpload" name="fileUpload">
         </div>
 
+        <div class="image-section-subcategory hidden">
+            <img class="subcategory-image" :src="subcategoryImgUrl">
+        </div>
+
         <div v-if="subcategoryID !== undefined" class="showImage">
             <img class="subcategory-image" :src="image" alt="Clothing item image">
         </div>
@@ -188,7 +241,7 @@
 
     <div class="submit_section"> 
         <a v-if="subcategoryID === undefined" class="button" @click="uploadSubcategory">Submit</a>
-        <a v-else-if="subcategoryID !== undefined" class="button" >Update</a>
+        <a v-else-if="subcategoryID !== undefined" class="button" @click="updateSubcategory(subcategoryID)" >Update</a>
     </div> 
 
 </template>
