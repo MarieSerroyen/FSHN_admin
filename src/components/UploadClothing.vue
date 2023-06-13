@@ -26,30 +26,68 @@
     let price = ref('');
     let materials:Ref = ref([]);
     let stock = ref('');
+
+    const productID = window.location.pathname.split("/")[2];
+    //console.log(productID);
+
+    //update form data if productID is defined
+    const productName = ref('');
+    const productArticleNumber = ref('');
+    const productBrand = ref('');
+    const productDescription = ref('');
     
     onMounted(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
-            },
-            mode: "cors" 
-        })
-        .then(response => response.json())
-        .then(data => {
-            //console.log(data);
-            if (data.status === "success") {
-                storeId.value = data.data.storeId;
-                //console.log(storeId.value);
-            } else {
-                console.log(data);
-                
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        if (productID === undefined) {
+            fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+                },
+                mode: "cors" 
+            })
+            .then(response => response.json())
+            .then(data => {
+                //console.log(data);
+                if (data.status === "success") {
+                    storeId.value = data.data.storeId;
+                    //console.log(storeId.value);
+                } else {
+                    console.log(data);
+                    
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        } else {
+            fetch(`${import.meta.env.VITE_API_URL}/clothing/${productID}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+                },
+                mode: "cors" 
+            })
+            .then(response => response.json())
+            .then(data => {
+                //console.log(data);
+                if (data.status === "success") {
+                    productName.value = data.data.name;
+                    productArticleNumber.value = data.data.articleNumber;
+                    productBrand.value = data.data.brand;
+                    productDescription.value = data.data.description;
+                    
+                } else {
+                    console.log(data);
+                    
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
+        
     });
 
     const uploadClothing = () => {
@@ -165,23 +203,27 @@
             <div class="input_grid">
                 <div class="text_input">
                     <label for="name">Name</label>
-                    <input class="inputfield" type="text" id="name" name="name" v-model="name">
+                    <input v-if="productID === undefined" class="inputfield" type="text" id="name" name="name" v-model="name">
+                    <input v-else-if="productID !== undefined" class="inputfield" type="text" id="name" name="name" v-model="productName">
                 </div>
 
                 <div class="text_input">
                     <label for="articleNumber">Article number</label>
-                    <input class="inputfield" type="text" id="articleNumber" name="articleNumber" v-model="articleNumber">
+                    <input v-if="productID === undefined" class="inputfield" type="text" id="articleNumber" name="articleNumber" v-model="articleNumber">
+                    <input v-else-if="productID !== undefined" class="inputfield" type="text" id="articleNumber" name="articleNumber" v-model="productArticleNumber">
                 </div>
 
                 <div class="text_input">
                     <label for="brand">Brand</label>
-                    <input class="inputfield" type="text" id="brand" name="brand" v-model="brand">
+                    <input v-if="productID === undefined" class="inputfield" type="text" id="brand" name="brand" v-model="brand">
+                    <input v-else-if="productID !== undefined" class="inputfield" type="text" id="brand" name="brand" v-model="productBrand">
                 </div>
             </div>
             
             <div class="text_input description">
                 <label for="description">Description</label>
-                <textarea class="textarea_input" type="textarea" id="description" name="description" v-model="description"></textarea>
+                <textarea v-if="productID === undefined" class="textarea_input" type="textarea" id="description" name="description" v-model="description"></textarea>
+                <textarea v-else-if="productID !== undefined" class="textarea_input" type="textarea" id="description" name="description" v-model="productDescription"></textarea>
             </div>
             
         </div> 
@@ -257,7 +299,11 @@
             </div>
         </div>
 
-        <a class="button" @click="uploadClothing">Submit</a>
+        <div class="submit_section"> 
+            <a v-if="productID === undefined" class="button" @click="uploadClothing">Submit</a>
+            <a v-else-if="productID !== undefined" class="button">Update</a>
+        </div>
+
     </div>
     
 </template>

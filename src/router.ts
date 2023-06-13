@@ -11,6 +11,7 @@ import Settings from './views/Settings.vue'
 import EditCategory from './views/EditCategory.vue'
 import EditSubcategory from './views/EditSubcategory.vue'
 import EditCollection from './views/EditCollection.vue'
+import EditProduct from './views/EditProduct.vue'
 
 export default createRouter({
     history: createWebHistory(),
@@ -74,6 +75,11 @@ export default createRouter({
             path: '/editcollection/:id',
             name: 'editcollection',
             component: EditCollection
+        },
+        {
+            path: '/editproduct/:id',
+            name: 'editproduct',
+            component: EditProduct
         }
 
     ]

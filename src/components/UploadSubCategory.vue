@@ -169,7 +169,8 @@
 
         let data = {
             name: subcategoryName.value,
-            image: subcategoryImgUrl.value
+            image: subcategoryImgUrl.value,
+            category: tempCategory.value
         }
         fetch(`${import.meta.env.VITE_API_URL}/subCategories/${id}`, {
             method: "PUT",
@@ -182,7 +183,7 @@
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            //console.log(data);
             if (data.status === "success") {
                 successMessage.value = data.message;
 

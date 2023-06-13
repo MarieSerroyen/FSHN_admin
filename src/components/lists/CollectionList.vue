@@ -96,8 +96,8 @@
             <p class="item name">{{collection.name}}</p>
             <p class="item">{{collection.date.substring(0,10)}}</p>
             <a @click="editCollection(collection._id)">
-                    <p class="item blue">Edit</p>
-                </a>
+                <p class="item blue">Edit</p>
+            </a>
             <a @click="removeItem(collection._id)">
                 <p class="item red">Delete</p>
             </a>

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
     import { ref, Ref, onMounted } from 'vue'
+    import router from '../../router';
 
     const storeId = ref('');
     const products:Ref = ref([]);
@@ -54,6 +55,10 @@
             });
     }
 
+    const editProduct = (id: string) => {
+        router.push({ name: "editproduct", params: { id: id } });
+    }
+
 </script>
 
 <template>
@@ -70,6 +75,9 @@
             <p class="item">{{product.date.substring(0,10)}}</p>
             <p class="item">{{product.category}}</p>
             <p class="item">&euro;{{product.price}}</p>
+            <a @click="editProduct(product._id)">
+                <p class="item blue">Edit</p>
+            </a>
             <img src="../../assets/dropdown-arrow.svg" alt="">
         </div>
     </div>
@@ -107,7 +115,7 @@
 
     .titles {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
         justify-content: space-between;
@@ -124,7 +132,7 @@
 
     .items {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
         justify-content: space-between;
@@ -146,6 +154,10 @@
         text-transform: lowercase;
     }
 
+    .blue {
+        color: #0F60FF;
+        cursor: pointer;
+    }
     
     .pages {
         display: flex;
