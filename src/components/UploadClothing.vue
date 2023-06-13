@@ -35,6 +35,13 @@
     const productArticleNumber = ref('');
     const productBrand = ref('');
     const productDescription = ref('');
+    const productColors:Ref = ref([]);
+    const productPrice = ref('');
+    const productMaterials:Ref = ref([]);
+    const productStock = ref('');
+    const productHeadImage = ref('');
+    const productModelImage = ref('');
+    const productModelImage2 = ref('');
     
     onMounted(() => {
         if (productID === undefined) {
@@ -77,6 +84,13 @@
                     productArticleNumber.value = data.data.articleNumber;
                     productBrand.value = data.data.brand;
                     productDescription.value = data.data.description;
+                    productColors.value = data.data.colors;
+                    productPrice.value = data.data.price;
+                    productMaterials.value = data.data.materials;
+                    productStock.value = data.data.stock;
+                    productHeadImage.value = data.data.headImage;
+                    productModelImage.value = data.data.modelImage;
+                    productModelImage2.value = data.data.modelImage2;
                     
                 } else {
                     console.log(data);
@@ -236,22 +250,26 @@
             <div class="input_grid_variable">
                 <div class="text_input">
                     <label for="colors">Colors</label>
-                    <input class="inputfield" type="text" id="colors" name="colors" v-model="colors">  
+                    <input v-if="productID === undefined" class="inputfield" type="text" id="colors" name="colors" v-model="colors"> 
+                    <input v-else-if="productID !== undefined" class="inputfield" type="text" id="colors" name="colors" v-model="productColors">   
                 </div>
 
                 <div class="text_input">
                     <label for="price">Price</label>
-                    <input class="inputfield" type="number" id="price" name="price" v-model="price">  
+                    <input v-if="productID === undefined" class="inputfield" type="number" id="price" name="price" v-model="price">  
+                    <input v-else-if="productID !== undefined" class="inputfield" type="number" id="price" name="price" v-model="productPrice">  
                 </div>
 
                 <div class="text_input">
                     <label for="materials">Materials</label>
-                    <input class="inputfield" type="text" id="materials" name="materials" v-model="materials">  
+                    <input v-if="productID === undefined" class="inputfield" type="text" id="materials" name="materials" v-model="materials">  
+                    <input v-else-if="productID !== undefined" class="inputfield" type="text" id="materials" name="materials" v-model="productMaterials">  
                 </div>
 
                 <div class="text_input">
                     <label for="stock">Stock</label>
-                    <input class="inputfield" type="number" id="stock" name="stock" v-model="stock">  
+                    <input v-if="productID === undefined" class="inputfield" type="number" id="stock" name="stock" v-model="stock">
+                    <input v-else-if="productID !== undefined" class="inputfield" type="number" id="stock" name="stock" v-model="productStock">    
                 </div>
             </div>        
         </div>      
@@ -286,17 +304,30 @@
                 Upload your product images here. The product image will be used as the try on image for your customers. The other two images will show the clothing on your models and will be used on the item detail screen. 
             </p>
 
-            <div>
-                <UploadHeadimage />
+            <div class="image-upload-section">
+                <div class="upload-component">
+                    <UploadHeadimage />
+                    <div v-if="productID !== undefined" class="showImage">
+                        <img class="product-image" :src="productHeadImage" alt="Clothing item image">
+                    </div>
+                </div>
+
+                <div class="upload-component">
+                    <UploadModelimage />
+                    <div v-if="productID !== undefined" class="showImage">
+                        <img class="product-image" :src="productModelImage" alt="Clothing item image">
+                    </div>
+                </div>
+
+                <div class="upload-component">
+                    <UploadSecondModelimage />
+                    <div v-if="productID !== undefined" class="showImage">
+                        <img class="product-image" :src="productModelImage2" alt="Clothing item image">
+                    </div>
+                </div>
             </div>
 
-            <div>
-                <UploadModelimage />
-            </div>
 
-            <div>
-                <UploadSecondModelimage />
-            </div>
         </div>
 
         <div class="submit_section"> 
@@ -384,6 +415,25 @@
         width: 100%;
         resize: none;
         height: 100px;
+    }
+
+    .image-upload-section{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4rem;
+        align-items: first baseline;
+    }
+
+    .showImage {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 2rem;
+    }
+
+    .product-image {
+        width: 50%;
+        height: 100%;
     }
 
     .button {
