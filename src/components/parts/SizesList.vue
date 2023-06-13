@@ -35,7 +35,8 @@
 
     const productSizes = ref([]);
 
-    onMounted (() => {
+    if (productID !== undefined) {
+        onMounted (() => {
         fetch(`${import.meta.env.VITE_API_URL}/clothing/${productID}`, {
                 method: "GET",
                 headers: {
@@ -63,15 +64,31 @@
             });
         });
 
+    }
+
+    
     let selectedSizes:Ref = ref([]);
 
     const selectSize = (e: Event) => {
         const target = e.target as HTMLInputElement;
         //add already selected sizes to the list
-        /*if (productSizes.value.length > 0) {
+        if (productSizes.value.length > 0) {
             selectedSizes.value = [...selectedSizes.value, ...productSizes.value];
-            console.log(selectedSizes.value);
-        }*/
+            //console.log(selectedSizes.value);
+
+            //only add sizes once to the list
+            selectedSizes.value = selectedSizes.value.filter((size: string, index: number) => selectedSizes.value.indexOf(size) === index);
+            //console.log(selectedSizes.value);
+        }
+
+        //remove deselected sizes from the productSizes list
+        if (productSizes.value.length > 0) {
+            productSizes.value = productSizes.value.filter((size: string) => size !== target.value);
+            //console.log(productSizes.value);
+
+            //remove from upload
+            clothingStore.setSizes({...productSizes.value});
+        }
         
         if (target.checked) {
             selectedSizes.value.push(target.value);
@@ -80,7 +97,8 @@
             //return selectedSizes.value;
         } else {
             selectedSizes.value = selectedSizes.value.filter((sizes: string) => sizes !== target.value);
-            console.log (selectedSizes.value);
+            //console.log (selectedSizes.value);
+
         }        
     }
 </script>
