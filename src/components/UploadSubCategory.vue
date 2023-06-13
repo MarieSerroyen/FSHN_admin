@@ -218,7 +218,7 @@
 <template>
     <div class="grid">
         <div class="input">
-            <label for="name">Subcategory name</label>
+            <label for="name">Subcategory title<span class="required">*</span></label>
             <input v-if="subcategoryID === undefined" class="inputfield" type="text" id="name" name="name" v-model="name">
             <input v-else-if="subcategoryID !== undefined" class="inputfield" type="text" id="name" name="name" v-model="subcategoryName">
         </div>
@@ -228,7 +228,7 @@
         </div>
 
         <div class="upload">
-            <label for="fileUpload">Upload subcategory image</label>
+            <label for="fileUpload">Upload subcategory image<span class="required">*</span></label>
             <input @change="uploadSubcategoryImg" type="file" id="fileUpload" name="fileUpload">
         </div>
 
@@ -276,14 +276,17 @@
     }
 
     .inputfield {
-        height: 30px;
+        height: 40px;
         width: 100%;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        background: #F9FAFB;
     }
 
     label {
-        font-size: 16px;
-        color: black;
-        font-weight: 700;
+        font-size: 14px;
+        color: #6B7280;
+        font-weight: 600;
     }
 
     .upload {
@@ -350,6 +353,10 @@
     .subcategory-image {
         width: 100%;
         height: 100%;
+    }
+
+    .required {
+        color: #F43F5E;
     }
 
 </style>

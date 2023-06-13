@@ -128,10 +128,13 @@
     }
 
     .dropdown {
-        height: 30px;
-        width: 100%;
-        margin-right: 2rem;
-        border-radius: 5px;
+        height: 49.41px;
+        width: 187.71px;
+        background: #FFFFFF;
+        box-shadow: 0px 4.94124px 19.765px rgba(0, 0, 0, 0.04);
+        border-radius: 7.41186px;
+        border-color: #FFFFFF;
+        color: #5C5F66;
     }
 
     .required {

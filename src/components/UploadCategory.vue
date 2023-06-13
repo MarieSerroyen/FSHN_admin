@@ -187,13 +187,13 @@
 <template>
     <div class="grid">
         <div class="input">
-            <label for="name">Category name</label>
+            <label for="name">Category title<span class="required">*</span></label>
             <input v-if="categoryID === undefined" class="inputfield" type="text" id="name" name="name" v-model="name">
             <input v-else-if="categoryID !== undefined" class="inputfield" type="text" id="name" name="name" v-model="categoryName">
         </div>
 
         <div class="upload">
-            <label for="fileUpload">Upload category image</label>
+            <label for="fileUpload">Upload category image<span class="required">*</span></label>
             <input @change="uploadCategoryImg" type="file" id="fileUpload" name="fileUpload">
         </div>
 
@@ -242,14 +242,17 @@
     }
 
     .inputfield {
-        height: 30px;
+        height: 40px;
         width: 100%;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        background: #F9FAFB;
     }
 
     label {
-        font-size: 16px;
-        color: black;
-        font-weight: 700;
+        font-size: 14px;
+        color: #6B7280;
+        font-weight: 600;
     }
 
     .upload {
