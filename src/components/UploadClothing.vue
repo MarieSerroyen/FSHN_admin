@@ -11,6 +11,7 @@
     import { ref, onMounted, watch, Ref } from 'vue'
     import { storeToRefs } from "pinia";
     import { useClothingStore } from "../stores/clothing";
+    import router from '../router';
 
     const storeId = ref('');
     const clothingStore = useClothingStore();
@@ -26,6 +27,9 @@
     let price = ref('');
     let materials:Ref = ref([]);
     let stock = ref('');
+
+    const errorMessage = ref('');
+    const successMessage = ref('');
 
     const productID = window.location.pathname.split("/")[2];
     //console.log(productID);
@@ -205,6 +209,73 @@
         console.log(value);
     });
 
+    const updateClothing = (id: string) => {
+
+        if (tempHeadImage.value === '') {
+            tempHeadImage.value = productHeadImage.value;
+        }
+
+        if (tempModelImage.value === '') {
+            tempModelImage.value = productModelImage.value;
+        }
+
+        if (tempModelImage2.value === '') {
+            tempModelImage2.value = productModelImage2.value;
+        }
+
+        let data = {
+            name: productName.value,
+            articleNumber: productArticleNumber.value,
+            description: productDescription.value,
+            brand: productBrand.value,
+            colors: productColors.value,
+            //sizes: tempSizes.value,
+            price: productPrice.value,
+            materials: productMaterials.value,
+            //category: tempCategory.value,
+            //subCategories: tempSubcategory.value,
+            //collectionStore: tempCollection.value,
+            headImage: tempHeadImage.value,
+            modelImage: tempModelImage.value,
+            modelImage2: tempModelImage2.value,
+            stock: productStock.value
+        }
+
+        fetch(`${import.meta.env.VITE_API_URL}/clothing/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors",            
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.status === "success") {
+                successMessage.value = data.message;
+
+                const form = document.querySelector('.form-validation');
+                form?.classList.toggle('hidden');
+
+                setTimeout(() => {
+                    router.push('/productlist');
+                }, 2000);
+
+            } else {
+                errorMessage.value = data.message;
+
+                const form = document.querySelector('.form-validation');
+                form?.classList.toggle('hidden');
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+    }
+
 </script>
 
 <template>
@@ -330,9 +401,14 @@
 
         </div>
 
+        <div class="form-validation hidden">
+            <p class="error-message">{{ errorMessage }}</p>
+            <p class="success-message">{{ successMessage }}</p>
+        </div>
+
         <div class="submit_section"> 
             <a v-if="productID === undefined" class="button" @click="uploadClothing">Submit</a>
-            <a v-else-if="productID !== undefined" class="button">Update</a>
+            <a v-else-if="productID !== undefined" class="button" @click="updateClothing(productID)">Update</a>
         </div>
 
     </div>
@@ -445,6 +521,30 @@
         text-transform: uppercase;
         margin-top: 1rem;
         cursor: pointer;
+    }
+
+    
+    .form-validation  {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 30px;
+        margin-top: 1rem;
+    }
+
+    .error-message {
+        color: #E45757;
+        font-weight: 700;
+    }
+
+    .success-message {
+        color: #1EB564;
+        font-weight: 700;
+    }
+
+    .hidden {
+        display: none;
     }
 
     

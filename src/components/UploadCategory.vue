@@ -1,6 +1,6 @@
 <script lang="ts" setup>
     import { ref, onMounted } from 'vue'
-import router from '../router';
+    import router from '../router';
 
     let categoryImgUrl = ref('');
     let name = ref('');
