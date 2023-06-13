@@ -24,6 +24,7 @@
 
     const subcategoryName = ref('');
     const image = ref('');
+    const subcategoryCategory = ref('');
 
 
     onMounted(() => {
@@ -67,6 +68,7 @@
                     subcategoryName.value = data.data.name;
                     //console.log(categoryName.value);
                     image.value = data.data.image;
+                    subcategoryCategory.value = data.data.category;
                     
                 } else {
                     console.log(data);
@@ -165,6 +167,10 @@
 
         if (subcategoryImgUrl.value === '') {
             subcategoryImgUrl.value = image.value;
+        }
+
+        if (tempCategory.value === '') {
+            tempCategory.value = subcategoryCategory.value;
         }
 
         let data = {

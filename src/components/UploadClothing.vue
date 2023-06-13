@@ -46,6 +46,10 @@
     const productHeadImage = ref('');
     const productModelImage = ref('');
     const productModelImage2 = ref('');
+    const productSizes:Ref = ref([]);
+    const productCategory = ref('');
+    const productSubcategory = ref('');
+    const productCollection = ref('');
     
     onMounted(() => {
         if (productID === undefined) {
@@ -95,6 +99,10 @@
                     productHeadImage.value = data.data.headImage;
                     productModelImage.value = data.data.modelImage;
                     productModelImage2.value = data.data.modelImage2;
+                    productSizes.value = data.data.sizes;
+                    productCategory.value = data.data.category;
+                    productSubcategory.value = data.data.subCategories;
+                    productCollection.value = data.data.collectionStore;
                     
                 } else {
                     console.log(data);
@@ -223,18 +231,34 @@
             tempModelImage2.value = productModelImage2.value;
         }
 
+        if (tempSizes.value.length === 0) {
+            tempSizes.value = productSizes.value;
+        }
+
+        if (tempCategory.value === '') {
+            tempCategory.value = productCategory.value;
+        }
+
+        if (tempSubcategory.value === '') {
+            tempSubcategory.value = productSubcategory.value;
+        }
+
+        if (tempCollection.value === '') {
+            tempCollection.value = productCollection.value;
+        }
+
         let data = {
             name: productName.value,
             articleNumber: productArticleNumber.value,
             description: productDescription.value,
             brand: productBrand.value,
             colors: productColors.value,
-            //sizes: tempSizes.value,
+            sizes: tempSizes.value,
             price: productPrice.value,
             materials: productMaterials.value,
-            //category: tempCategory.value,
-            //subCategories: tempSubcategory.value,
-            //collectionStore: tempCollection.value,
+            category: tempCategory.value,
+            subCategories: tempSubcategory.value,
+            collectionStore: tempCollection.value,
             headImage: tempHeadImage.value,
             modelImage: tempModelImage.value,
             modelImage2: tempModelImage2.value,
