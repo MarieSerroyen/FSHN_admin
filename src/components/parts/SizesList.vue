@@ -1,8 +1,11 @@
 <script lang="ts" setup>
-    import { ref, Ref } from 'vue'
+    import { ref, Ref, onMounted } from 'vue'
     import { useClothingStore } from "../../stores/clothing";
 
     const clothingStore = useClothingStore();
+
+    const productID = window.location.pathname.split("/")[2];
+    //console.log(productID);
 
     let sizes:Ref = ref([
         "XS",
@@ -29,6 +32,36 @@
         "60",
         "62",
     ]);
+
+    const productSizes = ref([]);
+
+    onMounted (() => {
+        fetch(`${import.meta.env.VITE_API_URL}/clothing/${productID}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+                },
+                mode: "cors" 
+            })
+            .then(response => response.json())
+            .then(data => {
+                //console.log(data);
+                if (data.status === "success") {
+                    productSizes.value = data.data.sizes;
+                    console.log(productSizes.value);
+                    /*sizes.value = sizes.value.filter((size: string) => !productSizes.value.includes(size));
+                    console.log(sizes.value);*/
+                    
+                } else {
+                    console.log(data);
+                    
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        });
 
     let selectedSizes:Ref = ref([]);
 
@@ -68,7 +101,8 @@
 
         <div class="selected-sizes">
             <p>Selected sizes:</p>
-            <input class="inputfield"  type="text" v-model="selectedSizes" readonly> {{ selectedSizes }}
+            <input v-if="productID === undefined" class="inputfield"  type="text" v-model="selectedSizes" readonly> 
+            <input v-if="productID !== undefined" class="inputfield"  type="text" v-model="productSizes" readonly> {{ selectedSizes }}
         </div>
 
     </div>
