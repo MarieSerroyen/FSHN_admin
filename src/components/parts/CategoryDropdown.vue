@@ -7,6 +7,9 @@
     const categories:Ref = ref([]);
     const names:Ref = ref([]);
     const categoryID = ref('');
+
+    const ID = window.location.pathname.split("/")[2];
+    console.log(ID);
     
 
     onMounted(() => {

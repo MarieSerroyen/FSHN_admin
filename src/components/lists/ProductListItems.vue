@@ -5,6 +5,8 @@
     const storeId = ref('');
     const products:Ref = ref([]);
 
+    const numberOfProducts = ref(0);
+
     onMounted(() => {
         fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
             method: "GET",
@@ -49,6 +51,12 @@
             .then((data) => {
                 //console.log(data);
                 products.value = data.data;
+
+                numberOfProducts.value = products.value.length;
+
+                products.value = products.value.reverse();
+
+                products.value = products.value.slice(0, 10);
             })
             .catch((error) => {
                 console.log(error);
@@ -90,7 +98,7 @@
                 <option value="20">20</option>
                 <option value="50">50</option>
             </select>
-            <p>of 50</p>
+            <p>of {{numberOfProducts}}</p>
         </div>
 
         <div class="page-numbers">

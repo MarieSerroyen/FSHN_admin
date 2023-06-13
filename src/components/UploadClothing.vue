@@ -129,15 +129,28 @@
             
         });  
 
+        //check if colors and materials are empty
+        if (colors.value.length === 0) {
+            colors.value = [''];
+        } else {
+            colors.value = colors.value.split(',');
+        }
+
+        if (materials.value.length === 0) {
+            materials.value = [''];
+        } else {
+            materials.value = materials.value.split(',');
+        }
+
         let data = {
             name: name.value,
             articleNumber: articleNumber.value,
             description: description.value,
             brand: brand.value,
-            colors: colors.value.split(','),
+            colors: colors.value,
             sizes: tempSizes.value,
             price: price.value,
-            materials: materials.value.split(','),
+            materials: materials.value,
             category: tempCategory.value,
             subCategories: tempSubcategory.value,
             collectionStore: tempCollection.value,
@@ -164,8 +177,14 @@
             console.log(data);
             if (data.status === "success") {
                 console.log("success");
+
+                const message = document.querySelector('.form-validation');
+                message?.classList.toggle('hidden');
             } else {
                 console.log("error");
+
+                const message = document.querySelector('.form-validation');
+                message?.classList.toggle('hidden');
             }
         })
         .catch(error => {
