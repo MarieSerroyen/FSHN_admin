@@ -109,7 +109,7 @@
                     <div class="option" v-for="(size, key) in sizes" :key="key">
                         <div class="checkbox">
                             <input v-if="productID === undefined" type="checkbox" :id="size" :name="size" :value="size" class="size" @change="selectSize">
-                            <input v-if="productID !== undefined" type="checkbox" :id="size" :name="size" :value="size" class="size" @change="selectSize" :checked="productSizes.includes(size)">
+                            <input v-else-if="productID !== undefined" type="checkbox" :id="size" :name="size" :value="size" class="size" @change="selectSize" :checked="productSizes.includes(size)">
                         </div>
                         <div class="text">
                             {{ size }}
@@ -123,7 +123,7 @@
         <div class="selected-sizes">
             <p>Selected sizes:</p>
             <input v-if="productID === undefined" class="inputfield"  type="text" v-model="selectedSizes" readonly> 
-            <input v-if="productID !== undefined" class="inputfield"  type="text" v-model="productSizes" readonly> {{ selectedSizes }}
+            <input v-else-if="productID !== undefined" class="inputfield"  type="text" v-model="productSizes" readonly>
         </div>
 
     </div>
