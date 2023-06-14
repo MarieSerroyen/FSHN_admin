@@ -7,6 +7,7 @@
     const categories:Ref = ref([]);
     const names:Ref = ref([]);
     const categoryID = ref('');
+    const emit = defineEmits(['categoryID']);
 
     const ID = window.location.pathname.split("/")[2];
     console.log(ID);
@@ -92,6 +93,7 @@
                 //console.log(categoryID.value);
                 clothingStore.setCategoryID(categoryID.value);
                 //console.log(clothingStore.categoryID);
+                emit('categoryID', categoryID.value);
             })
             .catch((error) => {
                 console.log(error);
@@ -104,7 +106,7 @@
 
     <div class="select">
         <label for="name">Head category<span class="required">*</span></label>
-        <select class="dropdown" name="headCategory" id="headCategory" @click="selectCategory">
+        <select class="dropdown" name="headCategory" id="headCategory" @change="selectCategory">
             <option v-for="(name, key) in names" :key="key" :value="name">{{ name }}</option>
         </select>
     </div>

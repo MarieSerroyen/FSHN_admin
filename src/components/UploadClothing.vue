@@ -27,29 +27,32 @@
     let price = ref('');
     let materials:Ref = ref([]);
     let stock = ref('');
+    const subcategory:Ref = ref([])
+    const subcategoryNames:Ref = ref([]);
+    const tempSubCat:Ref = ref('');
 
     const errorMessage = ref('');
     const successMessage = ref('');
 
     const productID = window.location.pathname.split("/")[2];
-    //console.log(productID);
+    console.log(productID);
 
     //update form data if productID is defined
-    const productName = ref('');
-    const productArticleNumber = ref('');
-    const productBrand = ref('');
-    const productDescription = ref('');
+    const productName: Ref = ref('');
+    const productArticleNumber: Ref = ref('');
+    const productBrand: Ref = ref('');
+    const productDescription: Ref = ref('');
     const productColors:Ref = ref([]);
-    const productPrice = ref('');
+    const productPrice: Ref = ref('');
     const productMaterials:Ref = ref([]);
-    const productStock = ref('');
-    const productHeadImage = ref('');
-    const productModelImage = ref('');
-    const productModelImage2 = ref('');
+    const productStock: Ref = ref('');
+    const productHeadImage: Ref = ref('');
+    const productModelImage: Ref = ref('');
+    const productModelImage2: Ref = ref('');
     const productSizes:Ref = ref([]);
-    const productCategory = ref('');
-    const productSubcategory = ref('');
-    const productCollection = ref('');
+    const productCategory: Ref = ref('');
+    const productSubcategory: Ref = ref('');
+    const productCollection: Ref = ref('');
     
     onMounted(() => {
         if (productID === undefined) {
@@ -103,7 +106,9 @@
                     productCategory.value = data.data.category;
                     productSubcategory.value = data.data.subCategories;
                     productCollection.value = data.data.collectionStore;
-                    
+
+                    tempSubCat.value = data.data.subCategories[0];
+
                 } else {
                     console.log(data);
                     
@@ -200,10 +205,37 @@
     const tempModelImage = ref("");
     const tempModelImage2 = ref("");
 
+    function getSubcategory(category: string){
+        console.log(category);
+        // get subcategories based on category
+        fetch(`${import.meta.env.VITE_API_URL}/subCategories/category/${category}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+            },
+            mode: "cors",
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.status === "success") {
+                    subcategory.value = data.data;
+                    subcategoryNames.value = data.data.map((category: any) => category.name);
+                } else {
+                    console.log(data);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
 
     watch(categoryID, (value) => {
         tempCategory.value = value;
-        //console.log(value);
+
+        getSubcategory(value);
     });
 
     watch(subcategoryID, (value) => {
@@ -399,11 +431,11 @@
             </p>
             <div class="input_grid">
                 <div>
-                    <CategoryList /> 
+                    <CategoryList/> 
                 </div>
 
                 <div>
-                    <SubcategoryList />
+                    <SubcategoryList :subCategories="subcategory" :names="subcategoryNames" :activeSubCategory="tempSubCat"/>
                 </div>
 
                 <div>
@@ -543,6 +575,7 @@
         border: 1px solid #E5E7EB;
         border-radius: 8px;
         background: #F9FAFB;
+        padding: 1rem;
     }
 
     .image-upload-section{

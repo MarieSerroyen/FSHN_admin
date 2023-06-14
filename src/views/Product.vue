@@ -34,6 +34,10 @@
 </template>
 
 <style scoped>
+    *{
+        box-sizing: border-box;
+    }
+
     .page {
         display: flex;
         flex-direction: row;
@@ -65,5 +69,6 @@
     .description {
         text-align: left;
         width: 80%;
+        color: black;
     }
 </style>

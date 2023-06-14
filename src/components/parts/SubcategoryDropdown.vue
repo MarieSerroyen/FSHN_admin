@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-    import { ref, Ref, onMounted } from 'vue'
+    import { ref, Ref, onMounted, watch } from 'vue';
     import { useClothingStore } from "../../stores/clothing";
 
     const clothingStore = useClothingStore();
@@ -7,6 +7,21 @@
     const subcategories:Ref = ref([]);
     const names:Ref = ref([]);
     const subcategoryID = ref('');
+
+    const props = defineProps({
+        subCategories:{
+            type: Array,
+            required: true
+        },
+        names: {
+            type: Array,
+            required: true
+        },
+        productSubcategory: {
+            type: String,
+            required: false
+        }
+    });
     
 
     onMounted(() => {
@@ -33,6 +48,15 @@
         .catch((error) => {
             console.log(error);
         });
+    });
+
+    watch(() => props.subCategories, (value) => {
+        subcategories.value = value;
+        names.value = value.map((category: any) => category.name);
+    });
+
+    watch(() => props.productSubcategory, (value) => {
+        console.log(value);
     });
     
 
@@ -102,7 +126,7 @@
 
     <div class="select">
         <label for="name">Subcategory<span class="required">*</span></label>
-        <select class="dropdown" name="subcategory" id="subcategory" @click="selectSubcategory">
+        <select class="dropdown" name="subcategory" id="subcategory" @change="selectSubcategory">
             <option v-for="(name, key) in names" :key="key" :value="name">{{ name }}</option>
         </select>
     </div>

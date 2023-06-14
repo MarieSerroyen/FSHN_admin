@@ -5,7 +5,10 @@
     const clothingStore = useClothingStore();
 
     const productID = window.location.pathname.split("/")[2];
-    //console.log(productID);
+    const selectedSizes:Ref = ref([]);
+    const productSizes:Ref = ref([]);
+
+    const tempSizes: Ref = ref('');
 
     let sizes:Ref = ref([
         "XS",
@@ -33,7 +36,6 @@
         "62",
     ]);
 
-    const productSizes:Ref = ref([]);
 
     if (productID !== undefined) {
         onMounted (() => {
@@ -63,25 +65,20 @@
 
     }
 
-    
-    let selectedSizes:Ref = ref([]);
 
     const selectSize = (e: Event) => {
         const target = e.target as HTMLInputElement;
         //add already selected sizes to the list
         if (productSizes.value.length > 0) {
             selectedSizes.value = [...selectedSizes.value, ...productSizes.value];
-            //console.log(selectedSizes.value);
 
             //only add sizes once to the list
             selectedSizes.value = selectedSizes.value.filter((size: string, index: number) => selectedSizes.value.indexOf(size) === index);
-            //console.log(selectedSizes.value);
         }
 
         //remove deselected sizes from the productSizes list
         if (productSizes.value.length > 0) {
             productSizes.value = productSizes.value.filter((size: string) => size !== target.value);
-            //console.log(productSizes.value);
 
             //remove from upload
             clothingStore.setSizes({...productSizes.value});
@@ -89,14 +86,14 @@
         
         if (target.checked) {
             selectedSizes.value.push(target.value);
-            //console.log (selectedSizes.value);
             clothingStore.setSizes({...selectedSizes.value});
             //return selectedSizes.value;
         } else {
             selectedSizes.value = selectedSizes.value.filter((sizes: string) => sizes !== target.value);
-            //console.log (selectedSizes.value);
 
-        }        
+        }
+
+        tempSizes.value = selectedSizes.value.join(",");
     }
 </script>
 
@@ -122,8 +119,9 @@
 
         <div class="selected-sizes">
             <p>Selected sizes:</p>
-            <input v-if="productID === undefined" class="inputfield"  type="text" v-model="selectedSizes" readonly> 
-            <input v-else-if="productID !== undefined" class="inputfield"  type="text" v-model="productSizes" readonly>
+            <input v-if="productID === undefined" class="inputfield"  type="text" v-model="tempSizes" readonly> 
+            <input v-else-if="productID !== undefined" class="inputfield"  type="text" v-model="tempSizes" readonly>
+
         </div>
 
     </div>
@@ -158,6 +156,7 @@
         position: relative;
         display: flex;
         flex-wrap: wrap;
+        color: black;
     }
 
     .multiselect:focus {

@@ -68,7 +68,7 @@
     const selectCollection = (e: Event) => {
         const target = e.target as HTMLInputElement;
         const value = target.value;
-        console.log(value);
+        // console.log('here', value);
 
         if (value === "Geen") {
             collectionID.value = "0";
@@ -77,7 +77,7 @@
             getCollectionId(value);
         }
         
-        getCollectionId(value);
+        // getCollectionId(value);
     }
 
     const getCollectionId = (value:any):void => {
@@ -112,7 +112,7 @@
 
     <div class="select">
         <label for="name">Collection</label>
-        <select class="dropdown" name="collection" id="collection" @click="selectCollection">
+        <select class="dropdown" name="collection" id="collection" @change="selectCollection">
             <option v-for="(name, key) in names" :key="key" :value="name">{{ name }}</option>
         </select>
     </div>
