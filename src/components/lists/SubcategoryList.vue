@@ -104,12 +104,12 @@
 
             <div v-for="subcategory in subcategories" :key="subcategory._id" class="items">
                 <p class="item name">{{subcategory.name}}</p>
-                <p class="item">{{subcategory.category}}</p>
+                <p class="item">{{subcategory.category==="646c52ea66801f48259e7413"?"Women":"Men"}}</p>
                 <p class="item">{{subcategory.date.substring(0,10)}}</p>
                 <a @click="editSubcategory(subcategory._id)">
                     <p class="item blue">Edit</p>
                 </a>
-                <a @click="removeItem(subcategory._id)">
+                <a v-if="subcategory.name !== 'New arrivals'" @click="removeItem(subcategory._id)">
                     <p class="item red">Delete</p>
                 </a>
             </div>
@@ -160,7 +160,7 @@
     }
     .items {
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         border-bottom: solid 1px #CCCCCC;
         width: 100%;
         align-items: center;

@@ -7,10 +7,10 @@
     const categories:Ref = ref([]);
     const names:Ref = ref([]);
     const categoryID = ref('');
-    const emit = defineEmits(['categoryID']);
+    const emit = defineEmits(['categoryID', 'setCategory']);
 
-    const ID = window.location.pathname.split("/")[2];
-    console.log(ID);
+    // const ID = window.location.pathname.split("/")[2];
+    // console.log(ID);
     
 
     onMounted(() => {
@@ -27,7 +27,6 @@
             //console.log(data);
             if (data.status === "success") {
                 const storeID = storeId.value = data.data.storeId;
-
                 getCategory(storeID);
             } else {
                 console.log(data);
@@ -58,6 +57,7 @@
             //console.log(data);
             categories.value = data.data;
             names.value = data.data.map((category: any) => category.name);
+            emit('setCategory', categories.value[0]._id);
         })
         .catch((error) => {
             console.log(error);

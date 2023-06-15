@@ -11,7 +11,7 @@
                 <p class="days">Last 7 days</p>
 
                 <div class="graph-section">
-                    <h3 class="number">25.7K</h3>
+                    <h3 class="number">1.15K</h3>
                     <img src="../assets/graph.png" alt="">
                 </div>
 
@@ -26,7 +26,7 @@
                 <h2 class="subtitle">Total profit</h2>
                 <p class="days">Last 7 days</p>
                 <div class="graph-section">
-                    <h3 class="number">50K</h3>
+                    <h3 class="number">64.2K</h3>
                     <img src="../assets/graph.png" alt="">
                 </div>
                 <div class="margin">
@@ -43,7 +43,7 @@
                     <h2 class="subtitle">Best selling products</h2>
                     <!-- <img class="dots" src="../assets/dots.svg" alt=""> -->
                 </div>
-                <BestProductsList />                
+                <BestProductsList />
             </div>
 
             <div class="best-category-section">
@@ -52,7 +52,7 @@
                     <img class="dots" src="../assets/dots.svg" alt="">
                 </div>
 
-                <img class="graph-img" src="../assets/category-graph.png" alt="">
+                <img class="graph-img" src="../assets/category-graph2.png" alt="">
             </div>
 
         </div>

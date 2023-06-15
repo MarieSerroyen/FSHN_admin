@@ -55,29 +55,29 @@
             });
     }
 
-    const removeItem = (id: string) => {
-        fetch(`${import.meta.env.VITE_API_URL}/collections/${id}`, {
+    // const removeItem = (id: string) => {
+    //     fetch(`${import.meta.env.VITE_API_URL}/collections/${id}`, {
             
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
-            },
-            mode: "cors"            
-        }
-        )
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data);
-                router.go(0);
-                /*Fixen zodat er geen reload is.  */
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
+    //         method: "DELETE",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`
+    //         },
+    //         mode: "cors"            
+    //     }
+    //     )
+    //         .then((response) => {
+    //             return response.json();
+    //         })
+    //         .then((data) => {
+    //             console.log(data);
+    //             router.go(0);
+    //             /*Fixen zodat er geen reload is.  */
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
+    // }
 
     const editCollection = (id: string) => {
         router.push({ name: "editcollection", params: { id: id } });
@@ -98,12 +98,12 @@
             <a @click="editCollection(collection._id)">
                 <p class="item blue">Edit</p>
             </a>
-            <a @click="removeItem(collection._id)">
+            <!-- <a @click="removeItem(collection._id)">
                 <p class="item red">Delete</p>
-            </a>
-            <a>
-                <img src="../../assets/dropdown-arrow.svg" alt="">
-            </a>
+            </a> -->
+            <!-- <a>
+                <img src="../../assets/dropdown-arrow.svg" alt="open collection">
+            </a> -->
         </div>
 
     </div>

@@ -55,7 +55,7 @@
     .content {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        /* justify-content: space-between; */
         align-items: flex-start;
         width: 100%;
     }

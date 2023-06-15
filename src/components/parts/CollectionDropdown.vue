@@ -56,9 +56,6 @@
                 collections.value = data.data;
                 names.value = data.data.map((category: any) => category.name);
                 names.value.unshift("Geen");
-
-
-
             })
             .catch((error) => {
                 console.log(error);

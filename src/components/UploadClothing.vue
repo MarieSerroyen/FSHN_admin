@@ -35,7 +35,7 @@
     const successMessage = ref('');
 
     const productID = window.location.pathname.split("/")[2];
-    console.log(productID);
+    // console.log(productID);
 
     //update form data if productID is defined
     const productName: Ref = ref('');
@@ -121,6 +121,25 @@
         
     });
 
+    interface uploadData {
+        name: string,
+        articleNumber: string,
+        description: string,
+        brand: string,
+        colors: string[],
+        sizes: string[],
+        price: string,
+        materials: string[],
+        category: string,
+        subCategories: string|string[],
+        collectionStore?: string,
+        headImage: string,
+        modelImage: string,
+        modelImage2: string,
+        stock: string,
+        store: string
+    }
+
     const uploadClothing = () => {
 
         emit("getCategoryID", {
@@ -147,7 +166,7 @@
             materials.value = materials.value.split(',');
         }
 
-        let data = {
+        let data: uploadData = {
             name: name.value,
             articleNumber: articleNumber.value,
             description: description.value,
@@ -164,6 +183,11 @@
             modelImage2: tempModelImage2.value,
             stock: stock.value,
             store: storeId.value
+        }
+
+        // check if collection is an empty string, if so, remove it from the data object
+        if (data.collectionStore === '') {
+            delete data.collectionStore;
         }
 
         console.log(data);
@@ -191,6 +215,23 @@
                 const message = document.querySelector('.form-validation');
                 message?.classList.toggle('hidden');
             }
+
+            // empty the form
+            name.value = '';
+            articleNumber.value = '';
+            description.value = '';
+            brand.value = '';
+            colors.value = [];
+            price.value = '';
+            materials.value = [];
+            stock.value = '';
+            tempCategory.value = '';
+            tempSubcategory.value = '';
+            tempCollection.value = '';
+            tempSizes.value = [];
+            tempHeadImage.value = '';
+            tempModelImage.value = '';
+            tempModelImage2.value = '';
         })
         .catch(error => {
             console.log(error);
@@ -206,7 +247,6 @@
     const tempModelImage2 = ref("");
 
     function getSubcategory(category: string){
-        console.log(category);
         // get subcategories based on category
         fetch(`${import.meta.env.VITE_API_URL}/subCategories/category/${category}`, {
             method: "GET",
@@ -222,6 +262,7 @@
                 if (data.status === "success") {
                     subcategory.value = data.data;
                     subcategoryNames.value = data.data.map((category: any) => category.name);
+                    tempSubcategory.value = data.data[0]._id;
                 } else {
                     console.log(data);
                 }
@@ -267,6 +308,17 @@
         tempModelImage2.value = value;
         console.log(value);
     });
+
+    const setCategory = (category: string) => {
+        tempCategory.value = category;
+        // console.log(category);
+        getSubcategory(category);
+    }
+
+    const setSubcategory = (subcategory: string) => {
+        tempSubcategory.value = subcategory;
+        // console.log(subcategory);
+    }
 
     const updateClothing = (id: string) => {
 
@@ -431,11 +483,11 @@
             </p>
             <div class="input_grid">
                 <div>
-                    <CategoryList/> 
+                    <CategoryList @setCategory="setCategory" /> 
                 </div>
 
                 <div>
-                    <SubcategoryList :subCategories="subcategory" :names="subcategoryNames" :activeSubCategory="tempSubCat"/>
+                    <SubcategoryList :subCategories="subcategory" :names="subcategoryNames" :activeSubCategory="tempSubCat" @setSubcategory="setSubcategory"/>
                 </div>
 
                 <div>

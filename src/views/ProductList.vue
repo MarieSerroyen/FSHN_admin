@@ -26,7 +26,7 @@
                 <div class="tab-item">
                     <h4 class="tab-title active">All products</h4>
                 </div>
-                <div class="tab-item">
+                <!-- <div class="tab-item">
                     <h4 class="tab-title">Tab</h4>
                 </div>
                 <div class="tab-item">
@@ -46,7 +46,7 @@
                 </div>
                 <div class="tab-item">
                     <h4 class="tab-title">Tab</h4>
-                </div>
+                </div> -->
 
             </div>
 

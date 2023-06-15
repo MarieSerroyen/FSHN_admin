@@ -12,34 +12,34 @@
         </div>
 
         <div class="items">
-            <p class="item name">Item name</p>
-            <p class="item">506</p>
+            <p class="item name">HALF-PLACKET SHORT-SLEEVED SHIRT</p>
+            <p class="item">413</p>
             <li class="item green">Stock</li>
-            <p class="item">&euro;85,00</p>
+            <p class="item">&euro;59,00</p>
         </div>
         <div class="items">
-            <p class="item name">Item name</p>
-            <p class="item">506</p>
+            <p class="item name">WASHED-COTTON TOTE</p>
+            <p class="item">378</p>
             <li class="item green">Stock</li>
-            <p class="item">&euro;85,00</p>
+            <p class="item">&euro;59,00</p>
         </div>
         <div class="items">
-            <p class="item name">Item name</p>
-            <p class="item">506</p>
+            <p class="item name">LIGHT BLUE KNITTED SHORTS</p>
+            <p class="item">211</p>
             <li class="item green">Stock</li>
-            <p class="item">&euro;85,00</p>
+            <p class="item">&euro;25,30</p>
         </div>
         <div class="items">
-            <p class="item name">Item name</p>
-            <p class="item">506</p>
+            <p class="item name">CHECKED KNITTED SHORT-SLEEVED SHIRT</p>
+            <p class="item">104</p>
             <li class="item red">Out</li>
-            <p class="item">&euro;85,00</p>
+            <p class="item">&euro;99,00</p>
         </div>
         <div class="items">
-            <p class="item name">Item name</p>
-            <p class="item">506</p>
+            <p class="item name">ELASTICATED POPLIN SHORTS</p>
+            <p class="item">41</p>
             <li class="item green">Stock</li>
-            <p class="item">&euro;85,00</p>
+            <p class="item">&euro;45,00</p>
         </div>
     </div>
 </template>
