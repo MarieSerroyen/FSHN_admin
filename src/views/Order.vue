@@ -18,14 +18,14 @@
         <div class="content">
             <div class="header">
                 <h1 class="title">Order management</h1>
-                <img src="../assets/Avatar.png" alt="Profile picture">
+                <!-- <img src="../assets/Avatar.png" alt="Profile picture"> -->
             </div>
 
             <div class="tabs">
                 <div class="tab-item">
                     <h4 class="tab-title active">All orders</h4>
                 </div>
-                <div class="tab-item">
+                <!-- <div class="tab-item">
                     <h4 class="tab-title">Pending</h4>
                 </div>
                 <div class="tab-item">
@@ -45,7 +45,7 @@
                 </div>
                 <div class="tab-item">
                     <h4 class="tab-title">Cancelled</h4>
-                </div>
+                </div> -->
 
             </div>
 
@@ -53,11 +53,11 @@
 
             <div class="filter-section">
                 <div class="search">
-                    <input class="search-input" type="text" placeholder="Search by order id">
+                    <!-- <input class="search-input" type="text" placeholder="Search by order id"> -->
                 </div>
 
                 <div class="filter">
-                    <select class="filter-select">
+                    <!-- <select class="filter-select">
                         <option class="option" value="date">Filter by date</option>
                         <option value="Option">Option</option>
                         <option value="Option">Option</option>
@@ -66,7 +66,7 @@
                         <option value="Option">Option</option>
                         <option value="Option">Option</option>
                         <option value="Option">Option</option>
-                    </select>
+                    </select> -->
                 </div>
             </div>
 

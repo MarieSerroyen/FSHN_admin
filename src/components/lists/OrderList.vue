@@ -6,7 +6,7 @@
     const storeId = ref('');
     const orders:Ref = ref([]);
 
-    let numberOfOrders = ref(0);
+    // let numberOfOrders = ref(0);
 
     onMounted(() => {
         fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
@@ -53,22 +53,22 @@
                 //console.log(data);
                 orders.value = data.data;
 
-                numberOfOrders = orders.value.length;
+                // numberOfOrders = orders.value.length;
 
                 //reverse the order of the orders
                 orders.value = orders.value.reverse();
 
                 //show the latest 10 orders
-                orders.value = orders.value.slice(0, 10);
+                // orders.value = orders.value.slice(0, 10);
             })
             .catch((error) => {
                 console.log(error);
             });
     }
 
-    const dropdown = (_id: string) => {
-        console.log('dropdown ' + _id);
-    }
+    // const dropdown = (_id: string) => {
+    //     console.log('dropdown ' + _id);
+    // }
 
     const changeStatus = (id: string) => {
         //get the status
@@ -130,30 +130,30 @@
                 <option class="option" value="confirmed">Confirmed</option>
                 <option class="option" value="processing">Processing</option>
             </select>
-            <a @click="dropdown(order._id)" class="item">
+            <!-- <a @click="dropdown(order._id)" class="item">
                 <img src="../../assets/dropdown-arrow.svg" alt="">
-            </a>
+            </a> -->
         </div>
 
 
         <div class="pages">
             <div class="dropdown-showing">
-                <p>Showing</p>
+                <!-- <p>Showing</p>
                 <select class="dropdown" name="subcategory" id="subcategory">
                     <option value="10">10</option>
                     <option value="20">20</option>
                     <option value="50">50</option>
                 </select>
-                <p>of {{ numberOfOrders }}</p>
+                <p>of {{ numberOfOrders }}</p> -->
             </div>
 
             <div class="page-numbers">
                 <img class="number-box page-icon" src="../../assets/left-arrow.svg">
                 <p class="number-box active">1</p>
-                <p class="number-box">2</p>
+                <!-- <p class="number-box">2</p>
                 <p class="number-box">3</p>
                 <p class="number-box">4</p>
-                <p class="number-box">5</p>
+                <p class="number-box">5</p> -->
                 <img class="number-box page-icon" src="../../assets/right-arrow.svg">
             </div>
         </div>

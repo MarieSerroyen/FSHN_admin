@@ -19,7 +19,7 @@
         <div class="content">
             <div class="header">
                 <h1 class="title">Collections</h1>
-                <img src="../assets/Avatar.png" alt="Profile picture">
+                <!-- <img src="../assets/Avatar.png" alt="Profile picture"> -->
             </div>
 
             <div>

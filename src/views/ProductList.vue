@@ -19,7 +19,7 @@
         <div class="content">
             <div class="header">
                 <h1 class="title">Product list</h1>
-                <img src="../assets/Avatar.png" alt="Profile picture">
+                <!-- <img src="../assets/Avatar.png" alt="Profile picture"> -->
             </div>
 
             <div class="tabs">
@@ -53,7 +53,7 @@
             <hr class="line">
 
             <div class="search">
-                <input class="search-input" type="text" placeholder="Search by product id">
+                <!-- <input class="search-input" type="text" placeholder="Search by product id"> -->
             </div>
 
             <div class="list">

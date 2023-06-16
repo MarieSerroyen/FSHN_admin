@@ -232,6 +232,11 @@
             tempHeadImage.value = '';
             tempModelImage.value = '';
             tempModelImage2.value = '';
+
+            // redirect to productlist
+            setTimeout(() => {
+                router.push('/productlist');
+            }, 3000);
         })
         .catch(error => {
             console.log(error);

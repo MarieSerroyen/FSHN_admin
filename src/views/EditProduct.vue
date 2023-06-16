@@ -10,7 +10,7 @@
         <div class="content">
             <div class="header">
                 <h1 class="title">Edit product</h1>
-                <img src="../assets/Avatar.png" alt="Profile picture">
+                <!-- <img src="../assets/Avatar.png" alt="Profile picture"> -->
             </div>
 
             <div>
